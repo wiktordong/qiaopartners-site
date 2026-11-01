@@ -10,6 +10,24 @@ BASE_CSS = open(os.path.join(ROOT, "_src", "base.css"), encoding="utf-8").read()
 e = html.escape
 
 EXTRA_CSS = r"""
+
+/* Language drop-down */
+.langdd{position:relative}
+.langdd summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;font-size:13px;letter-spacing:.06em;padding:6px 10px;border:1px solid rgba(142,197,240,.35);border-radius:2px;opacity:.9}
+.langdd summary::-webkit-details-marker{display:none}
+.langdd summary:hover{opacity:1;border-color:var(--baby)}
+.langdd summary i{width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .25s}
+.langdd[open] summary i{transform:translateY(1px) rotate(-135deg)}
+.langdd ul{position:absolute;right:0;top:calc(100% + 8px);list-style:none;margin:0;padding:6px 0;min-width:120px;background:var(--navy-2);border:1px solid rgba(142,197,240,.25);border-radius:2px;box-shadow:0 12px 30px rgba(3,10,22,.35);z-index:30}
+.langdd li a{display:block;padding:9px 16px;text-decoration:none;opacity:.8;font-size:14px}
+.langdd li a:hover{opacity:1;background:rgba(142,197,240,.08)}
+.langdd li a[aria-current]{opacity:1;color:var(--baby)}
+.nav .langdd ul{display:block;gap:0;font-size:14px}
+.nav .langdd ul a::after{display:none}
+/* Key figures: three across */
+.figures .wrap.n3{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:980px){.figures .wrap.n3{grid-template-columns:repeat(3,minmax(0,1fr))}.figures .wrap.n3 .fig:nth-child(3){padding-left:32px;border-left:1px solid var(--line)}}
+@media (max-width:700px){.figures .wrap.n3{grid-template-columns:1fr;row-gap:40px}.figures .wrap.n3 .fig + .fig{padding-left:0;border-left:0;border-top:1px solid var(--line);padding-top:32px}}
 .banner{background:var(--navy-2);color:var(--on-dark);font-size:14px;text-align:center}
 .banner .wrap{padding-block:10px}
 .banner a{text-decoration:none;display:inline-flex;align-items:center;gap:10px}
@@ -240,8 +258,8 @@ def page(key):
     for k in L:
         href = (up + L[k]["path"]) or "./"
         cur = ' aria-current="page"' if k == key else ""
-        links.append(f'<a href="{href}"{cur} hreflang="{L[k]["lang"]}" lang="{L[k]["lang"]}">{L[k]["label"]}</a>')
-    lang_links = " ".join(links)
+        links.append(f'<li><a href="{href}"{cur} hreflang="{L[k]["lang"]}" lang="{L[k]["lang"]}">{ {"en":"English","pl":"Polski","zh":"中文"}.get(k, L[k]["label"]) }</a></li>')
+    lang_links = f'<details class="langdd"><summary aria-label="Language">{L[key]["label"]}<i aria-hidden="true"></i></summary><ul>{"".join(links)}</ul></details>'
     ids = ["about", "services", "sectors", "faq", "contact"]
     nav = "".join(f'<li><a href="#{i}">{e(t)}</a></li>' for i, t in zip(ids, c["nav"]))
     strip_imgs = [("wind-aerial.jpg", "Wind turbine among green fields, seen from above", "60% 50%"),
@@ -403,7 +421,7 @@ def page(key):
   </section>
 
   <section class="figures" aria-label="Key figures">
-    <div class="wrap">{figs}</div>
+    <div class="wrap n{len(c['figs'])}">{figs}</div>
   </section>
 
   <section class="book" id="book">
@@ -449,6 +467,17 @@ def page(key):
   </div>
 </footer>
 {SCRIPT}
+<script>
+(function(){{
+  var faqs=document.querySelectorAll('.faq details');
+  faqs.forEach(function(d){{d.addEventListener('toggle',function(){{if(d.open){{faqs.forEach(function(o){{if(o!==d)o.open=false}})}}}})}});
+  var dd=document.querySelector('.langdd');
+  if(dd){{
+    document.addEventListener('click',function(ev){{if(dd.open&&!dd.contains(ev.target))dd.open=false}});
+    document.addEventListener('keydown',function(ev){{if(ev.key==='Escape'&&dd.open){{dd.open=false;dd.querySelector('summary').focus()}}}});
+  }}
+}})();
+</script>
 </body>
 </html>
 '''

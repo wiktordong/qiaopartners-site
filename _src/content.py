@@ -244,3 +244,21 @@ L["pl"].update(banner="Przyjmujemy rezerwacje rozmów na I kwartał 2027", svc_c
                cal_loading="Ładowanie dostępnych terminów…")
 L["zh"].update(banner="现可预约2027年第一季度市场评估", svc_cta="预约市场评估", sec_cta="探讨您的目标市场",
                cal_loading="正在加载可预约时间…")
+
+
+# Key figures (1 Nov 2026): about Qiao Partners itself
+L["en"].update(figs=[
+    ("3", "Countries where we operate today", "", False),
+    ("5", "Languages spoken across our team", "", False),
+    ("6<small>years</small>", "Of cross-border experience between China and Europe", "", False),
+])
+L["pl"].update(figs=[
+    ("3", "Kraje, w których obecnie działamy", "", False),
+    ("5", "Języków, którymi posługuje się nasz zespół", "", False),
+    ("6<small>lat</small>", "Doświadczenia transgranicznego między Chinami a Europą", "", False),
+])
+L["zh"].update(figs=[
+    ("3", "目前业务覆盖的国家", "", False),
+    ("5", "团队工作语言", "", False),
+    ("6<small>年</small>", "中欧跨境经验", "", False),
+])
