@@ -2,7 +2,7 @@
 LINKEDIN = "https://www.linkedin.com/company/qiaopartners/"
 EMAIL = "contact@qiaopartners.eu"
 CALENDLY_URL = ""    # e.g. "https://calendly.com/qiaopartners/30min" — empty shows a placeholder
-WHATSAPP = ""         # international format, digits only, e.g. "48600123456"
+WHATSAPP = "https://wa.me/qr/V5JZQYHRWE3IJ1"   # WhatsApp contact link; QR image is img/whatsapp-qr.png
 FORM_ENDPOINT = "https://formsubmit.co/ajax/contact@qiaopartners.eu"   # form submissions are emailed here
 
 L = {}

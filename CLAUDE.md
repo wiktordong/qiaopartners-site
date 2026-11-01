@@ -8,7 +8,7 @@ Static site for qiaopartners.eu, hosted on GitHub Pages (repo `wiktordong/qiaopa
   - `_src/build.py`: page template, CSS and JS. Also writes `robots.txt`, `sitemap.xml`, `llms.txt`.
   - `_src/base.css`: original visual design (navy `#0A1C36`, baby blue `#8EC5F0`, Hanken Grotesk, light/dark themes). Keep this look.
   - `_src/articles/<lang>/<slug>.md`: blog articles with front matter.
-- Rebuild: `python3 _src/build.py` from the repo root (`pip install qrcode` once if `WHATSAPP` is set).
+- Rebuild: `python3 _src/build.py` from the repo root.
 
 ## Business rules for copy
 - Qiao Partners is a commercial advisory firm: market entry, market diagnosis, go-to-market strategy, EU business development and lead generation, entity/certification/tax setup with partner firms, regulation (incl. CBAM, EU ETS) and government relations, and China entry for European companies.

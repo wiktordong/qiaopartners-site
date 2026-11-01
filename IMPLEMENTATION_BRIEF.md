@@ -16,7 +16,7 @@ Wiktor asked for "a separate window that opens when people click Book a call": e
 
 ## Shared on every page
 - Header with logo, nav (About, Services, Market trends, Insights, FAQ, Contact/Book), language switch that keeps the reader on the same page in the other language, "Book a call" button, and the "Now booking market checks for Q1 2027" banner.
-- Footer with logo, disclaimer, email, LinkedIn, WeChat QR (`img/wechat-qr.jpg`).
+- Footer with logo, disclaimer, email, LinkedIn, WeChat QR (`img/wechat-qr.jpg`) and WhatsApp QR (`img/whatsapp-qr.png`, link in `WHATSAPP`).
 - Correct relative paths for images and favicons at every folder depth (e.g. `../../img/`), canonical URL and hreflang alternates per page.
 
 ## Articles
@@ -28,7 +28,6 @@ Wiktor asked for "a separate window that opens when people click Book a call": e
 
 ## Still waiting on Wiktor
 - `CALENDLY_URL` in `_src/content.py` (he will create a 30-minute "Market check" event on Calendly and connect his Google or Outlook calendar).
-- `WHATSAPP` number for the QR code.
 - The first form submission triggers a FormSubmit confirmation email to contact@qiaopartners.eu; he must click it once.
 - Approval to merge into `main` (goes live).
 

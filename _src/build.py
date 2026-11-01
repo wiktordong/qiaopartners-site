@@ -281,7 +281,7 @@ def page(key):
         <div class="panel cal"><h3>{e(c["cal_h"])}</h3>{cal}</div>
       </div>"""
     if WHATSAPP:
-        wa = f'<figure><a href="https://wa.me/{WHATSAPP}"><img src="{up}img/whatsapp-qr.png" alt="WhatsApp QR code"></a><figcaption>{e(c["scan_wa"])}</figcaption></figure>'
+        wa = f'<figure><a href="{WHATSAPP}" rel="noopener" target="_blank"><img src="{up}img/whatsapp-qr.png" alt="WhatsApp QR code"></a><figcaption>{e(c["scan_wa"])}</figcaption></figure>'
     else:
         wa = f'<figure><div class="ph">{e(c["wa_pending"])}</div><figcaption>{e(c["scan_wa"])}</figcaption></figure>'
     return f'''<!doctype html>
@@ -458,9 +458,6 @@ def main():
         out = os.path.join(ROOT, c["path"], "index.html")
         os.makedirs(os.path.dirname(out), exist_ok=True)
         open(out, "w", encoding="utf-8").write(page(k))
-    if WHATSAPP:
-        import qrcode
-        qrcode.make(f"https://wa.me/{WHATSAPP}", border=2).save(os.path.join(ROOT, "img", "whatsapp-qr.png"))
     open(os.path.join(ROOT, "robots.txt"), "w").write(
         "User-agent: *\nAllow: /\n\n# AI assistants and search crawlers are welcome\n"
         "User-agent: GPTBot\nAllow: /\nUser-agent: ClaudeBot\nAllow: /\nUser-agent: PerplexityBot\nAllow: /\n"
@@ -474,7 +471,7 @@ def main():
             "## Services"] + [f"- {h}: {p}" for h, p in en["svc"]] + ["", "## Market trends we track (to 2035)"] + \
            [f"- {h} ({en["tags"][t]}): {p}" for h, p, t in en["sec"]] + ["", "## Pages",
             f"- [English]({SITE})", f"- [Polski]({SITE}pl/)", f"- [中文]({SITE}zh/)", "", "## Contact",
-            f"- Email: {EMAIL}", f"- LinkedIn: {LINKEDIN}", "- WeChat: QR code on the website", ""]
+            f"- Email: {EMAIL}", f"- LinkedIn: {LINKEDIN}", "- WeChat: QR code on the website", f"- WhatsApp: {WHATSAPP}", ""]
     open(os.path.join(ROOT, "llms.txt"), "w", encoding="utf-8").write("\n".join(llms))
     print("built", list(L))
 
