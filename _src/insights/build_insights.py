@@ -96,31 +96,38 @@ ART_T = {
                "到2025年，波兰一直是欧洲生物甲烷版图上最大的空白。2026年，波兰推出了竞拍机制、补贴计划和更简便的并网规则。2026至2028年是抢占先机的窗口期。")},
 }
 
-ALT = {
-    "terminal.jpg": "Gas storage terminal and jetty by the sea, seen from above",
-    "wind-aerial.jpg": "Wind turbine among green fields, seen from above",
-    "sprayer.jpg": "Tractor working a maize field at sunset",
-    "wind-hills.jpg": "Wind turbines across rolling hills",
-    "solar-fjord.jpg": "Two engineers carrying a solar panel across a rooftop array by a fjord",
-    "wind-ridge.jpg": "Row of wind turbines along a mountain ridge at sunrise",
-    "tower-handshake.jpg": "Two people shaking hands in silhouette against a glass tower",
-    "meeting.jpg": "Team meeting in an office with a city view",
-    "eu-flags.jpg": "European Union flags outside an EU building",
-    "truck.jpg": "Lorry on an open road at dusk",
+# Insights photos (img/insights/), kept separate from the home-page photos. file: (alt text, crop focus)
+PHOTO = {
+    "insights/crossroads.jpg": ("A person standing at a road junction with arrows pointing in four directions", "50% 50%"),
+    "insights/eu-flag-mountains.jpg": ("European Union flag flying against misty mountains", "50% 45%"),
+    "insights/biomethane-domes.jpg": ("Biomethane plant with green digester domes in a field", "50% 55%"),
+    "insights/field-road-truck.jpg": ("Red truck on a straight dirt road through green crop fields, seen from above", "50% 72%"),
+    "insights/biomethane-plant-trucks.jpg": ("Biomethane plant with feedstock trucks arriving", "50% 55%"),
+    "insights/solar-crew.jpg": ("Workers in red helmets installing solar panels", "50% 40%"),
+    "insights/handshake-close.jpg": ("Close-up of a business handshake across a table", "50% 52%"),
+    "insights/solar-handshake-sunset.jpg": ("Two engineers shaking hands on a solar roof at sunset", "50% 55%"),
+    "insights/eu-flags-berlaymont.jpg": ("European Union flags outside the European Commission building", "50% 35%"),
+    "insights/solar-wind-coast.jpg": ("Solar panels and wind turbines by the coast", "50% 45%"),
+    "insights/wind-patchwork.jpg": ("Wind turbine among patchwork farm fields, seen from above", "50% 50%"),
+    "insights/tractor-mowing.jpg": ("Tractor mowing a green field, seen from above", "50% 58%"),
+    "insights/solar-lake.jpg": ("Solar panels along a winding path beside a lake, seen from above", "50% 50%"),
+    "insights/winding-road-fields.jpg": ("A winding road through farmland, seen from above", "50% 45%"),
 }
-# Photos from the site's own library: (cover, photo break inside the article)
+ALT = {k: v[0] for k, v in PHOTO.items()}
+# (cover, photo break inside the article)
 IMG = {
-    "europe-energy-market-2026": ("terminal.jpg", "wind-aerial.jpg"),
-    "european-biomethane-market-2026": ("sprayer.jpg", "wind-hills.jpg"),
-    "biomethane-equipment-market-europe": ("solar-fjord.jpg", "wind-ridge.jpg"),
-    "china-europe-biomethane-investment": ("tower-handshake.jpg", "meeting.jpg"),
-    "biomethane-revenue-stack-eu-regulation": ("eu-flags.jpg", "terminal.jpg"),
-    "poland-biomethane-market-2026": ("wind-hills.jpg", "sprayer.jpg"),
+    "europe-energy-market-2026": ("insights/crossroads.jpg", "insights/eu-flag-mountains.jpg"),
+    "european-biomethane-market-2026": ("insights/biomethane-domes.jpg", "insights/field-road-truck.jpg"),
+    "biomethane-equipment-market-europe": ("insights/biomethane-plant-trucks.jpg", "insights/solar-crew.jpg"),
+    "china-europe-biomethane-investment": ("insights/handshake-close.jpg", "insights/solar-handshake-sunset.jpg"),
+    "biomethane-revenue-stack-eu-regulation": ("insights/eu-flags-berlaymont.jpg", "insights/solar-wind-coast.jpg"),
+    "poland-biomethane-market-2026": ("insights/wind-patchwork.jpg", "insights/tractor-mowing.jpg"),
 }
-HUB_IMG, SERIES_IMG = "wind-aerial.jpg", "wind-ridge.jpg"
+HUB_IMG, SERIES_IMG = "insights/solar-lake.jpg", "insights/winding-road-fields.jpg"
 
 
-def img(f, cls, lazy=True, pos="50% 50%"):
+def img(f, cls, lazy=True, pos=None):
+    pos = pos or PHOTO[f][1]
     return (f'<img class="{cls}" src="/img/{f}" alt="{escape(ALT[f])}" style="object-position:{pos}"'
             f'{" loading=\"lazy\"" if lazy else ""} decoding="async">')
 
@@ -255,7 +262,7 @@ def hub(k, css):
 <figure class="hub-pic">{img(HUB_IMG, "", lazy=False)}</figure></section>
 <div class="section-h"><h2>{escape(u["series"])}</h2></div>
 <section class="series-feature"><div>
-<figure class="series-pic">{img(SERIES_IMG, "", pos="50% 40%")}</figure>
+<figure class="series-pic">{img(SERIES_IMG, "")}</figure>
 <div class="eyebrow">{total}-{escape(u["parts"])}</div>
 <h3>{escape(name)}</h3><p>{escape(dek)}</p>{nxt}</div>
 <ol class="toc">{toc}</ol></section>

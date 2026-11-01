@@ -232,3 +232,5 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
 /* One typeface everywhere: numbers line up in tables and charts */
 body{font-variant-numeric:tabular-nums}
+/* Cover photo sits in the reading width so smaller photos stay sharp */
+.cover{max-width:var(--wide)}
