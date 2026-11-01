@@ -40,11 +40,13 @@ EXTRA_CSS = r"""
 .lang a{text-decoration:none;opacity:.6}
 .lang a:hover{opacity:1}
 .lang a[aria-current]{opacity:1;color:var(--baby)}
-.btn{display:inline-flex;align-items:center;gap:10px;background:var(--baby);color:var(--navy);text-decoration:none;font-weight:500;font-size:15px;padding:12px 20px;border-radius:2px;transition:background .2s}
-.btn:hover{background:#B6DAF6}
+.btn{display:inline-flex;align-items:center;gap:12px;background:transparent;color:inherit;border:1px solid currentColor;border-color:color-mix(in srgb,currentColor 55%,transparent);border-radius:999px;text-decoration:none;font-weight:400;font-size:15px;letter-spacing:.01em;padding:13px 28px;cursor:pointer;transition:background-color .35s ease,color .35s ease,border-color .35s ease}
+.btn:hover,.btn:focus-visible{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.site .btn:hover,.hero .btn:hover,.site .btn:focus-visible,.hero .btn:focus-visible{background:var(--baby);color:var(--navy);border-color:var(--baby)}
 .btn span{display:inline-block;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
 .btn:hover span{transform:translateX(5px)}
-.btn.small{padding:9px 14px;font-size:14px}
+.btn.small{padding:9px 20px;font-size:14px}
+.btn:disabled{opacity:.5;cursor:default}
 .hero .wrap > div{display:grid;gap:28px;justify-items:start}
 @media (max-width:560px){.nav-right .btn.small{display:none}}
 
@@ -73,7 +75,7 @@ EXTRA_CSS = r"""
 .sectors h2{font-size:clamp(32px,4vw,54px);line-height:1.08}
 .sectors .head p{color:var(--muted);font-size:19px;font-weight:300;max-width:46ch}
 .sec{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}
-.sec .tag{justify-self:start;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:4px 8px;border:1px solid rgba(142,197,240,.45);color:var(--baby);border-radius:2px}
+.sec .tag{justify-self:start;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:4px 12px;border:1px solid rgba(142,197,240,.45);color:var(--baby);border-radius:999px}
 .sec li[data-h="mid"]{background:var(--navy-2)}
 .sec li[data-h="long"]{background:#173459}
 .sec li{background:var(--navy);color:var(--on-dark);padding:32px 28px 36px;display:grid;gap:12px;align-content:start;min-height:220px}
