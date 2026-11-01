@@ -10,6 +10,12 @@ BASE_CSS = open(os.path.join(ROOT, "_src", "base.css"), encoding="utf-8").read()
 e = html.escape
 
 EXTRA_CSS = r"""
+.banner{background:var(--navy-2);color:var(--on-dark);font-size:14px;text-align:center}
+.banner .wrap{padding-block:10px}
+.banner a{text-decoration:none;display:inline-flex;align-items:center;gap:10px}
+.banner i{width:8px;height:8px;border-radius:50%;background:#5FD08A;box-shadow:0 0 0 4px rgba(95,208,138,.2)}
+.banner a:hover{color:var(--baby)}
+.sec-cta{margin-top:40px}
 /* Additions: language switch, buttons, services, steps, sectors, booking, FAQ, QR contact */
 .nav-right{display:flex;align-items:center;gap:28px}
 .lang{display:flex;gap:12px;font-size:13px;letter-spacing:.06em}
@@ -82,7 +88,8 @@ EXTRA_CSS = r"""
 .enq-status.err{border-left-color:#C2513F}
 .cal{min-height:640px}
 .cal .ph{border:1px dashed var(--line);min-height:560px;display:grid;place-items:center;text-align:center;color:var(--muted);padding:24px;font-size:15px}
-.calendly-inline-widget{min-width:280px;height:660px}
+.calendly-inline-widget{min-width:280px;height:660px;position:relative}
+.calendly-inline-widget:empty::before{content:attr(data-loading);position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);font-size:15px}
 @media (max-width:980px){.book .panels{grid-template-columns:1fr}.book .head{grid-template-columns:1fr;gap:20px}}
 @media (max-width:620px){.enq{grid-template-columns:1fr}.book .wrap{padding-block:88px}}
 
@@ -266,7 +273,7 @@ def page(key):
         <p class="enq-status" id="enq-ok" role="status" hidden>{e(c["f_ok"])}</p>
         <p class="enq-status err" id="enq-err" role="alert" hidden>{e(c["f_err"])}</p>"""
     if CALENDLY_URL:
-        cal = f'<div class="calendly-inline-widget" id="cal-widget" data-url="{e(CALENDLY_URL)}?hide_gdpr_banner=1&amp;primary_color=0a1c36"></div><script src="https://assets.calendly.com/assets/external/widget.js" async></script>'
+        cal = f'<div class="calendly-inline-widget" id="cal-widget" data-loading="{e(c["cal_loading"])}" data-url="{e(CALENDLY_URL)}?hide_gdpr_banner=1&amp;primary_color=0a1c36"></div><script src="https://assets.calendly.com/assets/external/widget.js" async></script>'
     else:
         cal = f'<div class="ph">{e(c["cal_ph"])}</div>'
     slot = f"""<div class="panels">
@@ -307,6 +314,8 @@ def page(key):
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
+
+<div class="banner"><div class="wrap"><a href="#book"><i aria-hidden="true"></i>{e(c["banner"])} <span aria-hidden="true">→</span></a></div></div>
 
 <header class="site">
   <div class="wrap nav">
@@ -356,6 +365,7 @@ def page(key):
         <p>{e(c["svc_p"])}</p>
       </div>
       <div class="svc">{svc}</div>
+      <div class="sec-cta"><a class="btn" href="#book">{e(c["svc_cta"])} <span aria-hidden="true">→</span></a></div>
     </div>
   </section>
 
@@ -373,6 +383,7 @@ def page(key):
         <p>{e(c["sec_p"])}</p>
       </div>
       <ul class="sec">{sec}</ul>
+      <div class="sec-cta"><a class="btn" href="#book">{e(c["sec_cta"])} <span aria-hidden="true">→</span></a></div>
     </div>
   </section>
 

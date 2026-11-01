@@ -236,3 +236,11 @@ L["zh"].update(
   sizes=["1000万欧元以下", "1000万–5000万欧元", "5000万–2.5亿欧元", "2.5亿欧元以上"],
   cal_h="或预约30分钟通话", cal_ph="添加Calendly链接后，预约日历将显示在这里。",
 )
+
+# ---- Booking banner and section CTAs (outpacestudios-style) ----
+L["en"].update(banner="Now booking market checks for Q1 2027", svc_cta="Book a market check", sec_cta="Discuss your market",
+               cal_loading="Loading live availability…")
+L["pl"].update(banner="Przyjmujemy rezerwacje rozmów na I kwartał 2027", svc_cta="Umów rozmowę o rynku", sec_cta="Porozmawiajmy o Państwa rynku",
+               cal_loading="Ładowanie dostępnych terminów…")
+L["zh"].update(banner="现可预约2027年第一季度市场评估", svc_cta="预约市场评估", sec_cta="探讨您的目标市场",
+               cal_loading="正在加载可预约时间…")
