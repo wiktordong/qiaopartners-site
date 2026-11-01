@@ -111,19 +111,25 @@ PHOTO = {
     "insights/wind-patchwork.jpg": ("Wind turbine among patchwork farm fields, seen from above", "50% 50%"),
     "insights/tractor-mowing.jpg": ("Tractor mowing a green field, seen from above", "50% 58%"),
     "insights/solar-lake.jpg": ("Solar panels along a winding path beside a lake, seen from above", "50% 50%"),
+    "insights/solar-field-aerial.jpg": ("Rows of solar panels and power lines in a large solar field, seen from above", "50% 50%"),
+    "insights/containers.jpg": ("Stacked shipping containers", "50% 40%"),
+    "insights/solar-forest-canopy.jpg": ("Solar panels set among forest trees, seen from above", "50% 50%"),
+    "insights/charging-mountain.jpg": ("Fast chargers and an electric car at a mountain roadside", "50% 72%"),
+    "insights/handshake-tower.jpg": ("Two people shaking hands in silhouette in a glass tower", "50% 55%"),
+    "insights/solar-forest-aerial.jpg": ("Rows of solar panels beside a forest, seen from above", "50% 50%"),
     "insights/winding-road-fields.jpg": ("A winding road through farmland, seen from above", "50% 45%"),
 }
 ALT = {k: v[0] for k, v in PHOTO.items()}
-# (cover, photo break inside the article)
+# (card thumbnail, cover, photo break inside the article): three different photos per article
 IMG = {
-    "europe-energy-market-2026": ("insights/crossroads.jpg", "insights/eu-flag-mountains.jpg"),
-    "european-biomethane-market-2026": ("insights/biomethane-domes.jpg", "insights/field-road-truck.jpg"),
-    "biomethane-equipment-market-europe": ("insights/biomethane-plant-trucks.jpg", "insights/solar-crew.jpg"),
-    "china-europe-biomethane-investment": ("insights/handshake-close.jpg", "insights/solar-handshake-sunset.jpg"),
-    "biomethane-revenue-stack-eu-regulation": ("insights/eu-flags-berlaymont.jpg", "insights/solar-wind-coast.jpg"),
-    "poland-biomethane-market-2026": ("insights/wind-patchwork.jpg", "insights/tractor-mowing.jpg"),
+    "europe-energy-market-2026": ("insights/eu-flag-mountains.jpg", "insights/crossroads.jpg", "insights/containers.jpg"),
+    "european-biomethane-market-2026": ("insights/field-road-truck.jpg", "insights/biomethane-domes.jpg", "insights/solar-forest-canopy.jpg"),
+    "biomethane-equipment-market-europe": ("insights/solar-crew.jpg", "insights/biomethane-plant-trucks.jpg", "insights/charging-mountain.jpg"),
+    "china-europe-biomethane-investment": ("insights/solar-handshake-sunset.jpg", "insights/handshake-close.jpg", "insights/handshake-tower.jpg"),
+    "biomethane-revenue-stack-eu-regulation": ("insights/solar-wind-coast.jpg", "insights/eu-flags-berlaymont.jpg", "insights/solar-forest-aerial.jpg"),
+    "poland-biomethane-market-2026": ("insights/tractor-mowing.jpg", "insights/wind-patchwork.jpg", "insights/solar-lake.jpg"),
 }
-HUB_IMG, SERIES_IMG = "insights/solar-lake.jpg", "insights/winding-road-fields.jpg"
+HUB_IMG, SERIES_IMG = "insights/solar-field-aerial.jpg", "insights/winding-road-fields.jpg"
 
 
 def img(f, cls, lazy=True, pos=None):
@@ -293,7 +299,7 @@ def article(i, css):
         right = (f'<a href="{art_url(next_)}"><span class="meta">Next · Part {next_["part"]}</span><span>{escape(next_["short"])}</span></a>') if next_ else "<span></span>"
         pager = f'<nav class="pager" aria-label="Series">{left}{right}</nav>'
     d = RELEASE[a["slug"]]
-    cover, mid = IMG[a["slug"]]
+    _thumb, cover, mid = IMG[a["slug"]]
     art_body, heads = enrich(a["body"], mid)
     contents = "".join(f'<li><a href="#{i}">{escape(t)}</a></li>' for i, t in heads)
     body = f'''<div class="wrap">
