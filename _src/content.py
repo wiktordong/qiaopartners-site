@@ -246,19 +246,23 @@ L["zh"].update(banner="现可预约2027年第一季度市场评估", svc_cta="�
                cal_loading="正在加载可预约时间…")
 
 
-# Key figures (1 Nov 2026): about Qiao Partners itself
+# Key figures (1 Nov 2026): market context + Qiao Partners
+SRC_FDI = "Rhodium Group & MERICS, May 2026"
 L["en"].update(figs=[
+    ("€16.8<small>bn</small>", "Chinese direct investment in the EU and UK in 2025", SRC_FDI, False),
+    ("+67%", "Year-on-year growth in Chinese FDI in Europe, 2025 vs 2024", SRC_FDI, False),
     ("3", "Countries where we operate today", "", False),
-    ("5", "Languages spoken across our team: Dutch, Polish, Mandarin, Ukrainian and Italian", "", False),
     ("6<small>years</small>", "Of cross-border experience between China and Europe", "", False),
 ])
 L["pl"].update(figs=[
+    ("€16,8<small>mld</small>", "Bezpośrednie inwestycje chińskie w UE i Wielkiej Brytanii w 2025 r.", "Rhodium Group i MERICS, maj 2026", False),
+    ("+67%", "Wzrost chińskich inwestycji bezpośrednich w Europie rok do roku, 2025 vs 2024", "Rhodium Group i MERICS, maj 2026", False),
     ("3", "Kraje, w których obecnie działamy", "", False),
-    ("5", "Języków w zespole: niderlandzki, polski, chiński, ukraiński i włoski", "", False),
     ("6<small>lat</small>", "Doświadczenia transgranicznego między Chinami a Europą", "", False),
 ])
 L["zh"].update(figs=[
+    ("168<small>亿欧元</small>", "2025年中国对欧盟及英国的直接投资", "荣鼎咨询（Rhodium Group）与墨卡托中国研究中心（MERICS），2026年5月", False),
+    ("+67%", "2025年中国对欧直接投资同比增长", "荣鼎咨询（Rhodium Group）与墨卡托中国研究中心（MERICS），2026年5月", False),
     ("3", "目前业务覆盖的国家", "", False),
-    ("5", "团队工作语言：荷兰语、波兰语、中文、乌克兰语和意大利语", "", False),
     ("6<small>年</small>", "中欧跨境经验", "", False),
 ])
