@@ -12,18 +12,6 @@ e = html.escape
 EXTRA_CSS = r"""
 
 /* Language drop-down */
-.langdd{position:relative}
-.langdd summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;font-size:13px;letter-spacing:.06em;padding:6px 0;opacity:.78;transition:opacity .2s}
-.langdd summary::-webkit-details-marker{display:none}
-.langdd summary:hover,.langdd[open] summary{opacity:1}
-.langdd summary i{width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .25s}
-.langdd[open] summary i{transform:translateY(1px) rotate(-135deg)}
-.langdd ul{position:absolute;right:0;top:calc(100% + 8px);list-style:none;margin:0;padding:6px 0;min-width:120px;background:var(--navy-2);border:1px solid rgba(142,197,240,.25);border-radius:2px;box-shadow:0 12px 30px rgba(3,10,22,.35);z-index:30}
-.langdd li a{display:block;padding:9px 16px;text-decoration:none;opacity:.8;font-size:14px}
-.langdd li a:hover{opacity:1;background:rgba(142,197,240,.08)}
-.langdd li a[aria-current]{opacity:1;color:var(--baby)}
-.nav .langdd ul{display:block;gap:0;font-size:14px}
-.nav .langdd ul a::after{display:none}
 /* Key figures: three across */
 .figures .wrap.n3{grid-template-columns:repeat(3,minmax(0,1fr))}
 @media (max-width:980px){.figures .wrap.n3{grid-template-columns:repeat(3,minmax(0,1fr))}.figures .wrap.n3 .fig:nth-child(3){padding-left:32px;border-left:1px solid var(--line)}}
@@ -36,8 +24,10 @@ EXTRA_CSS = r"""
 .sec-cta{margin-top:40px}
 /* Additions: language switch, buttons, services, steps, sectors, booking, FAQ, QR contact */
 .nav-right{display:flex;align-items:center;gap:28px}
-.lang{display:flex;gap:12px;font-size:13px;letter-spacing:.06em}
-.lang a{text-decoration:none;opacity:.6}
+.lang{display:flex;align-items:center;font-size:13px;letter-spacing:.08em;background:transparent}
+.lang a{text-decoration:none;opacity:.55;padding:4px 12px;line-height:1;transition:opacity .25s,color .25s}
+.lang a + a{border-left:1px solid rgba(243,247,252,.25)}
+.lang a:first-child{padding-left:0}
 .lang a:hover{opacity:1}
 .lang a[aria-current]{opacity:1;color:var(--baby)}
 .btn{display:inline-flex;align-items:center;gap:12px;background:transparent;color:inherit;border:1px solid currentColor;border-color:color-mix(in srgb,currentColor 55%,transparent);border-radius:999px;text-decoration:none;font-weight:400;font-size:15px;letter-spacing:.01em;padding:13px 28px;cursor:pointer;transition:background-color .35s ease,color .35s ease,border-color .35s ease}
@@ -261,7 +251,7 @@ def page(key):
         href = (up + L[k]["path"]) or "./"
         cur = ' aria-current="page"' if k == key else ""
         links.append(f'<li><a href="{href}"{cur} hreflang="{L[k]["lang"]}" lang="{L[k]["lang"]}">{ {"en":"English","pl":"Polski","zh":"中文"}.get(k, L[k]["label"]) }</a></li>')
-    lang_links = f'<details class="langdd"><summary aria-label="Language">{L[key]["label"]}<i aria-hidden="true"></i></summary><ul>{"".join(links)}</ul></details>'
+    lang_links = "".join(f'<a href="{(up + L[k]["path"]) or "./"}"{" aria-current=\"page\"" if k == key else ""} hreflang="{L[k]["lang"]}" lang="{L[k]["lang"]}">{L[k]["label"]}</a>' for k in L)
     ids = ["about", "services", "sectors", "faq", "contact"]
     nav = "".join(f'<li><a href="#{i}">{e(t)}</a></li>' for i, t in zip(ids, c["nav"]))
     strip_imgs = [("wind-aerial.jpg", "Wind turbine among green fields, seen from above", "60% 50%"),
@@ -473,11 +463,6 @@ def page(key):
 (function(){{
   var faqs=document.querySelectorAll('.faq details');
   faqs.forEach(function(d){{d.addEventListener('toggle',function(){{if(d.open){{faqs.forEach(function(o){{if(o!==d)o.open=false}})}}}})}});
-  var dd=document.querySelector('.langdd');
-  if(dd){{
-    document.addEventListener('click',function(ev){{if(dd.open&&!dd.contains(ev.target))dd.open=false}});
-    document.addEventListener('keydown',function(ev){{if(ev.key==='Escape'&&dd.open){{dd.open=false;dd.querySelector('summary').focus()}}}});
-  }}
 }})();
 </script>
 </body>
