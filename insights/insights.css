@@ -9,9 +9,9 @@
   --accent-soft: #8EC5F0;
   --ex-mute: #C9D4E0;
   --wash: #F2F6FA;
-  --f-display: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
-  --f-body: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
-  --f-data: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --f-display: "Hanken Grotesk", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Hanken Grotesk", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+  --f-data: "Hanken Grotesk", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;  /* same typeface; tabular figures for data */
   --col: 42rem;
   --wide: 56rem;
   color-scheme: light;
@@ -229,3 +229,6 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .rail .contents a:hover{color:var(--accent)}
 @media (max-width:860px){.hub-hero{grid-template-columns:minmax(0,1fr);gap:1.5rem}.cover img{aspect-ratio:16/10}}
 @media (prefers-reduced-motion:reduce){.thumb img{transition:none}}
+
+/* One typeface everywhere: numbers line up in tables and charts */
+body{font-variant-numeric:tabular-nums}

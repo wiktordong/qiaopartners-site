@@ -259,7 +259,7 @@ def page(key):
     faq = {"@context": "https://schema.org", "@type": "FAQPage", "inLanguage": c["lang"],
            "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in c["faq"]]}
     ld = f'<script type="application/ld+json">{json.dumps(org, ensure_ascii=False)}</script>\n<script type="application/ld+json">{json.dumps(faq, ensure_ascii=False)}</script>'
-    fonts = "family=Hanken+Grotesk:wght@300;400;500;600&family=Noto+Serif+SC:wght@500" + ("&family=Noto+Sans+SC:wght@300;400;500" if key == "zh" else "")
+    fonts = "family=Hanken+Grotesk:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500"  # one typeface site-wide; Noto Sans SC only supplies Chinese characters
     links = []
     for k in L:
         href = (up + L[k]["path"]) or "./"

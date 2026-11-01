@@ -152,7 +152,7 @@ LOGO = '''<a class="q-logo" href="{home}" aria-label="Qiao Partners"><svg viewBo
 
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
          '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600'
-         '&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap">')
+         '&family=Noto+Sans+SC:wght@300;400;500&display=swap">')
 
 
 def published():

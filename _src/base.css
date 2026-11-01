@@ -11,7 +11,7 @@
   --on-dark:#F3F7FC;
   --on-dark-muted:#AFC0D4;
   --sans:"Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
-  --cjk:"Noto Serif SC", "Songti SC", serif;
+  --cjk:"Hanken Grotesk", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
   --max:1240px;
 }
 @media (prefers-color-scheme: dark){
