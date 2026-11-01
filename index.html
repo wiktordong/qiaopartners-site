@@ -6,6 +6,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Qiao Partners: advisory and market entry between China and Europe in the energy transition.">
 <title>Qiao Partners</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600&family=Noto+Serif+SC:wght@500&display=swap">
@@ -171,8 +175,52 @@ footer .wrap{padding-block:40px;display:flex;flex-wrap:wrap;gap:20px 32px;justif
 footer .logo svg{height:30px}
 footer .logo .word{font-size:34px}
 
-@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.strip img,.card .pic img{transition:none}}
+/* Motion: sticky header that tightens on scroll, a reading-progress line, link underlines */
+.site{position:sticky;top:env(safe-area-inset-top, 0px);z-index:20;transition:background-color .5s ease, box-shadow .5s ease}
+.site .nav{transition:padding .5s cubic-bezier(.2,.7,.2,1)}
+.site.scrolled{background:rgba(10,28,54,.9);-webkit-backdrop-filter:saturate(1.4) blur(12px);backdrop-filter:saturate(1.4) blur(12px);box-shadow:0 10px 30px rgba(3,10,22,.28)}
+.site.scrolled .nav{padding-block:14px}
+.progress{position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--baby);transform-origin:0 50%;transform:scaleX(0);pointer-events:none}
+.nav ul a{position:relative}
+.nav ul a::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;background:var(--baby);transform:scaleX(0);transform-origin:0 50%;transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.nav ul a:hover::after,.nav ul a:focus-visible::after{transform:scaleX(1)}
+.link span{display:inline-block;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.link:hover span{transform:translateX(6px)}
+
+/* Motion: entrance states apply only when scripts run and the reader allows motion */
+@media (prefers-reduced-motion: no-preference){
+  .js .site .logo path{stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset 1.8s cubic-bezier(.65,0,.35,1) .35s}
+  .js.loaded .site .logo path{stroke-dashoffset:0}
+  .js .site .logo .word,.js .site .logo .partners{opacity:0;transition:opacity 1s ease .1s}
+  .js .site .logo .partners{transition-delay:.9s}
+  .js.loaded .site .logo .word,.js.loaded .site .logo .partners{opacity:1}
+  .js .site .nav ul{opacity:0;transform:translateY(-8px);transition:opacity 1s ease .6s,transform 1s cubic-bezier(.2,.7,.2,1) .6s}
+  .js.loaded .site .nav ul{opacity:1;transform:none}
+
+  .js .hero h1 .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em;margin-bottom:-.1em}
+  .js .hero h1 .w > span{display:inline-block;transform:translateY(110%);transition:transform 1.15s cubic-bezier(.2,.75,.15,1);transition-delay:calc(var(--i) * 65ms + 200ms)}
+  .js.loaded .hero h1 .w > span{transform:none}
+  .js .hero .wrap > p{opacity:0;transform:translateY(16px);transition:opacity 1.1s ease 1s,transform 1.1s cubic-bezier(.2,.7,.2,1) 1s}
+  .js.loaded .hero .wrap > p{opacity:1;transform:none}
+
+  .js [data-reveal]{opacity:0;transform:translateY(28px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d, 0s)}
+  .js [data-reveal].in{opacity:1;transform:none}
+  .js [data-reveal="mask"]{opacity:1;transform:none}
+  .js [data-reveal="mask"] img{clip-path:inset(100% 0 0 0);transform:scale(1.18);transition:clip-path 1.4s cubic-bezier(.7,0,.2,1),transform 2s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d, 0s)}
+  .js [data-reveal="mask"].in img{clip-path:inset(0 0 0 0);transform:scale(1)}
+  .js .strip figure.in:hover img,.js .card:hover .pic.in img{transform:scale(1.04)}
+  .js [data-reveal="mask"] figcaption{opacity:0;transform:translateY(8px);transition:opacity .8s ease,transform .8s ease;transition-delay:calc(var(--d, 0s) + .9s)}
+  .js [data-reveal="mask"].in figcaption{opacity:1;transform:none}
+
+  .js .quote .mark[data-reveal]{transform:translateY(20px) scale(.92)}
+  .js .quote .mark[data-reveal].in{transform:none}
+  .js footer .logo path{stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset 1.8s cubic-bezier(.65,0,.35,1) .4s}
+  .js footer .in .logo path{stroke-dashoffset:0}
+  .esg img{will-change:transform}
+}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.strip img,.card .pic img,.site,.site .nav{transition:none}}
 </style>
+<script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
 
@@ -181,7 +229,7 @@ footer .logo .word{font-size:34px}
   <div class="wrap nav">
     <a class="logo" href="#top" aria-label="Qiao Partners home">
       <svg viewBox="0 0 108 50" aria-hidden="true">
-        <path d="M12 16 Q54 -10 96 16" fill="none" stroke="#8EC5F0" stroke-width="2.4" stroke-linecap="round"/>
+        <path pathLength="100" d="M12 16 Q54 -10 96 16" fill="none" stroke="#8EC5F0" stroke-width="2.4" stroke-linecap="round"/>
         <text class="word" x="0" y="48" textLength="108" lengthAdjust="spacing">QIAO</text>
       </svg>
       <span class="partners">Partners</span>
@@ -194,6 +242,7 @@ footer .logo .word{font-size:34px}
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
+  <div class="progress" aria-hidden="true"></div>
 </header>
 
 <main id="top">
@@ -293,7 +342,7 @@ footer .logo .word{font-size:34px}
   <div class="wrap">
     <a class="logo" href="#top" aria-label="Qiao Partners home">
       <svg viewBox="0 0 108 50" aria-hidden="true">
-        <path d="M12 16 Q54 -10 96 16" fill="none" stroke="#8EC5F0" stroke-width="2.4" stroke-linecap="round"/>
+        <path pathLength="100" d="M12 16 Q54 -10 96 16" fill="none" stroke="#8EC5F0" stroke-width="2.4" stroke-linecap="round"/>
         <text class="word" x="0" y="48" textLength="108" lengthAdjust="spacing">QIAO</text>
       </svg>
       <span class="partners">Partners</span>
@@ -301,6 +350,91 @@ footer .logo .word{font-size:34px}
     <span>© 2026 Qiao Partners. Nothing on this site is an offer of securities or investment advice.</span>
   </div>
 </footer>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  var still=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+
+  // Hero headline: wrap each word so it can rise out of its own line
+  var h1=document.querySelector('.hero h1');
+  if(h1&&!still){
+    var words=h1.textContent.trim().split(/\s+/);
+    h1.setAttribute('aria-label',h1.textContent.trim());
+    h1.innerHTML=words.map(function(w,i){return '<span class="w" aria-hidden="true"><span style="--i:'+i+'">'+w+'</span></span>'}).join(' ');
+  }
+
+  // Tag elements for scroll reveals, with a stagger inside each group
+  function tag(list,kind,base,step){list.forEach(function(el,i){el.setAttribute('data-reveal',kind||'');el.style.setProperty('--d',((base||0)+i*(step||0.12)).toFixed(2)+'s')})}
+  tag($('.strip figure'),'mask',0.45,0.12);
+  tag($('.intro h2, .intro p'),'',0,0.14);
+  tag($('.quote .mark, .quote blockquote, .quote cite'),'',0,0.18);
+  tag($('.team .photo'),'mask',0,0);
+  tag($('.team h2, .team .wrap > div > p, .pedigree, .team .link'),'',0.15,0.12);
+  tag($('.fig'),'',0,0.12);
+  tag($('.practice h2, .practice .head p'),'',0,0.12);
+  tag($('.card .pic'),'mask',0,0.12);
+  tag($('.card h3'),'',0.35,0.12);
+  tag($('.card p'),'',0.45,0.12);
+  tag($('.esg h2, .esg p'),'',0,0.15);
+  tag($('.contact h2, .contact dl > div'),'',0,0.12);
+  tag($('footer .wrap'),'',0,0);
+
+  // Count the key figures up from zero, keeping prefix, decimals and unit
+  function countUp(b){
+    var t=b.firstChild; if(!t||t.nodeType!==3) return;
+    var m=t.nodeValue.match(/^(\D*)([\d.]+)(.*)$/); if(!m) return;
+    var pre=m[1],end=parseFloat(m[2]),dec=(m[2].split('.')[1]||'').length,post=m[3],dur=1800,start=null;
+    function step(now){
+      if(start===null) start=now;
+      var k=Math.min(1,(now-start)/dur),e=1-Math.pow(1-k,4);
+      t.nodeValue=pre+(end*e).toFixed(dec)+post;
+      if(k<1) requestAnimationFrame(step);
+    }
+    t.nodeValue=pre+(0).toFixed(dec)+post;
+    requestAnimationFrame(step);
+  }
+
+  function show(el){
+    el.classList.add('in');
+    if(el.classList.contains('fig')&&!still){var b=el.querySelector('b');if(b)countUp(b)}
+    // once revealed, hover zooms respond without the entrance delay
+    setTimeout(function(){el.style.setProperty('--d','0s')},2600);
+  }
+  var targets=$('[data-reveal]');
+  if(still||!('IntersectionObserver' in window)){targets.forEach(function(el){el.classList.add('in')})}
+  else{
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){if(en.isIntersecting){show(en.target);io.unobserve(en.target)}});
+    },{threshold:0.12,rootMargin:'0px 0px -6% 0px'});
+    targets.forEach(function(el){io.observe(el)});
+  }
+
+  // Header state, reading progress and a slow parallax on the sustainability photo
+  var header=document.querySelector('.site'),bar=document.querySelector('.progress');
+  var esg=document.querySelector('.esg'),esgImg=esg&&esg.querySelector('img');
+  var ticking=false;
+  function frame(){
+    ticking=false;
+    var y=window.scrollY||window.pageYOffset,max=document.documentElement.scrollHeight-window.innerHeight;
+    if(header) header.classList.toggle('scrolled',y>40);
+    if(bar) bar.style.transform='scaleX('+(max>0?Math.min(1,y/max):0)+')';
+    if(esgImg&&!still){
+      var r=esg.getBoundingClientRect(),vh=window.innerHeight;
+      if(r.bottom>0&&r.top<vh){
+        var p=(r.top+r.height/2-vh/2)/(vh/2+r.height/2);
+        esgImg.style.transform='translate3d(0,'+(p*-50).toFixed(1)+'px,0) scale(1.14)';
+      }
+    }
+  }
+  window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(frame)}},{passive:true});
+  window.addEventListener('resize',frame);
+  frame();
+
+  requestAnimationFrame(function(){requestAnimationFrame(function(){root.classList.add('loaded')})});
+})();
+</script>
 
 </body>
 </html>
