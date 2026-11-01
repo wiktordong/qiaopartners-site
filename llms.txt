@@ -14,6 +14,7 @@ Qiao Partners is a commercial advisory firm based in Warsaw, Poland, with a pres
 
 ## Market trends we track (to 2035)
 - Battery storage (BESS) and components (Now): Poland's grid-storage build-out, and the EU battery passport from February 2027.
+- Heavy-duty zero-emission vehicles (Now): Battery-electric and hydrogen trucks, buses, chargers and drivetrain parts, as EU CO₂ standards require new truck emissions to fall 45% by 2030 and 90% by 2040.
 - Biomethane equipment and membranes (Now): Upgrading membranes, compressors and digesters toward the EU goal of 35 bcm of biomethane a year by 2030.
 - AI data-centre components (Now): Liquid cooling, power distribution and backup power for new European capacity.
 - Solar, grid and transformers (Now): Inverters, transformers and switchgear for grid expansion, under the Net-Zero Industry Act's resilience rules.
@@ -26,6 +27,10 @@ Qiao Partners is a commercial advisory firm based in Warsaw, Poland, with a pres
 - [English](https://qiaopartners.eu/)
 - [Polski](https://qiaopartners.eu/pl/)
 - [中文](https://qiaopartners.eu/zh/)
+- [Insights](https://qiaopartners.eu/insights/)
+
+## Insights articles
+- [Europe's 2026 gas shock and the case for domestic molecules](https://qiaopartners.eu/insights/biomethane/europe-energy-market-2026/): TTF gas rose 177% in 2026. How the price shock, CBAM and ETS2 change the value of domestic renewable gas in Europe.
 
 ## Contact
 - Email: contact@qiaopartners.eu

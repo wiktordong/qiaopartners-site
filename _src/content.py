@@ -277,3 +277,18 @@ L["pl"].update(
 L["zh"].update(
     hero_p="为中国制造企业提供欧洲市场准入、市场进入策略与欧盟业务拓展服务。",
     team_p="我们与欧洲和中国的法律、税务、认证及监管专家合作，并与影响市场准入的政府部门和机构保持沟通。每位客户都会获得与其需求相匹配的团队。")
+
+# ---- Heavy-duty zero-emission vehicles + Insights menu label (added 1 Nov 2026) ----
+_ZEV = {
+    "en": (("Heavy-duty zero-emission vehicles", "Battery-electric and hydrogen trucks, buses, chargers and drivetrain parts, as EU CO₂ standards require new truck emissions to fall 45% by 2030 and 90% by 2040.", "now"),
+           "Heavy-duty ZEV (trucks, buses)", "Insights"),
+    "pl": (("Ciężkie pojazdy zeroemisyjne", "Elektryczne i wodorowe ciężarówki, autobusy, ładowarki i komponenty napędu – normy CO₂ UE wymagają obniżenia emisji nowych ciężarówek o 45% do 2030 r. i o 90% do 2040 r.", "now"),
+           "Ciężkie pojazdy zeroemisyjne (ciężarówki, autobusy)", "Analizy"),
+    "zh": (("重型零排放车辆", "纯电动和氢燃料卡车、客车、充电设备及动力总成部件；欧盟二氧化碳标准要求新卡车排放到2030年减少45%，到2040年减少90%。", "now"),
+           "重型零排放车辆（卡车、客车）", "洞察"),
+}
+for _k, (_card, _ind, _nav) in _ZEV.items():
+    L[_k]["sec"].insert(1, _card)
+    _i = next((n for n, x in enumerate(L[_k]["industries"]) if "EV" in x or "Elektromobil" in x or "电动汽车" in x), len(L[_k]["industries"]) - 1)
+    L[_k]["industries"].insert(_i + 1, _ind)
+    L[_k]["nav_insights"] = _nav

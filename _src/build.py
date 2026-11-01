@@ -74,7 +74,7 @@ EXTRA_CSS = r"""
 .sectors .head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:80px;margin-bottom:56px;align-items:end}
 .sectors h2{font-size:clamp(32px,4vw,54px);line-height:1.08}
 .sectors .head p{color:var(--muted);font-size:19px;font-weight:300;max-width:46ch}
-.sec{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}
+.sec{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}
 .sec .tag{justify-self:start;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:4px 12px;border:1px solid rgba(142,197,240,.45);color:var(--baby);border-radius:999px}
 .sec li[data-h="mid"]{background:var(--navy-2)}
 .sec li[data-h="long"]{background:#173459}
@@ -263,7 +263,9 @@ def page(key):
         links.append(f'<li><a href="{href}"{cur} hreflang="{L[k]["lang"]}" lang="{L[k]["lang"]}">{L[k]["label"]}</a></li>')
     lang_links = f'<details class="langdd"><summary aria-label="Language">{L[key]["label"]}<i aria-hidden="true"></i></summary><ul>{"".join(links)}</ul></details>'
     ids = ["about", "services", "sectors", "faq", "contact"]
-    nav = "".join(f'<li><a href="#{i}">{e(t)}</a></li>' for i, t in zip(ids, c["nav"]))
+    items = [(f"#{i}", t) for i, t in zip(ids, c["nav"])]
+    items.insert(3, ("insights/", c["nav_insights"]))
+    nav = "".join(f'<li><a href="{h}">{e(t)}</a></li>' for h, t in items)
     strip_imgs = [("wind-aerial.jpg", "Wind turbine among green fields, seen from above", "60% 50%"),
                   ("terminal.jpg", "Gas terminal and jetty by the sea, seen from above", "55% 50%"),
                   ("sprayer.jpg", "Tractor working a maize field at sunset", "50% 50%"),
@@ -493,7 +495,12 @@ def main():
         "User-agent: *\nAllow: /\n\n# AI assistants and search crawlers are welcome\n"
         "User-agent: GPTBot\nAllow: /\nUser-agent: ClaudeBot\nAllow: /\nUser-agent: PerplexityBot\nAllow: /\n"
         "User-agent: Google-Extended\nAllow: /\n\nSitemap: https://qiaopartners.eu/sitemap.xml\n")
-    urls = "".join(f"  <url><loc>{SITE}{c['path']}</loc></url>\n" for c in L.values())
+    sys.path.insert(0, os.path.join(ROOT, "_src", "insights"))
+    from build_insights import build as build_insights
+    from pathlib import Path
+    ins_urls, ins_articles = build_insights(Path(ROOT))
+    urls = "".join(f"  <url><loc>{SITE}{c['path']}</loc></url>\n" for c in L.values()) + \
+        "".join(f"  <url><loc>{SITE}{u.lstrip('/')}</loc></url>\n" for u in ins_urls)
     open(os.path.join(ROOT, "sitemap.xml"), "w").write(
         f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}</urlset>\n')
     en = L["en"]
@@ -501,7 +508,8 @@ def main():
             "Qiao Partners is a commercial advisory firm based in Warsaw, Poland, with a presence in Beijing. It helps Chinese manufacturers enter the European market and European companies set up in China. It does not invest or give investment advice.", "",
             "## Services"] + [f"- {h}: {p}" for h, p in en["svc"]] + ["", "## Market trends we track (to 2035)"] + \
            [f"- {h} ({en["tags"][t]}): {p}" for h, p, t in en["sec"]] + ["", "## Pages",
-            f"- [English]({SITE})", f"- [Polski]({SITE}pl/)", f"- [中文]({SITE}zh/)", "", "## Contact",
+            f"- [English]({SITE})", f"- [Polski]({SITE}pl/)", f"- [中文]({SITE}zh/)", f"- [Insights]({SITE}insights/)", "", "## Insights articles"] + \
+           [f"- [{t}]({SITE}{u.lstrip('/')}): {d}" for t, u, d in ins_articles] + ["", "## Contact",
             f"- Email: {EMAIL}", f"- LinkedIn: {LINKEDIN}", "- WeChat: QR code on the website", f"- WhatsApp: {WHATSAPP}", ""]
     open(os.path.join(ROOT, "llms.txt"), "w", encoding="utf-8").write("\n".join(llms))
     print("built", list(L))
