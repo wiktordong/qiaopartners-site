@@ -3,6 +3,8 @@ LINKEDIN = "https://www.linkedin.com/company/qiaopartners/"
 EMAIL = "contact@qiaopartners.eu"
 CALENDLY_URL = "https://calendly.com/wdong-qiaopartners/30min"    # e.g. "https://calendly.com/qiaopartners/30min" — empty shows a placeholder
 WHATSAPP = "https://wa.me/qr/V5JZQYHRWE3IJ1"   # WhatsApp contact link; QR image is img/whatsapp-qr.png
+GOOGLE_SITE_VERIFICATION = ""   # code from Google Search Console (HTML tag method), e.g. "abc123..."
+BING_SITE_VERIFICATION = ""     # code from Bing Webmaster Tools (meta tag method)
 FORM_ENDPOINT = "https://formsubmit.co/ajax/contact@qiaopartners.eu"   # form submissions are emailed here
 
 L = {}

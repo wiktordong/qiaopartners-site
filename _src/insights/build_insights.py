@@ -96,6 +96,56 @@ ART_T = {
                "到2025年，波兰一直是欧洲生物甲烷版图上最大的空白。2026年，波兰推出了竞拍机制、补贴计划和更简便的并网规则。2026至2028年是抢占先机的窗口期。")},
 }
 
+ALT = {
+    "terminal.jpg": "Gas storage terminal and jetty by the sea, seen from above",
+    "wind-aerial.jpg": "Wind turbine among green fields, seen from above",
+    "sprayer.jpg": "Tractor working a maize field at sunset",
+    "wind-hills.jpg": "Wind turbines across rolling hills",
+    "solar-fjord.jpg": "Two engineers carrying a solar panel across a rooftop array by a fjord",
+    "wind-ridge.jpg": "Row of wind turbines along a mountain ridge at sunrise",
+    "tower-handshake.jpg": "Two people shaking hands in silhouette against a glass tower",
+    "meeting.jpg": "Team meeting in an office with a city view",
+    "eu-flags.jpg": "European Union flags outside an EU building",
+    "truck.jpg": "Lorry on an open road at dusk",
+}
+# Photos from the site's own library: (cover, photo break inside the article)
+IMG = {
+    "europe-energy-market-2026": ("terminal.jpg", "wind-aerial.jpg"),
+    "european-biomethane-market-2026": ("sprayer.jpg", "wind-hills.jpg"),
+    "biomethane-equipment-market-europe": ("solar-fjord.jpg", "wind-ridge.jpg"),
+    "china-europe-biomethane-investment": ("tower-handshake.jpg", "meeting.jpg"),
+    "biomethane-revenue-stack-eu-regulation": ("eu-flags.jpg", "terminal.jpg"),
+    "poland-biomethane-market-2026": ("wind-hills.jpg", "sprayer.jpg"),
+}
+HUB_IMG, SERIES_IMG = "wind-aerial.jpg", "wind-ridge.jpg"
+
+
+def img(f, cls, lazy=True, pos="50% 50%"):
+    return (f'<img class="{cls}" src="/img/{f}" alt="{escape(ALT[f])}" style="object-position:{pos}"'
+            f'{" loading=\"lazy\"" if lazy else ""} decoding="async">')
+
+
+def slugify(t):
+    return re.sub(r"[^a-z0-9]+", "-", re.sub(r"<[^>]+>", "", t).lower()).strip("-")[:60]
+
+
+def enrich(body, mid):
+    """Give each section heading an id (for the contents list) and add a photo break after the third paragraph."""
+    heads = []
+
+    def h2(m):
+        t = m.group(1)
+        i = slugify(t)
+        heads.append((i, re.sub(r"<[^>]+>", "", t)))
+        return f'<h2 id="{i}">{t}</h2>'
+    body = re.sub(r"<h2>(.*?)</h2>", h2, body, flags=re.S)
+    parts = body.split("</p>")
+    if len(parts) > 4:
+        photo = f'<figure class="photo-break">{img(mid, "pb-img")}<figcaption>{escape(ALT[mid])}</figcaption></figure>'
+        body = "</p>".join(parts[:3]) + "</p>" + photo + "</p>".join(parts[3:])
+    return body, heads
+
+
 LOGO = '''<a class="q-logo" href="{home}" aria-label="Qiao Partners"><svg viewBox="0 0 108 50" aria-hidden="true">
 <path d="M12 16 Q54 -10 96 16" fill="none" stroke="#8EC5F0" stroke-width="2.4" stroke-linecap="round"/>
 <text class="word" x="0" y="48" textLength="108" lengthAdjust="spacing">QIAO</text></svg><span class="partners">Partners</span></a>'''
@@ -193,19 +243,24 @@ def hub(k, css):
     if up:
         a = up[0]
         nxt = f'<p class="upcoming">{escape(u["next"])}: <b>{escape(t_art(a, k)[0])}</b> · {fdate(RELEASE[a["slug"]], k)}</p>'
-    cards = "".join(f'''<article class="card"><div class="eyebrow">{escape(SERIES["topic"] if k == "en" else name)}</div>
+    soon = "".join(f'''<article class="card soon"><a class="thumb" tabindex="-1" aria-hidden="true">{img(IMG[a["slug"]][0], "")}</a>
+<div class="eyebrow">{escape(u["next"])} · {fdate(RELEASE[a["slug"]], k)}</div>
+<h3>{escape(t_art(a, k)[0])}</h3><p>{escape(t_art(a, k)[1])}</p></article>''' for a in up[:2])
+    cards = "".join(f'''<article class="card"><a class="thumb" href="{art_url(a)}" tabindex="-1" aria-hidden="true">{img(IMG[a["slug"]][0], "")}</a><div class="eyebrow">{escape(SERIES["topic"] if k == "en" else name)}</div>
 <h3><a href="{art_url(a)}">{escape(t_art(a, k)[0])}</a></h3><p>{escape(t_art(a, k)[1])}</p>
 <div class="meta">{fdate(RELEASE[a["slug"]], k)} · {read_min(a)} {escape(u["read"])}</div></article>''' for a in reversed(pub))
     note = f'<p class="lang-note">{escape(u["note"])}</p>' if u["note"] else ""
     body = f'''<div class="wrap">
-<section class="hub-hero"><div class="eyebrow">Qiao Partners</div><h1>{escape(u["h1"])}</h1><p>{escape(u["dek"])}</p>{note}</section>
+<section class="hub-hero"><div><div class="eyebrow">Qiao Partners</div><h1>{escape(u["h1"])}</h1><p>{escape(u["dek"])}</p>{note}</div>
+<figure class="hub-pic">{img(HUB_IMG, "", lazy=False)}</figure></section>
 <div class="section-h"><h2>{escape(u["series"])}</h2></div>
 <section class="series-feature"><div>
+<figure class="series-pic">{img(SERIES_IMG, "", pos="50% 40%")}</figure>
 <div class="eyebrow">{total}-{escape(u["parts"])}</div>
 <h3>{escape(name)}</h3><p>{escape(dek)}</p>{nxt}</div>
 <ol class="toc">{toc}</ol></section>
 <div class="section-h"><h2>{escape(u["latest"])}</h2></div>
-<div class="cards">{cards}</div>
+<div class="cards">{cards}{soon}</div>
 </div>'''
     ld = {"@context": "https://schema.org", "@type": "CollectionPage", "name": f"{u['h1']} | Qiao Partners", "url": f"{SITE}{u['ins']}",
           "inLanguage": u["lang"], "publisher": {"@type": "Organization", "name": "Qiao Partners", "url": SITE},
@@ -231,6 +286,9 @@ def article(i, css):
         right = (f'<a href="{art_url(next_)}"><span class="meta">Next · Part {next_["part"]}</span><span>{escape(next_["short"])}</span></a>') if next_ else "<span></span>"
         pager = f'<nav class="pager" aria-label="Series">{left}{right}</nav>'
     d = RELEASE[a["slug"]]
+    cover, mid = IMG[a["slug"]]
+    art_body, heads = enrich(a["body"], mid)
+    contents = "".join(f'<li><a href="#{i}">{escape(t)}</a></li>' for i, t in heads)
     body = f'''<div class="wrap">
 <nav class="crumbs" aria-label="Breadcrumb"><a href="/insights/">Insights</a> / {escape(SERIES["topic"])}</nav>
 <header class="art-head"><div class="inner">
@@ -238,14 +296,16 @@ def article(i, css):
  <h1>{escape(a["title"])}</h1>
  <p class="standfirst">{escape(a["standfirst"])}</p>
  <div class="byline"><span><b>{AUTHOR}</b>, Qiao Partners</span><span>{fdate(d, "en")}</span><span>{read_min(a)} min read</span></div>
-</div></header>
+</div>
+<figure class="cover">{img(cover, "", lazy=False)}<figcaption>{escape(ALT[cover])}</figcaption></figure></header>
 <div class="art-grid">
  <article class="prose">
   <section class="keypoints" aria-label="Key points"><h2>Key points</h2><ul>{kp}</ul></section>
-  {a["body"]}
+  {art_body}
   {pager}
  </article>
  <aside class="rail"><div class="rail-sticky">
+  <div class="rail-block"><h2>On this page</h2><ol class="contents">{contents}</ol></div>
   <div class="rail-block"><h2>In this series</h2><ol>{rail}</ol></div>
   <div class="rail-block"><h2>Topics</h2><p>{escape(a["keywords"])}</p></div>
  </div></aside>
@@ -254,7 +314,7 @@ def article(i, css):
     ld = {"@context": "https://schema.org", "@type": "Article", "headline": a["title"], "description": a["seo"],
           "datePublished": d.isoformat(), "dateModified": d.isoformat(), "inLanguage": "en",
           "author": {"@type": "Person", "name": AUTHOR}, "publisher": {"@type": "Organization", "name": "Qiao Partners", "url": SITE},
-          "isPartOf": {"@type": "CreativeWorkSeries", "name": SERIES["name"]}, "keywords": a["keywords"], "mainEntityOfPage": f"{SITE}{art_url(a)}"}
+          "isPartOf": {"@type": "CreativeWorkSeries", "name": SERIES["name"]}, "image": f"{SITE}/img/{cover}", "keywords": a["keywords"], "mainEntityOfPage": f"{SITE}{art_url(a)}"}
     paths = {"en": art_url(a), "pl": UI["pl"]["ins"], "zh": UI["zh"]["ins"]}
     return page("en", f"{a['title']} | Qiao Partners", a["seo"], art_url(a), "/insights/insights.css", body, ld, paths, og="article")
 

@@ -2,7 +2,7 @@
 # Run from the repository root: python3 _src/build.py
 import html, json, os, sys
 sys.path.insert(0, os.path.dirname(__file__))
-from content import L, LINKEDIN, EMAIL, CALENDLY_URL, WHATSAPP, FORM_ENDPOINT
+from content import L, LINKEDIN, EMAIL, CALENDLY_URL, WHATSAPP, FORM_ENDPOINT, GOOGLE_SITE_VERIFICATION, BING_SITE_VERIFICATION
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://qiaopartners.eu/"
@@ -238,6 +238,10 @@ LOGO = '''<a class="logo" href="{home}" aria-label="Qiao Partners">
       <span class="partners">Partners</span>
     </a>'''
 
+VERIFY = (f'\n<meta name="google-site-verification" content="{GOOGLE_SITE_VERIFICATION}">' if GOOGLE_SITE_VERIFICATION else "") + \
+    (f'\n<meta name="msvalidate.01" content="{BING_SITE_VERIFICATION}">' if BING_SITE_VERIFICATION else "") + \
+    '\n<meta name="robots" content="index, follow, max-image-preview:large">'
+
 def page(key):
     c = L[key]
     up = "../" if c["path"] else ""
@@ -314,7 +318,7 @@ def page(key):
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{e(c["title"])}</title>
 <meta name="description" content="{e(c["desc"])}">
-<link rel="canonical" href="{SITE}{c["path"]}">
+<link rel="canonical" href="{SITE}{c["path"]}">{VERIFY}
 {alts}
 <meta property="og:title" content="{e(c["title"])}">
 <meta property="og:description" content="{e(c["desc"])}">
@@ -499,8 +503,10 @@ def main():
     from build_insights import build as build_insights
     from pathlib import Path
     ins_urls, ins_articles = build_insights(Path(ROOT))
-    urls = "".join(f"  <url><loc>{SITE}{c['path']}</loc></url>\n" for c in L.values()) + \
-        "".join(f"  <url><loc>{SITE}{u.lstrip('/')}</loc></url>\n" for u in ins_urls)
+    from datetime import date as _d
+    today = _d.today().isoformat()
+    urls = "".join(f"  <url><loc>{SITE}{c['path']}</loc><lastmod>{today}</lastmod></url>\n" for c in L.values()) + \
+        "".join(f"  <url><loc>{SITE}{u.lstrip('/')}</loc><lastmod>{today}</lastmod></url>\n" for u in ins_urls)
     open(os.path.join(ROOT, "sitemap.xml"), "w").write(
         f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}</urlset>\n')
     en = L["en"]
