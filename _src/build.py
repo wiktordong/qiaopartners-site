@@ -13,9 +13,9 @@ EXTRA_CSS = r"""
 
 /* Language drop-down */
 .langdd{position:relative}
-.langdd summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;font-size:13px;letter-spacing:.06em;padding:6px 10px;border:1px solid rgba(142,197,240,.35);border-radius:2px;opacity:.9}
+.langdd summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;font-size:13px;letter-spacing:.06em;padding:6px 0;opacity:.78;transition:opacity .2s}
 .langdd summary::-webkit-details-marker{display:none}
-.langdd summary:hover{opacity:1;border-color:var(--baby)}
+.langdd summary:hover,.langdd[open] summary{opacity:1}
 .langdd summary i{width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .25s}
 .langdd[open] summary i{transform:translateY(1px) rotate(-135deg)}
 .langdd ul{position:absolute;right:0;top:calc(100% + 8px);list-style:none;margin:0;padding:6px 0;min-width:120px;background:var(--navy-2);border:1px solid rgba(142,197,240,.25);border-radius:2px;box-shadow:0 12px 30px rgba(3,10,22,.35);z-index:30}

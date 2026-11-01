@@ -1,7 +1,7 @@
 # Site copy for each language. Edit text here, then run: python3 _src/build.py
 LINKEDIN = "https://www.linkedin.com/company/qiaopartners/"
 EMAIL = "contact@qiaopartners.eu"
-CALENDLY_URL = ""    # e.g. "https://calendly.com/qiaopartners/30min" — empty shows a placeholder
+CALENDLY_URL = "https://calendly.com/wdong-qiaopartners/30min"    # e.g. "https://calendly.com/qiaopartners/30min" — empty shows a placeholder
 WHATSAPP = "https://wa.me/qr/V5JZQYHRWE3IJ1"   # WhatsApp contact link; QR image is img/whatsapp-qr.png
 FORM_ENDPOINT = "https://formsubmit.co/ajax/contact@qiaopartners.eu"   # form submissions are emailed here
 
