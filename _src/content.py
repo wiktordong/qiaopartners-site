@@ -266,3 +266,14 @@ L["zh"].update(figs=[
     ("3", "目前业务覆盖的国家", "", False),
     ("6<small>年</small>", "中欧跨境经验", "", False),
 ])
+
+# Confident tone (1 Nov 2026): no mention of working languages
+L["en"].update(
+    hero_p="Market entry, go-to-market strategy and EU business development for Chinese manufacturers.",
+    team_p="We work with experts in law, tax, certification and regulation across Europe and China, and with the ministries and agencies that shape market access. Each client gets the team their situation needs.")
+L["pl"].update(
+    hero_p="Wejście na rynek, strategia go-to-market i rozwój sprzedaży w UE dla chińskich producentów.",
+    team_p="Współpracujemy z ekspertami od prawa, podatków, certyfikacji i regulacji w Europie i Chinach oraz z ministerstwami i agencjami, które decydują o dostępie do rynku. Każdy klient dostaje zespół dopasowany do swojej sytuacji.")
+L["zh"].update(
+    hero_p="为中国制造企业提供欧洲市场准入、市场进入策略与欧盟业务拓展服务。",
+    team_p="我们与欧洲和中国的法律、税务、认证及监管专家合作，并与影响市场准入的政府部门和机构保持沟通。每位客户都会获得与其需求相匹配的团队。")
