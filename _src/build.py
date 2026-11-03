@@ -1,4 +1,4 @@
-# Builds index.html, pl/index.html, zh/index.html and SEO files from _src/content.py.
+# Builds index.html, pl/index.html, zh/index.html, ru/index.html and SEO files from _src/content.py.
 # Run from the repository root: python3 _src/build.py
 import html, json, os, sys
 sys.path.insert(0, os.path.dirname(__file__))
@@ -263,7 +263,7 @@ def page(key):
     org = {"@context": "https://schema.org", "@type": "ProfessionalService", "name": "Qiao Partners",
            "url": SITE, "logo": SITE + "favicon-192.png", "email": EMAIL,
            "description": L["en"]["desc"], "areaServed": ["PL", "EU", "CN"],
-           "knowsLanguage": ["zh", "pl", "en"], "sameAs": same_as,
+           "knowsLanguage": ["zh", "pl", "en", "ru"], "sameAs": same_as,
            "address": [{"@type": "PostalAddress", "addressLocality": "Warsaw", "addressCountry": "PL"},
                        {"@type": "PostalAddress", "addressLocality": "Beijing", "addressCountry": "CN"}],
            "founder": {"@type": "Person", "name": "Wiktor Dong"},
@@ -271,7 +271,7 @@ def page(key):
     faq = {"@context": "https://schema.org", "@type": "FAQPage", "inLanguage": c["lang"],
            "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in c["faq"]]}
     ld = f'<script type="application/ld+json">{json.dumps(org, ensure_ascii=False)}</script>\n<script type="application/ld+json">{json.dumps(faq, ensure_ascii=False)}</script>'
-    fonts = "family=Hanken+Grotesk:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500"  # one typeface site-wide; Noto Sans SC only supplies Chinese characters
+    fonts = "family=Hanken+Grotesk:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=Golos+Text:wght@400;500;600"  # one typeface site-wide; Noto Sans SC only supplies Chinese characters
     links = []
     for k in L:
         href = (up + L[k]["path"]) or "./"
@@ -541,7 +541,7 @@ def main():
             "Qiao Partners is a commercial advisory firm based in Warsaw, Poland, with a presence in Beijing. It helps Chinese manufacturers enter the European market and European companies set up in China. It does not invest or give investment advice.", "",
             "## Services"] + [f"- {h}: {p}" for h, p in en["svc"]] + ["", "## Market trends we track (to 2035)"] + \
            [f"- {h} ({en["tags"][t]}): {p}" for h, p, t in en["sec"]] + ["", "## Pages",
-            f"- [English]({SITE})", f"- [Polski]({SITE}pl/)", f"- [中文]({SITE}zh/)", f"- [Insights]({SITE}insights/)", "", "## Insights articles"] + \
+            f"- [English]({SITE})", f"- [Polski]({SITE}pl/)", f"- [中文]({SITE}zh/)", f"- [Русский]({SITE}ru/)", f"- [Insights]({SITE}insights/)", "", "## Insights articles"] + \
            [f"- [{t}]({SITE}{u.lstrip('/')}): {d}" for t, u, d in ins_articles] + ["", "## Contact",
             f"- Email: {EMAIL}", f"- LinkedIn: {LINKEDIN}", "- WeChat: QR code on the website", f"- WhatsApp: {WHATSAPP}", ""]
     open(os.path.join(ROOT, "llms.txt"), "w", encoding="utf-8").write("\n".join(llms))

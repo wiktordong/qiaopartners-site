@@ -54,6 +54,16 @@ UI = {
                cta_p="需要进入欧洲市场的支持？预约30分钟市场评估。", cta_b="预约沟通",
                nav=[("关于我们", "/zh/#about"), ("服务", "/zh/#services"), ("市场趋势", "/zh/#sectors"), ("洞察", "/zh/insights/"), ("联系我们", "/zh/#contact")],
                foot="Qiao Partners 提供商业咨询服务。本材料仅供参考，不构成投资建议。"),
+    "ru": dict(lang="ru", base="/ru/", ins="/ru/insights/", label="RU", h1="Аналитика",
+               dek="Исследования энергетического перехода в Европе и коридора Китай–Европа: рынки, регулирование, оборудование и торговля.",
+               series="Серия", latest="Новое", parts="частей", part="Часть", of="из", read="мин чтения",
+               next="Следующая часть", out="Опубликовано", toc="В этой серии", topics="Темы", keypoints="Главное",
+               prev="Предыдущая", nxt="Следующая", crumbs="Аналитика",
+               note="Статьи сначала публикуются на английском языке. Русская версия скоро появится.",
+               banner="Открыта запись на оценку рынка на I квартал 2027 года",
+               cta_p="Нужна помощь с выходом на европейский рынок? Запишитесь на 30-минутную оценку рынка.", cta_b="Записаться на звонок",
+               nav=[("О нас", "/ru/#about"), ("Услуги", "/ru/#services"), ("Рыночные тренды", "/ru/#sectors"), ("Аналитика", "/ru/insights/"), ("Контакты", "/ru/#contact")],
+               foot="Qiao Partners оказывает коммерческие консультационные услуги. Материалы носят исключительно информационный характер и не являются инвестиционной рекомендацией."),
 }
 
 SERIES_T = {
@@ -61,6 +71,8 @@ SERIES_T = {
                dek="Sześcioczęściowa seria o europejskim rynku gazu odnawialnego: jak bardzo urósł, czego wymaga cel na 2030 r., gdzie trafią urządzenia i kapitał oraz jak przepisy kształtują przychody instalacji."),
     "zh": dict(name="欧洲生物甲烷产业扩张",
                dek="六篇系列文章，解读欧洲可再生天然气市场：当前规模、实现2030年目标的条件、设备与资本的流向，以及法规如何决定项目收益。"),
+    "ru": dict(name="Рост рынка биометана в Европе",
+               dek="Серия из шести статей о европейском рынке возобновляемого газа: насколько он вырос, что нужно для цели 2030 года, куда пойдут оборудование и капитал и как регулирование определяет доходы установок."),
 }
 
 ART_T = {
@@ -68,32 +80,44 @@ ART_T = {
         "pl": ("Szok gazowy w Europie w 2026 r. i argumenty za krajowym gazem",
                "Cena gazu TTF wzrosła od lutego niemal trzykrotnie. Biometan przestał być wyłącznie narzędziem klimatycznym i stał się kwestią bezpieczeństwa dostaw, a to zmienia, kto go kupuje i dlaczego."),
         "zh": ("2026年欧洲天然气冲击与本土气源的价值",
-               "自2月以来，荷兰TTF天然气价格上涨近两倍。生物甲烷由此从气候工具变为供应安全问题，这也改变了买家是谁以及他们为何购买。")},
+               "自2月以来，荷兰TTF天然气价格上涨近两倍。生物甲烷由此从气候工具变为供应安全问题，这也改变了买家是谁以及他们为何购买。"),
+        "ru": ("Газовый шок в Европе в 2026 году и аргументы в пользу собственного газа",
+               "С февраля цена газа на TTF выросла почти втрое. Биометан перестал быть только климатическим инструментом и стал вопросом безопасности поставок, а это меняет то, кто его покупает и зачем.")},
     "european-biomethane-market-2026": {
         "pl": ("Biometan na poziomie 8 mld m³: ile Europa osiągnęła i ile jej brakuje",
                "Zainstalowana moc wzrosła w ciągu roku o 17%, a zobowiązania inwestycyjne sięgnęły 36 mld euro. Nawet jeśli powstaną wszystkie ogłoszone projekty, Europa osiągnie mniej więcej połowę celu na 2030 r."),
         "zh": ("生物甲烷达到80亿立方米：欧洲走了多远，还差多少",
-               "一年内装机容量增长17%，投资承诺达到360亿欧元。即使所有已公布项目全部建成，欧洲也只能完成2030年目标的一半左右。")},
+               "一年内装机容量增长17%，投资承诺达到360亿欧元。即使所有已公布项目全部建成，欧洲也只能完成2030年目标的一半左右。"),
+        "ru": ("Биометан на уровне 8 млрд м³: чего Европа достигла и сколько ещё не хватает",
+               "Установленная мощность за год выросла на 17%, инвестиционные обязательства достигли €36 млрд. Даже если все объявленные проекты будут построены, Европа выполнит лишь около половины цели на 2030 год.")},
     "biomethane-equipment-market-europe": {
         "pl": ("6500 instalacji do zbudowania: gdzie trafią europejskie wydatki na urządzenia do biometanu",
                "Osiągnięcie celu na 2030 r. wymaga ponad czterokrotnie szybszej budowy niż obecnie. Wąskim gardłem nie są już surowce i finansowanie, lecz moce produkcyjne i wykonawcze."),
         "zh": ("建设6500座工厂：欧洲生物甲烷设备支出流向何处",
-               "实现2030年目标需要目前年建设速度的四倍以上。瓶颈已从原料和融资转向制造与施工能力。")},
+               "实现2030年目标需要目前年建设速度的四倍以上。瓶颈已从原料和融资转向制造与施工能力。"),
+        "ru": ("6500 установок: куда пойдут расходы Европы на оборудование для биометана",
+               "Чтобы достичь цели 2030 года, строить нужно более чем в четыре раза быстрее, чем сейчас. Узким местом стали уже не сырьё и финансирование, а производственные и строительные мощности.")},
     "china-europe-biomethane-investment": {
         "pl": ("Chiny a rozbudowa europejskiego biometanu: struktury, które działają",
                "Europie brakuje mocy produkcyjnych do budowy biometanowni. Chińscy dostawcy je mają, ale mierzą się z ostrzejszą polityką przemysłową UE. Struktura wejścia na rynek jest dziś równie ważna jak cena."),
         "zh": ("中国与欧洲生物甲烷产业扩张：行之有效的合作结构",
-               "欧洲缺乏建设生物甲烷工厂的制造能力。中国供应商具备这一能力，但面临更严格的欧盟产业政策。如今，市场进入的结构与价格同样重要。")},
+               "欧洲缺乏建设生物甲烷工厂的制造能力。中国供应商具备这一能力，但面临更严格的欧盟产业政策。如今，市场进入的结构与价格同样重要。"),
+        "ru": ("Китай и рост европейского биометана: структуры, которые работают",
+               "Европе не хватает производственных мощностей для строительства биометановых установок. У китайских поставщиков они есть, но им приходится учитывать более жёсткую промышленную политику ЕС. Структура выхода на рынок сегодня так же важна, как цена.")},
     "biomethane-revenue-stack-eu-regulation": {
         "pl": ("Struktura przychodów biometanowni: jak przepisy UE wyznaczają zarobki instalacji",
                "Biometanownia sprzedaje gaz oraz zestaw atrybutów tworzonych przez prawo. Większość wartości zależy od tego, który odbiorca otrzyma który atrybut, i od tego, by nigdy nie rozliczyć tej samej korzyści dwa razy."),
         "zh": ("生物甲烷收入结构：欧盟法规如何决定工厂收益",
-               "生物甲烷工厂出售的是天然气以及一系列由法律创设的属性。大部分价值取决于哪个买家获得哪项属性，以及同一收益绝不能重复申报。")},
+               "生物甲烷工厂出售的是天然气以及一系列由法律创设的属性。大部分价值取决于哪个买家获得哪项属性，以及同一收益绝不能重复申报。"),
+        "ru": ("Структура доходов биометановой установки: как регулирование ЕС определяет выручку",
+               "Биометановая установка продаёт газ и набор атрибутов, созданных законом. Большая часть стоимости зависит от того, какой покупатель получает какой атрибут, и от того, чтобы одна и та же выгода никогда не учитывалась дважды.")},
     "poland-biomethane-market-2026": {
         "pl": ("Polska: kolejny europejski rynek biometanu",
                "Do 2025 r. Polska była największą luką na europejskiej mapie biometanu. W 2026 r. zyskała system aukcyjny, program dotacji i prostsze zasady przyłączania do sieci. Okno na wczesne pozycje to lata 2026–2028."),
         "zh": ("波兰：欧洲下一个生物甲烷市场",
-               "到2025年，波兰一直是欧洲生物甲烷版图上最大的空白。2026年，波兰推出了竞拍机制、补贴计划和更简便的并网规则。2026至2028年是抢占先机的窗口期。")},
+               "到2025年，波兰一直是欧洲生物甲烷版图上最大的空白。2026年，波兰推出了竞拍机制、补贴计划和更简便的并网规则。2026至2028年是抢占先机的窗口期。"),
+        "ru": ("Польша: следующий рынок биометана в Европе",
+               "До 2025 года Польша была крупнейшим белым пятном на европейской карте биометана. В 2026 году в стране появились аукционы, программа субсидий и упрощённые правила подключения к сети. Окно для ранних позиций — 2026–2028 годы.")},
 }
 
 # Insights photos (img/insights/), kept separate from the home-page photos. file: (alt text, crop focus)
@@ -161,7 +185,8 @@ def enrich(body, mid):
 
 MEMBER = {"en": "Member of SinoCham · Polish-Chinese General Chamber of Commerce",
           "pl": "Członek SinoCham · Polsko-Chińska Główna Izba Gospodarcza",
-          "zh": "会员单位：SinoCham · 波兰中国总商会"}
+          "zh": "会员单位：SinoCham · 波兰中国总商会",
+          "ru": "Член SinoCham · Польско-Китайская генеральная торговая палата"}
 
 LOGO = '''<a class="q-logo" href="{home}" aria-label="Qiao Partners"><svg viewBox="0 0 108 50" aria-hidden="true">
 <path d="M12 16 Q54 -10 96 16" fill="none" stroke="#8EC5F0" stroke-width="2.4" stroke-linecap="round"/>
@@ -169,7 +194,7 @@ LOGO = '''<a class="q-logo" href="{home}" aria-label="Qiao Partners"><svg viewBo
 
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
          '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600'
-         '&family=Noto+Sans+SC:wght@300;400;500&display=swap">')
+         '&family=Noto+Sans+SC:wght@300;400;500&family=Golos+Text:wght@400;500;600&display=swap">')
 
 
 def published():
@@ -186,6 +211,9 @@ def fdate(d, lang):
         return f"{d.day} {m[d.month - 1]} {d.year}"
     if lang == "zh":
         return f"{d.year}年{d.month}月{d.day}日"
+    if lang == "ru":
+        m = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"]
+        return f"{d.day} {m[d.month - 1]} {d.year} г."
     return d.strftime("%-d %B %Y")
 
 
@@ -332,7 +360,7 @@ def article(i, css):
           "datePublished": d.isoformat(), "dateModified": d.isoformat(), "inLanguage": "en",
           "author": {"@type": "Person", "name": AUTHOR}, "publisher": {"@type": "Organization", "name": "Qiao Partners", "url": SITE},
           "isPartOf": {"@type": "CreativeWorkSeries", "name": SERIES["name"]}, "image": f"{SITE}/img/{cover}", "keywords": a["keywords"], "mainEntityOfPage": f"{SITE}{art_url(a)}"}
-    paths = {"en": art_url(a), "pl": UI["pl"]["ins"], "zh": UI["zh"]["ins"]}
+    paths = {"en": art_url(a), **{k: UI[k]["ins"] for k in UI if k != "en"}}
     return page("en", f"{a['title']} | Qiao Partners", a["seo"], art_url(a), "/insights/insights.css", body, ld, paths, og="article")
 
 
@@ -343,7 +371,7 @@ def build(root: Path):
     out.mkdir(parents=True)
     shutil.copy(HERE / "insights.css", out / "insights.css")
     (out / "index.html").write_text(hub("en", "/insights/insights.css"), encoding="utf-8")
-    for k in ("pl", "zh"):
+    for k in [k for k in UI if k != "en"]:
         d = root / k / "insights"
         d.mkdir(parents=True, exist_ok=True)
         (d / "index.html").write_text(hub(k, "/insights/insights.css"), encoding="utf-8")

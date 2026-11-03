@@ -9,9 +9,9 @@
   --accent-soft: #8EC5F0;
   --ex-mute: #C9D4E0;
   --wash: #F2F6FA;
-  --f-display: "Hanken Grotesk", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
-  --f-body: "Hanken Grotesk", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
-  --f-data: "Hanken Grotesk", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;  /* same typeface; tabular figures for data */
+  --f-display: "Hanken Grotesk", "Golos Text", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Hanken Grotesk", "Golos Text", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+  --f-data: "Hanken Grotesk", "Golos Text", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;  /* same typeface; tabular figures for data */
   --col: 42rem;
   --wide: 56rem;
   color-scheme: light;
