@@ -2,7 +2,7 @@
 # Run from the repository root: python3 _src/build.py
 import html, json, os, sys
 sys.path.insert(0, os.path.dirname(__file__))
-from content import L, LINKEDIN, EMAIL, CALENDLY_URL, WHATSAPP, FORM_ENDPOINT, GOOGLE_SITE_VERIFICATION, BING_SITE_VERIFICATION
+from content import SINOCHAM, L, LINKEDIN, EMAIL, CALENDLY_URL, WHATSAPP, FORM_ENDPOINT, GOOGLE_SITE_VERIFICATION, BING_SITE_VERIFICATION
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://qiaopartners.eu/"
@@ -34,6 +34,11 @@ EXTRA_CSS = r"""
 .banner i{width:8px;height:8px;border-radius:50%;background:#5FD08A;box-shadow:0 0 0 4px rgba(95,208,138,.2)}
 .banner a:hover{color:var(--baby)}
 .sec-cta{margin-top:40px}
+.hero .member-badge{display:inline-flex;align-items:center;gap:10px;white-space:nowrap;font-size:14px;line-height:1;letter-spacing:.02em;color:var(--on-dark-muted);border:1px solid rgba(142,197,240,.35);border-radius:999px;padding:9px 18px;margin:0}
+.hero .member-badge span{text-transform:uppercase;letter-spacing:.14em;font-size:11px;color:var(--baby)}
+.hero .member-badge b{color:var(--on-dark);font-weight:500}
+.pedigree.member{margin-top:20px;padding-top:20px}
+.pedigree.member small{font-size:14px;color:var(--muted);margin-left:8px;letter-spacing:0}
 /* Additions: language switch, buttons, services, steps, sectors, booking, FAQ, QR contact */
 .nav-right{display:flex;align-items:center;gap:28px}
 .lang{display:flex;gap:12px;font-size:13px;letter-spacing:.06em}
@@ -255,7 +260,8 @@ def page(key):
            "knowsLanguage": ["zh", "pl", "en"], "sameAs": same_as,
            "address": [{"@type": "PostalAddress", "addressLocality": "Warsaw", "addressCountry": "PL"},
                        {"@type": "PostalAddress", "addressLocality": "Beijing", "addressCountry": "CN"}],
-           "founder": {"@type": "Person", "name": "Wiktor Dong"}}
+           "founder": {"@type": "Person", "name": "Wiktor Dong"},
+           "memberOf": {"@type": "Organization", "name": SINOCHAM}}
     faq = {"@context": "https://schema.org", "@type": "FAQPage", "inLanguage": c["lang"],
            "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in c["faq"]]}
     ld = f'<script type="application/ld+json">{json.dumps(org, ensure_ascii=False)}</script>\n<script type="application/ld+json">{json.dumps(faq, ensure_ascii=False)}</script>'
@@ -362,6 +368,7 @@ def page(key):
       <div>
         <p>{e(c["hero_p"])}</p>
         <a class="btn" href="#book">{e(c["hero_cta"])} <span aria-hidden="true">→</span></a>
+        <div class="member-badge" title="{e(c["member_full"])}"><span>{e(c["member_kicker"])}</span><b>{e(c["member_name"])}</b></div>
       </div>
     </div>
     <div class="strip">{strip}</div>
@@ -423,6 +430,10 @@ def page(key):
           <span class="kicker">{e(c["kicker"])}</span>
           <ul><li>Goldman Sachs</li><li>J.P. Morgan</li><li>Tencent</li><li>Accenture</li></ul>
         </div>
+        <div class="pedigree member">
+          <span class="kicker">{e(c["member_kicker"])}</span>
+          <ul><li>{e(c["member_name"])} <small>{e(c["member_full"])}</small></li></ul>
+        </div>
         <a class="link" href="#book">{e(c["work"])} <span aria-hidden="true">→</span></a>
       </div>
     </div>
@@ -471,7 +482,7 @@ def page(key):
 <footer>
   <div class="wrap">
     {LOGO.format(home=home)}
-    <span>{e(c["foot"])}</span>
+    <span>{e(c["member_kicker"])} {e(c["member_name"])} · {e(c["member_full"])}<br>{e(c["foot"])}</span>
   </div>
 </footer>
 {SCRIPT}

@@ -294,3 +294,9 @@ for _k, (_card, _ind, _nav) in _ZEV.items():
     _i = next((n for n, x in enumerate(L[_k]["industries"]) if "EV" in x or "Elektromobil" in x or "电动汽车" in x), len(L[_k]["industries"]) - 1)
     L[_k]["industries"].insert(_i + 1, _ind)
     L[_k]["nav_insights"] = _nav
+
+# ---- SinoCham membership (added 3 Nov 2026) ----
+SINOCHAM = "Polish-Chinese General Chamber of Commerce SinoCham"   # used in search data (JSON-LD memberOf)
+L["en"].update(member_kicker="Member of", member_name="SinoCham", member_full="Polish-Chinese General Chamber of Commerce")
+L["pl"].update(member_kicker="Członek", member_name="SinoCham", member_full="Polsko-Chińska Główna Izba Gospodarcza")
+L["zh"].update(member_kicker="会员单位", member_name="SinoCham", member_full="波中总商会")

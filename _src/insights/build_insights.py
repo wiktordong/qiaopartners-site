@@ -159,6 +159,10 @@ def enrich(body, mid):
     return body, heads
 
 
+MEMBER = {"en": "Member of SinoCham · Polish-Chinese General Chamber of Commerce",
+          "pl": "Członek SinoCham · Polsko-Chińska Główna Izba Gospodarcza",
+          "zh": "会员单位：SinoCham · 波中总商会"}
+
 LOGO = '''<a class="q-logo" href="{home}" aria-label="Qiao Partners"><svg viewBox="0 0 108 50" aria-hidden="true">
 <path d="M12 16 Q54 -10 96 16" fill="none" stroke="#8EC5F0" stroke-width="2.4" stroke-linecap="round"/>
 <text class="word" x="0" y="48" textLength="108" lengthAdjust="spacing">QIAO</text></svg><span class="partners">Partners</span></a>'''
@@ -198,7 +202,7 @@ def chrome(k, current_ins, lang_paths):
 <div class="q-right"><details class="q-lang"><summary aria-label="Language">{u["label"]}<i aria-hidden="true"></i></summary><ul>{langs}</ul></details>
 <a class="btn" href="{u["base"]}#book">{escape(u["cta_b"])}</a></div></div></header>'''
     foot = f'''<section class="cta"><div class="wrap"><p>{escape(u["cta_p"])}</p><a class="btn" href="{u["base"]}#book">{escape(u["cta_b"])} <span aria-hidden="true">→</span></a></div></section>
-<footer class="q-foot"><div class="wrap"><p>{escape(u["foot"])}</p>
+<footer class="q-foot"><div class="wrap"><p>{escape(MEMBER[k])}</p><p>{escape(u["foot"])}</p>
 <p>© 2026 Qiao Partners · <a href="mailto:contact@qiaopartners.eu">contact@qiaopartners.eu</a> · Warsaw · Beijing</p></div></footer>
 <script>(function(){{var d=document.querySelector('.q-lang');if(!d)return;document.addEventListener('click',function(e){{if(d.open&&!d.contains(e.target))d.open=false}});document.addEventListener('keydown',function(e){{if(e.key==='Escape')d.open=false}})}})();</script>'''
     return head, foot
