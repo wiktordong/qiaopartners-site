@@ -300,3 +300,15 @@ SINOCHAM = "Polish-Chinese General Chamber of Commerce SinoCham"   # used in sea
 L["en"].update(member_kicker="Member of", member_name="SinoCham", member_full="Polish-Chinese General Chamber of Commerce")
 L["pl"].update(member_kicker="Członek", member_name="SinoCham", member_full="Polsko-Chińska Główna Izba Gospodarcza")
 L["zh"].update(member_kicker="会员单位", member_name="SinoCham", member_full="波中总商会")
+
+# ---- Memberships band (add a chamber here once membership is confirmed; drop its logo at img/members/<slug>.png) ----
+MEMBERS = [
+    {"slug": "sinocham", "name": "SinoCham",
+     "full": {"en": "Polish-Chinese General Chamber of Commerce", "pl": "Polsko-Chińska Główna Izba Gospodarcza", "zh": "波中总商会"}},
+]
+L["en"].update(mem_kicker="Memberships", mem_h="Part of the institutions that connect Poland and China.",
+               mem_p="Our membership gives clients direct access to the chamber's network of Polish and Chinese companies, events and trade missions.")
+L["pl"].update(mem_kicker="Członkostwa", mem_h="Należymy do instytucji, które łączą Polskę i Chiny.",
+               mem_p="Członkostwo daje naszym klientom bezpośredni dostęp do sieci polskich i chińskich firm, wydarzeń i misji gospodarczych izby.")
+L["zh"].update(mem_kicker="会员资格", mem_h="我们是连接波兰与中国的商会组织成员。",
+               mem_p="通过会员身份，我们的客户可以直接对接商会的中波企业网络、活动和经贸代表团。")
