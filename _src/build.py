@@ -37,23 +37,14 @@ EXTRA_CSS = r"""
 .hero .member-badge{display:inline-flex;align-items:center;gap:10px;white-space:nowrap;font-size:14px;line-height:1;letter-spacing:.02em;color:var(--on-dark-muted);border:1px solid rgba(142,197,240,.35);border-radius:999px;padding:9px 18px;margin:0}
 .hero .member-badge span{text-transform:uppercase;letter-spacing:.14em;font-size:11px;color:var(--baby)}
 .hero .member-badge b{color:var(--on-dark);font-weight:500}
-.pedigree.member{margin-top:20px;padding-top:20px}
+.pedigree.member{margin-top:24px;padding-top:24px}
 .pedigree.member small{font-size:14px;color:var(--muted);margin-left:8px;letter-spacing:0}
-/* Memberships band */
-.members{padding-block:110px;border-top:1px solid var(--line)}
-.members .head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:80px;align-items:end;margin-bottom:48px}
-.members .kicker{display:block;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
-.members h2{font-size:clamp(28px,3.4vw,44px);line-height:1.1}
-.members .head p{color:var(--muted);font-size:17px;font-weight:300;max-width:46ch}
-.member-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:20px}
-.member-list li{display:flex;align-items:center;gap:22px;border:1px solid var(--line);padding:22px 26px;background:var(--paper)}
-.member-list .mark-box{flex:none;width:96px;height:64px;display:grid;place-items:center;border-right:1px solid var(--line);padding-right:22px}
-.member-list .mark-box img{max-width:100%;max-height:56px;object-fit:contain}
-.member-list .wordmark{font-size:17px;font-weight:500;letter-spacing:.06em;color:var(--ink)}
-.member-list b{display:block;font-weight:500;font-size:18px}
-.member-list li span:not(.tag){display:block;color:var(--muted);font-size:14px;margin-top:2px}
-.member-list .tag{display:inline-block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 10px;margin-bottom:10px}
-@media (max-width:900px){.members{padding-block:80px}.members .head{grid-template-columns:1fr;gap:16px}}
+.member-logos li{display:flex;align-items:center}
+.member-logos img{display:block;height:60px;width:auto;max-width:100%}
+.member-logos .on-dark{display:none}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .member-logos .on-light{display:none}:root:not([data-theme="light"]) .member-logos .on-dark{display:block}}
+:root[data-theme="dark"] .member-logos .on-light{display:none}
+:root[data-theme="dark"] .member-logos .on-dark{display:block}
 /* Additions: language switch, buttons, services, steps, sectors, booking, FAQ, QR contact */
 .nav-right{display:flex;align-items:center;gap:28px}
 .lang{display:flex;gap:12px;font-size:13px;letter-spacing:.06em}
@@ -329,9 +320,13 @@ def page(key):
       </div>"""
     tiles = []
     for m in MEMBERS:
-        logo = os.path.join(ROOT, "img", "members", m["slug"] + ".png")
-        mark = (f'<div class="mark-box"><img src="{up}img/members/{m["slug"]}.png" alt="{e(m["name"])} logo"></div>' if os.path.exists(logo) else "")
-        tiles.append(f'<li>{mark}<div><span class="tag">{e(c["member_kicker"])}</span><b>{e(m["name"])}</b><span>{e(m["full"][key])}</span></div></li>')
+        slug = m["slug"]
+        if os.path.exists(os.path.join(ROOT, "img", "members", slug + ".png")):
+            dark = (f'<img class="on-dark" src="{up}img/members/{slug}-dark.png" alt="" aria-hidden="true">'
+                    if os.path.exists(os.path.join(ROOT, "img", "members", slug + "-dark.png")) else "")
+            tiles.append(f'<li><img class="on-light" src="{up}img/members/{slug}.png" alt="{e(m["name"])}: {e(m["full"][key])}" title="{e(m["full"][key])}" width="1000" height="283">{dark}</li>')
+        else:
+            tiles.append(f'<li><b>{e(m["name"])}</b> <small>{e(m["full"][key])}</small></li>')
     members_html = "".join(tiles)
     if WHATSAPP:
         wa = f'<figure><a href="{WHATSAPP}" rel="noopener" target="_blank"><img src="{up}img/whatsapp-qr.png" alt="WhatsApp QR code"></a><figcaption>{e(c["scan_wa"])}</figcaption></figure>'
@@ -451,18 +446,12 @@ def page(key):
           <span class="kicker">{e(c["kicker"])}</span>
           <ul><li>Goldman Sachs</li><li>J.P. Morgan</li><li>Tencent</li><li>Accenture</li></ul>
         </div>
+        <div class="pedigree member">
+          <span class="kicker">{e(c["member_kicker"])}</span>
+          <ul class="member-logos">{members_html}</ul>
+        </div>
         <a class="link" href="#book">{e(c["work"])} <span aria-hidden="true">→</span></a>
       </div>
-    </div>
-  </section>
-
-  <section class="members" aria-labelledby="members-h">
-    <div class="wrap">
-      <div class="head">
-        <div><span class="kicker">{e(c["mem_kicker"])}</span><h2 id="members-h">{e(c["mem_h"])}</h2></div>
-        <p>{e(c["mem_p"])}</p>
-      </div>
-      <ul class="member-list">{members_html}</ul>
     </div>
   </section>
 

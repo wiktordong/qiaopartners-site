@@ -5,7 +5,7 @@ Static site for qiaopartners.eu, hosted on GitHub Pages (repo `wiktordong/qiaopa
 ## How the site is built
 - Never hand-edit the generated `index.html`, `pl/index.html` or `zh/index.html`. Edit the sources and rebuild:
   - `_src/content.py`: all copy, per language (`L["en"]`, `L["pl"]`, `L["zh"]`), plus settings `LINKEDIN`, `EMAIL`, `CALENDLY_URL`, `WHATSAPP`, `FORM_ENDPOINT`, `GOOGLE_SITE_VERIFICATION`, `BING_SITE_VERIFICATION` (paste the codes from Search Console / Bing Webmaster Tools, rebuild, push). Later `L[...].update(...)` blocks at the end of the file override earlier keys.
-  - `MEMBERS` in `_src/content.py` lists confirmed chamber memberships (Memberships section); a logo at `img/members/<slug>.png` replaces the text tile automatically.
+  - `MEMBERS` in `_src/content.py` lists confirmed chamber memberships, shown as logos under "Our team's experience includes" in the team section; logo at `img/members/<slug>.png` (plus optional `<slug>-dark.png` for dark mode), text fallback if missing.
   - `_src/build.py`: page template, CSS and JS. Also writes `robots.txt`, `sitemap.xml`, `llms.txt`.
   - `_src/base.css`: original visual design (navy `#0A1C36`, baby blue `#8EC5F0`, Hanken Grotesk, light/dark themes). Keep this look.
   - `_src/insights/`: the Insights section. `articles.py` holds the articles (HTML bodies, exhibits via `charts.py`), `build_insights.py` renders `/insights/` plus `/pl/insights/` and `/zh/insights/` indexes, `insights.css` styles them. `RELEASE` in `build_insights.py` sets one release date per article (weekly from 1 Nov 2026); only articles dated today or earlier are built.

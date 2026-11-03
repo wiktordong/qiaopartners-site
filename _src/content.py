@@ -299,12 +299,12 @@ for _k, (_card, _ind, _nav) in _ZEV.items():
 SINOCHAM = "Polish-Chinese General Chamber of Commerce SinoCham"   # used in search data (JSON-LD memberOf)
 L["en"].update(member_kicker="Member of", member_name="SinoCham", member_full="Polish-Chinese General Chamber of Commerce")
 L["pl"].update(member_kicker="Członek", member_name="SinoCham", member_full="Polsko-Chińska Główna Izba Gospodarcza")
-L["zh"].update(member_kicker="会员单位", member_name="SinoCham", member_full="波中总商会")
+L["zh"].update(member_kicker="会员单位", member_name="SinoCham", member_full="波兰中国总商会")
 
 # ---- Memberships band (add a chamber here once membership is confirmed; drop its logo at img/members/<slug>.png) ----
 MEMBERS = [
     {"slug": "sinocham", "name": "SinoCham",
-     "full": {"en": "Polish-Chinese General Chamber of Commerce", "pl": "Polsko-Chińska Główna Izba Gospodarcza", "zh": "波中总商会"}},
+     "full": {"en": "Polish-Chinese General Chamber of Commerce", "pl": "Polsko-Chińska Główna Izba Gospodarcza", "zh": "波兰中国总商会"}},
 ]
 L["en"].update(mem_kicker="Memberships", mem_h="Part of the institutions that connect Poland and China.",
                mem_p="Our membership gives clients direct access to the chamber's network of Polish and Chinese companies, events and trade missions.")

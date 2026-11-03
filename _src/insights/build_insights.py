@@ -161,7 +161,7 @@ def enrich(body, mid):
 
 MEMBER = {"en": "Member of SinoCham · Polish-Chinese General Chamber of Commerce",
           "pl": "Członek SinoCham · Polsko-Chińska Główna Izba Gospodarcza",
-          "zh": "会员单位：SinoCham · 波中总商会"}
+          "zh": "会员单位：SinoCham · 波兰中国总商会"}
 
 LOGO = '''<a class="q-logo" href="{home}" aria-label="Qiao Partners"><svg viewBox="0 0 108 50" aria-hidden="true">
 <path d="M12 16 Q54 -10 96 16" fill="none" stroke="#8EC5F0" stroke-width="2.4" stroke-linecap="round"/>
