@@ -34,7 +34,7 @@ def bars(rows, label, unit="", highlight=None, dec=0, h=300):
     return _svg(h, label, "".join(out))
 
 
-def line(points, label, unit="", h=320, notes=()):
+def line(points, label, unit="", h=320, notes=(), month_fmt=None):
     """Time series. points = [(date, value, label_or_None)]; notes = [(date, text)] vertical markers."""
     left, right, y0, base = 56, W - 30, 26, h - 44
     d0, d1 = points[0][0].toordinal(), points[-1][0].toordinal()
@@ -63,12 +63,12 @@ def line(points, label, unit="", h=320, notes=()):
     for (yy, mm) in [(2025, 10), (2026, 1), (2026, 4), (2026, 7), (2026, 10)]:
         d = date(yy, mm, 1)
         if d0 <= d.toordinal() <= d1:
-            out.append(f'<text x="{X(d):.1f}" y="{base + 20}" text-anchor="middle" fill="var(--muted)">{d.strftime("%b %y")}</text>')
+            out.append(f'<text x="{X(d):.1f}" y="{base + 20}" text-anchor="middle" fill="var(--muted)">{month_fmt(d) if month_fmt else d.strftime("%b %y")}</text>')
     out.append(f'<line x1="{left}" x2="{right}" y1="{base}" y2="{base}" stroke="var(--rule-strong)"/>')
     return _svg(h, label, "".join(out))
 
 
-def stack(segments, target, label, unit="", h=170):
+def stack(segments, target, label, unit="", h=170, target_label="Target", dec=1):
     """One horizontal bar split into segments toward a target. segments = [(label, value, tone)]."""
     left, right, y, bh = 24, W - 24, 56, 34
     scale = (right - left) / target
@@ -83,9 +83,9 @@ def stack(segments, target, label, unit="", h=170):
         else:
             out.append(f'<rect x="{x:.1f}" y="{y}" width="{w:.1f}" height="{bh}" fill="{tones[tone]}"/>')
         anchor_x = x + 8
-        out.append(f'<text x="{anchor_x:.1f}" y="{y - 12}" fill="var(--ink)" font-weight="600">{fmt(v, 1)}{unit}</text>'
+        out.append(f'<text x="{anchor_x:.1f}" y="{y - 12}" fill="var(--ink)" font-weight="600">{fmt(v, dec)}{unit}</text>'
                    f'<text x="{anchor_x:.1f}" y="{y + bh + 22}" fill="var(--muted)">{escape(lab)}</text>')
         x += w
     out.append(f'<line x1="{right}" x2="{right}" y1="{y - 26}" y2="{y + bh + 8}" stroke="var(--ink)" stroke-width="1.5"/>'
-               f'<text x="{right}" y="{y - 32}" text-anchor="end" fill="var(--ink)" font-weight="600">Target {fmt(target)}{unit}</text>')
+               f'<text x="{right}" y="{y - 32}" text-anchor="end" fill="var(--ink)" font-weight="600">{target_label} {fmt(target)}{unit}</text>')
     return _svg(h, label, "".join(out))

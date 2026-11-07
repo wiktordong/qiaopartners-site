@@ -1,4 +1,5 @@
-"""Builds the Insights section: /insights/ (English articles) plus /pl/insights/ and /zh/insights/ indexes.
+"""Builds the Insights section: /insights/ (English articles), /zh/insights/ (Chinese articles from articles_zh.py)
+plus /pl/insights/ and /ru/insights/ indexes.
 Articles are released one a week: only articles whose RELEASE date is on or before today (Warsaw time) are built.
 Called from _src/build.py; can also run alone: python3 _src/insights/build_insights.py"""
 import json, re, shutil, sys
@@ -10,6 +11,12 @@ from zoneinfo import ZoneInfo
 HERE = Path(__file__).parent
 sys.path.insert(0, str(HERE))
 from articles import ARTICLES, SERIES  # noqa: E402
+from articles_zh import ZH, ALT_ZH, SERIES_ZH  # noqa: E402
+
+# Full article translations per language; languages without one link to the English article.
+TR = {"zh": ZH}
+ALT_TR = {"zh": ALT_ZH}
+ONPAGE = {"en": "On this page", "zh": "本页内容"}
 
 SITE = "https://qiaopartners.eu"
 AUTHOR = "Wiktor Dong"
@@ -156,9 +163,13 @@ IMG = {
 HUB_IMG, SERIES_IMG = "insights/solar-field-aerial.jpg", "insights/winding-road-fields.jpg"
 
 
-def img(f, cls, lazy=True, pos=None):
+def alt(f, k="en"):
+    return ALT_TR.get(k, {}).get(f, ALT[f])
+
+
+def img(f, cls, lazy=True, pos=None, k="en"):
     pos = pos or PHOTO[f][1]
-    return (f'<img class="{cls}" src="/img/{f}" alt="{escape(ALT[f])}" style="object-position:{pos}"'
+    return (f'<img class="{cls}" src="/img/{f}" alt="{escape(alt(f, k))}" style="object-position:{pos}"'
             f'{" loading=\"lazy\"" if lazy else ""} decoding="async">')
 
 
@@ -166,19 +177,19 @@ def slugify(t):
     return re.sub(r"[^a-z0-9]+", "-", re.sub(r"<[^>]+>", "", t).lower()).strip("-")[:60]
 
 
-def enrich(body, mid):
+def enrich(body, mid, k="en"):
     """Give each section heading an id (for the contents list) and add a photo break after the third paragraph."""
     heads = []
 
     def h2(m):
         t = m.group(1)
-        i = slugify(t)
+        i = slugify(t) or f"s{len(heads) + 1}"
         heads.append((i, re.sub(r"<[^>]+>", "", t)))
         return f'<h2 id="{i}">{t}</h2>'
     body = re.sub(r"<h2>(.*?)</h2>", h2, body, flags=re.S)
     parts = body.split("</p>")
     if len(parts) > 4:
-        photo = f'<figure class="photo-break">{img(mid, "pb-img")}<figcaption>{escape(ALT[mid])}</figcaption></figure>'
+        photo = f'<figure class="photo-break">{img(mid, "pb-img", k=k)}<figcaption>{escape(alt(mid, k))}</figcaption></figure>'
         body = "</p>".join(parts[:3]) + "</p>" + photo + "</p>".join(parts[3:])
     return body, heads
 
@@ -265,13 +276,25 @@ def page(k, title, desc, url, css, body, ld, lang_paths, og="website"):
 '''
 
 
-def art_url(a):
-    return f"/insights/{SERIES['slug']}/{a['slug']}/"
+def has_tr(a, k):
+    return a["slug"] in TR.get(k, {})
+
+
+def art_url(a, k="en"):
+    pre = UI[k]["base"].rstrip("/") if has_tr(a, k) else ""
+    return f"{pre}/insights/{SERIES['slug']}/{a['slug']}/"
+
+
+def loc(a, k):
+    """Article fields in language k (falls back to English)."""
+    return {**a, **TR[k][a["slug"]]} if has_tr(a, k) else a
 
 
 def t_art(a, k):
     if k == "en":
         return a["title"], a["standfirst"]
+    if has_tr(a, k):
+        return TR[k][a["slug"]]["title"], TR[k][a["slug"]]["standfirst"]
     return ART_T[a["slug"]][k]
 
 
@@ -283,7 +306,7 @@ def hub(k, css):
     u, pub, up = UI[k], published(), upcoming()
     name, dek = t_series(k)
     total = len(ARTICLES)
-    toc = "".join(f'<li><a href="{art_url(a)}"><span class="toc-n">{a["part"]:02d}</span><span class="toc-t">{escape(t_art(a, k)[0])}</span></a></li>' for a in pub)
+    toc = "".join(f'<li><a href="{art_url(a, k)}"><span class="toc-n">{a["part"]:02d}</span><span class="toc-t">{escape(t_art(a, k)[0])}</span></a></li>' for a in pub)
     nxt = ""
     if up:
         a = up[0]
@@ -291,10 +314,11 @@ def hub(k, css):
     soon = "".join(f'''<article class="card soon"><a class="thumb" tabindex="-1" aria-hidden="true">{img(IMG[a["slug"]][0], "")}</a>
 <div class="eyebrow">{escape(u["next"])} · {fdate(RELEASE[a["slug"]], k)}</div>
 <h3>{escape(t_art(a, k)[0])}</h3><p>{escape(t_art(a, k)[1])}</p></article>''' for a in up[:2])
-    cards = "".join(f'''<article class="card"><a class="thumb" href="{art_url(a)}" tabindex="-1" aria-hidden="true">{img(IMG[a["slug"]][0], "")}</a><div class="eyebrow">{escape(SERIES["topic"] if k == "en" else name)}</div>
-<h3><a href="{art_url(a)}">{escape(t_art(a, k)[0])}</a></h3><p>{escape(t_art(a, k)[1])}</p>
+    cards = "".join(f'''<article class="card"><a class="thumb" href="{art_url(a, k)}" tabindex="-1" aria-hidden="true">{img(IMG[a["slug"]][0], "", k=k)}</a><div class="eyebrow">{escape(SERIES["topic"] if k == "en" else name)}</div>
+<h3><a href="{art_url(a, k)}">{escape(t_art(a, k)[0])}</a></h3><p>{escape(t_art(a, k)[1])}</p>
 <div class="meta">{fdate(RELEASE[a["slug"]], k)} · {read_min(a)} {escape(u["read"])}</div></article>''' for a in reversed(pub))
-    note = f'<p class="lang-note">{escape(u["note"])}</p>' if u["note"] else ""
+    show_note = u["note"] and any(not has_tr(a, k) for a in pub)
+    note = f'<p class="lang-note">{escape(u["note"])}</p>' if show_note else ""
     body = f'''<div class="wrap">
 <section class="hub-hero"><div><div class="eyebrow">Qiao Partners</div><h1>{escape(u["h1"])}</h1><p>{escape(u["dek"])}</p>{note}</div>
 <figure class="hub-pic">{img(HUB_IMG, "", lazy=False)}</figure></section>
@@ -309,59 +333,74 @@ def hub(k, css):
 </div>'''
     ld = {"@context": "https://schema.org", "@type": "CollectionPage", "name": f"{u['h1']} | Qiao Partners", "url": f"{SITE}{u['ins']}",
           "inLanguage": u["lang"], "publisher": {"@type": "Organization", "name": "Qiao Partners", "url": SITE},
-          "hasPart": [{"@type": "Article", "headline": a["title"], "url": f"{SITE}{art_url(a)}"} for a in pub]}
+          "hasPart": [{"@type": "Article", "headline": t_art(a, k)[0], "url": f"{SITE}{art_url(a, k)}"} for a in pub]}
     paths = {x: UI[x]["ins"] for x in UI}
     return page(k, f"{u['h1']} | Qiao Partners", u["dek"], u["ins"], css, body, ld, paths)
 
 
-def article(i, css):
+def part_of(n, k):
+    if k == "zh":
+        return f"第{n}篇，共{len(ARTICLES)}篇"
+    u = UI[k]
+    return f"{u['part']} {n} {u['of']} {len(ARTICLES)}"
+
+
+def article(i, css, k="en"):
+    """Article page in language k (k must be "en" or have a translation in TR)."""
     pub = published()
-    a = pub[i]
-    u = UI["en"]
+    src = pub[i]
+    a = loc(src, k)
+    u = UI[k]
+    sname = SERIES["name"] if k == "en" else t_series(k)[0]
+    topic = SERIES["topic"] if k == "en" else (SERIES_ZH["topic"] if k == "zh" else sname)
+    zh = k == "zh"
     kp = "".join(f"<li>{escape(x)}</li>" for x in a["keypoints"])
-    rail = "".join(f'<li><a href="{art_url(b)}"{" aria-current=\"page\"" if b is a else ""}><span>{b["part"]:02d}</span><span>{escape(b["short"])}</span></a></li>' for b in pub)
+    rail = "".join(f'<li><a href="{art_url(b, k)}"{" aria-current=\"page\"" if b is src else ""}><span>{b["part"]:02d}</span><span>{escape(loc(b, k)["short"])}</span></a></li>' for b in pub)
     up = upcoming()
     if up:
-        rail += f'<li><span class="meta">{up[0]["part"]:02d} · {escape(up[0]["short"])} · {fdate(RELEASE[up[0]["slug"]], "en")}</span></li>'
+        rail += f'<li><span class="meta">{up[0]["part"]:02d} · {escape(loc(up[0], k)["short"])} · {fdate(RELEASE[up[0]["slug"]], k)}</span></li>'
     prev_ = pub[i - 1] if i > 0 else None
     next_ = pub[i + 1] if i < len(pub) - 1 else None
+    plab = (lambda b: f"第{b['part']}篇") if zh else (lambda b: f"{u['part']} {b['part']}")
     pager = ""
     if prev_ or next_:
-        left = (f'<a href="{art_url(prev_)}"><span class="meta">Previous · Part {prev_["part"]}</span><span>{escape(prev_["short"])}</span></a>') if prev_ else "<span></span>"
-        right = (f'<a href="{art_url(next_)}"><span class="meta">Next · Part {next_["part"]}</span><span>{escape(next_["short"])}</span></a>') if next_ else "<span></span>"
+        left = (f'<a href="{art_url(prev_, k)}"><span class="meta">{escape(u["prev"])} · {plab(prev_)}</span><span>{escape(loc(prev_, k)["short"])}</span></a>') if prev_ else "<span></span>"
+        right = (f'<a href="{art_url(next_, k)}"><span class="meta">{escape(u["nxt"])} · {plab(next_)}</span><span>{escape(loc(next_, k)["short"])}</span></a>') if next_ else "<span></span>"
         pager = f'<nav class="pager" aria-label="Series">{left}{right}</nav>'
-    d = RELEASE[a["slug"]]
-    _thumb, cover, mid = IMG[a["slug"]]
-    art_body, heads = enrich(a["body"], mid)
-    contents = "".join(f'<li><a href="#{i}">{escape(t)}</a></li>' for i, t in heads)
+    d = RELEASE[src["slug"]]
+    _thumb, cover, mid = IMG[src["slug"]]
+    art_body, heads = enrich(a["body"], mid, k)
+    contents = "".join(f'<li><a href="#{h}">{escape(t)}</a></li>' for h, t in heads)
+    read = f"{read_min(src)} {u['read']}" if not zh else f"{read_min(src)}{u['read']}"
+    author = f"<b>{AUTHOR}</b>，Qiao Partners" if zh else f"<b>{AUTHOR}</b>, Qiao Partners"
     body = f'''<div class="wrap">
-<nav class="crumbs" aria-label="Breadcrumb"><a href="/insights/">Insights</a> / {escape(SERIES["topic"])}</nav>
+<nav class="crumbs" aria-label="Breadcrumb"><a href="{u["ins"]}">{escape(u["crumbs"])}</a> / {escape(topic)}</nav>
 <header class="art-head"><div class="inner">
- <div class="eyebrow">{escape(SERIES["name"])} · Part {a["part"]} of {len(ARTICLES)}</div>
+ <div class="eyebrow">{escape(sname)} · {part_of(a["part"], k)}</div>
  <h1>{escape(a["title"])}</h1>
  <p class="standfirst">{escape(a["standfirst"])}</p>
- <div class="byline"><span><b>{AUTHOR}</b>, Qiao Partners</span><span>{fdate(d, "en")}</span><span>{read_min(a)} min read</span></div>
+ <div class="byline"><span>{author}</span><span>{fdate(d, k)}</span><span>{escape(read)}</span></div>
 </div>
-<figure class="cover">{img(cover, "", lazy=False)}<figcaption>{escape(ALT[cover])}</figcaption></figure></header>
+<figure class="cover">{img(cover, "", lazy=False, k=k)}<figcaption>{escape(alt(cover, k))}</figcaption></figure></header>
 <div class="art-grid">
  <article class="prose">
-  <section class="keypoints" aria-label="Key points"><h2>Key points</h2><ul>{kp}</ul></section>
+  <section class="keypoints" aria-label="{escape(u["keypoints"])}"><h2>{escape(u["keypoints"])}</h2><ul>{kp}</ul></section>
   {art_body}
   {pager}
  </article>
  <aside class="rail"><div class="rail-sticky">
-  <div class="rail-block"><h2>On this page</h2><ol class="contents">{contents}</ol></div>
-  <div class="rail-block"><h2>In this series</h2><ol>{rail}</ol></div>
-  <div class="rail-block"><h2>Topics</h2><p>{escape(a["keywords"])}</p></div>
+  <div class="rail-block"><h2>{escape(ONPAGE.get(k, ONPAGE["en"]))}</h2><ol class="contents">{contents}</ol></div>
+  <div class="rail-block"><h2>{escape(u["toc"])}</h2><ol>{rail}</ol></div>
+  <div class="rail-block"><h2>{escape(u["topics"])}</h2><p>{escape(a["keywords"])}</p></div>
  </div></aside>
 </div>
 </div>'''
     ld = {"@context": "https://schema.org", "@type": "Article", "headline": a["title"], "description": a["seo"],
-          "datePublished": d.isoformat(), "dateModified": d.isoformat(), "inLanguage": "en",
+          "datePublished": d.isoformat(), "dateModified": d.isoformat(), "inLanguage": u["lang"],
           "author": {"@type": "Person", "name": AUTHOR}, "publisher": {"@type": "Organization", "name": "Qiao Partners", "url": SITE},
-          "isPartOf": {"@type": "CreativeWorkSeries", "name": SERIES["name"]}, "image": f"{SITE}/img/{cover}", "keywords": a["keywords"], "mainEntityOfPage": f"{SITE}{art_url(a)}"}
-    paths = {"en": art_url(a), **{k: UI[k]["ins"] for k in UI if k != "en"}}
-    return page("en", f"{a['title']} | Qiao Partners", a["seo"], art_url(a), "/insights/insights.css", body, ld, paths, og="article")
+          "isPartOf": {"@type": "CreativeWorkSeries", "name": sname}, "image": f"{SITE}/img/{cover}", "keywords": a["keywords"], "mainEntityOfPage": f"{SITE}{art_url(src, k)}"}
+    paths = {x: (art_url(src, x) if x == "en" or has_tr(src, x) else UI[x]["ins"]) for x in UI}
+    return page(k, f"{a['title']} | Qiao Partners", a["seo"], art_url(src, k), "/insights/insights.css", body, ld, paths, og="article")
 
 
 def build(root: Path):
@@ -373,14 +412,21 @@ def build(root: Path):
     (out / "index.html").write_text(hub("en", "/insights/insights.css"), encoding="utf-8")
     for k in [k for k in UI if k != "en"]:
         d = root / k / "insights"
-        d.mkdir(parents=True, exist_ok=True)
+        if d.exists():
+            shutil.rmtree(d)
+        d.mkdir(parents=True)
         (d / "index.html").write_text(hub(k, "/insights/insights.css"), encoding="utf-8")
     pub = published()
     for i, a in enumerate(pub):
         d = out / SERIES["slug"] / a["slug"]
         d.mkdir(parents=True)
         (d / "index.html").write_text(article(i, "/insights/insights.css"), encoding="utf-8")
-    urls = [UI[k]["ins"] for k in UI] + [art_url(a) for a in pub]
+        for k in TR:
+            if has_tr(a, k):
+                d = root / k / "insights" / SERIES["slug"] / a["slug"]
+                d.mkdir(parents=True, exist_ok=True)
+                (d / "index.html").write_text(article(i, "/insights/insights.css", k), encoding="utf-8")
+    urls = [UI[k]["ins"] for k in UI] + [art_url(a) for a in pub] + [art_url(a, k) for k in TR for a in pub if has_tr(a, k)]
     return urls, [(a["title"], art_url(a), a["seo"]) for a in pub]
 
 
