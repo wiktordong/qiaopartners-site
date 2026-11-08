@@ -236,6 +236,23 @@ footer .logo .word{font-size:34px}
 
 
 
+/* Mobile menu (shown when the top links are hidden) */
+.mnav{display:none;position:relative}
+.mnav summary{list-style:none;cursor:pointer;width:42px;height:42px;display:grid;place-items:center;border:1px solid rgba(243,247,252,.45);border-radius:999px;color:var(--on-dark)}
+.mnav summary::-webkit-details-marker{display:none}
+.mnav summary i,.mnav summary i::before,.mnav summary i::after{display:block;width:16px;height:1.5px;background:currentColor;transition:transform .25s,opacity .2s}
+.mnav summary i{position:relative}
+.mnav summary i::before,.mnav summary i::after{content:"";position:absolute;left:0}
+.mnav summary i::before{top:-5px}.mnav summary i::after{top:5px}
+.mnav[open] summary i{background:transparent}
+.mnav[open] summary i::before{transform:translateY(5px) rotate(45deg)}
+.mnav[open] summary i::after{transform:translateY(-5px) rotate(-45deg)}
+.mnav .mpanel{position:absolute;right:0;top:calc(100% + 12px);min-width:230px;background:var(--navy);border:1px solid rgba(243,247,252,.14);border-radius:16px;padding:10px 0;z-index:60;box-shadow:0 18px 40px rgba(0,0,0,.28)}
+.mnav .mpanel a{display:block;padding:12px 22px;color:var(--on-dark);text-decoration:none;font-size:16px;opacity:.85}
+.mnav .mpanel a:hover,.mnav .mpanel a[aria-current]{opacity:1;color:var(--baby)}
+.mnav .mpanel a.mcta{margin:8px 16px 4px;padding:11px 18px;border:1px solid rgba(243,247,252,.55);border-radius:999px;text-align:center;font-size:15px}
+@media (max-width:860px){.mnav{display:block}}
+
 /* Language drop-down */
 .langdd{position:relative}
 .langdd summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;font-size:13px;letter-spacing:.06em;padding:6px 0;opacity:.78;transition:opacity .2s}
@@ -391,6 +408,7 @@ footer .logo .word{font-size:34px}
     <div class="nav-right">
       <nav class="lang" aria-label="Language"><details class="langdd"><summary aria-label="Language">PL<i aria-hidden="true"></i></summary><ul><li><a href="../" hreflang="en" lang="en">EN</a></li><li><a href="../pl/" aria-current="page" hreflang="pl" lang="pl">PL</a></li><li><a href="../zh/" hreflang="zh-CN" lang="zh-CN">中文</a></li><li><a href="../ru/" hreflang="ru" lang="ru">RU</a></li></ul></details></nav>
       <a class="btn small" href="#book">Umów rozmowę</a>
+      <details class="mnav"><summary aria-label="Menu"><i aria-hidden="true"></i></summary><div class="mpanel"><a href="#about">O nas</a><a href="#services">Usługi</a><a href="#sectors">Trendy rynkowe</a><a href="insights/">Analizy</a><a href="#faq">FAQ</a><a href="#contact">Kontakt</a><a class="mcta" href="#book">Umów rozmowę</a></div></details>
     </div>
   </div>
   <div class="progress" aria-hidden="true"></div>
@@ -640,12 +658,8 @@ footer .logo .word{font-size:34px}
 (function(){
   var faqs=document.querySelectorAll('.faq details');
   faqs.forEach(function(d){d.addEventListener('toggle',function(){if(d.open){faqs.forEach(function(o){if(o!==d)o.open=false})}})});
-  var dd=document.querySelector('.langdd');
-  if(dd){
-    document.addEventListener('click',function(ev){if(dd.open&&!dd.contains(ev.target))dd.open=false});
-    document.addEventListener('keydown',function(ev){if(ev.key==='Escape'&&dd.open){dd.open=false;dd.querySelector('summary').focus()}});
-  }
 })();
+(function(){var m=document.querySelectorAll('details.mnav, details.langdd, details.q-lang');m.forEach(function(d){document.addEventListener('click',function(e){if(d.open&&!d.contains(e.target))d.open=false});d.querySelectorAll('.mpanel a').forEach(function(a){a.addEventListener('click',function(){d.open=false})})});document.addEventListener('keydown',function(e){if(e.key==='Escape')m.forEach(function(d){d.open=false})})})();
 </script>
 </body>
 </html>

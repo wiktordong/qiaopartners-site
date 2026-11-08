@@ -18,6 +18,7 @@ from articles_ru import RU, ALT_RU, TOPIC as TOPIC_RU  # noqa: E402
 # Full article translations per language; every article must exist in every language.
 TR = {"zh": ZH, "pl": PL, "ru": RU}
 ALT_TR = {"zh": ALT_ZH, "pl": ALT_PL, "ru": ALT_RU}
+MENU = {"en": "Menu", "pl": "Menu", "zh": "菜单", "ru": "Меню"}
 ONPAGE = {"en": "On this page", "zh": "本页内容", "pl": "W tym artykule", "ru": "В этой статье"}
 TOPIC = {"zh": SERIES_ZH["topic"], "pl": TOPIC_PL, "ru": TOPIC_RU}
 
@@ -238,15 +239,18 @@ def read_min(a):
 def chrome(k, current_ins, lang_paths):
     u = UI[k]
     nav = "".join(f'<a href="{h}"{" aria-current=\"page\"" if h == u["ins"] else ""}>{escape(t)}</a>' for t, h in u["nav"])
+    mlinks = "".join(f'<a href="{h}"{" aria-current=\"page\"" if h == u["ins"] else ""}>{escape(t)}</a>' for t, h in u["nav"])
+    mlinks += f'<a class="mcta" href="{u["base"]}#book">{escape(u["cta_b"])}</a>'
+    mnav = f'<details class="mnav"><summary aria-label="{MENU[k]}"><i aria-hidden="true"></i></summary><div class="mpanel">{mlinks}</div></details>'
     langs = "".join(f'<li><a href="{lang_paths[x]}"{" aria-current=\"page\"" if x == k else ""} lang="{UI[x]["lang"]}">{UI[x]["label"]}</a></li>' for x in UI)
     head = f'''<div class="q-banner"><div class="wrap"><a href="{u["base"]}#book"><i aria-hidden="true"></i>{escape(u["banner"])} <span aria-hidden="true">→</span></a></div></div>
 <header class="q-head"><div class="wrap">{LOGO.format(home=u["base"])}<nav class="q-nav" aria-label="Main">{nav}</nav>
 <div class="q-right"><details class="q-lang"><summary aria-label="Language">{u["label"]}<i aria-hidden="true"></i></summary><ul>{langs}</ul></details>
-<a class="btn" href="{u["base"]}#book">{escape(u["cta_b"])}</a></div></div></header>'''
+<a class="btn" href="{u["base"]}#book">{escape(u["cta_b"])}</a>{mnav}</div></div></header>'''
     foot = f'''<section class="cta"><div class="wrap"><p>{escape(u["cta_p"])}</p><a class="btn" href="{u["base"]}#book">{escape(u["cta_b"])} <span aria-hidden="true">→</span></a></div></section>
 <footer class="q-foot"><div class="wrap"><p>{escape(MEMBER[k])}</p><p>{escape(u["foot"])}</p>
 <p>© 2026 Qiao Partners · <a href="mailto:contact@qiaopartners.eu">contact@qiaopartners.eu</a> · Warsaw · Beijing</p></div></footer>
-<script>(function(){{var d=document.querySelector('.q-lang');if(!d)return;document.addEventListener('click',function(e){{if(d.open&&!d.contains(e.target))d.open=false}});document.addEventListener('keydown',function(e){{if(e.key==='Escape')d.open=false}})}})();</script>'''
+<script>(function(){{var m=document.querySelectorAll('details.mnav, details.langdd, details.q-lang');m.forEach(function(d){{document.addEventListener('click',function(e){{if(d.open&&!d.contains(e.target))d.open=false}});d.querySelectorAll('.mpanel a').forEach(function(a){{a.addEventListener('click',function(){{d.open=false}})}})}});document.addEventListener('keydown',function(e){{if(e.key==='Escape')m.forEach(function(d){{d.open=false}})}})}})();</script>'''
     return head, foot
 
 

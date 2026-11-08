@@ -197,6 +197,23 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .q-head .btn{padding:9px 20px;font-size:14px;color:var(--on-dark)}
 .q-head .btn:hover{background:var(--baby);color:var(--navy);border-color:var(--baby)}
 @media (max-width:900px){.q-nav{display:none}}
+
+/* Mobile menu (shown when the top links are hidden) */
+.mnav{display:none;position:relative}
+.mnav summary{list-style:none;cursor:pointer;width:42px;height:42px;display:grid;place-items:center;border:1px solid rgba(243,247,252,.45);border-radius:999px;color:var(--on-dark)}
+.mnav summary::-webkit-details-marker{display:none}
+.mnav summary i,.mnav summary i::before,.mnav summary i::after{display:block;width:16px;height:1.5px;background:currentColor;transition:transform .25s,opacity .2s}
+.mnav summary i{position:relative}
+.mnav summary i::before,.mnav summary i::after{content:"";position:absolute;left:0}
+.mnav summary i::before{top:-5px}.mnav summary i::after{top:5px}
+.mnav[open] summary i{background:transparent}
+.mnav[open] summary i::before{transform:translateY(5px) rotate(45deg)}
+.mnav[open] summary i::after{transform:translateY(-5px) rotate(-45deg)}
+.mnav .mpanel{position:absolute;right:0;top:calc(100% + 12px);min-width:230px;background:var(--navy);border:1px solid rgba(243,247,252,.14);border-radius:16px;padding:10px 0;z-index:60;box-shadow:0 18px 40px rgba(0,0,0,.28)}
+.mnav .mpanel a{display:block;padding:12px 22px;color:var(--on-dark);text-decoration:none;font-size:16px;opacity:.85}
+.mnav .mpanel a:hover,.mnav .mpanel a[aria-current]{opacity:1;color:var(--baby)}
+.mnav .mpanel a.mcta{margin:8px 16px 4px;padding:11px 18px;border:1px solid rgba(243,247,252,.55);border-radius:999px;text-align:center;font-size:15px}
+@media (max-width:900px){.mnav{display:block}}
 @media (max-width:560px){.q-head .btn{display:none}}
 .cta .btn{color:var(--ink)}
 .q-foot{background:var(--navy);color:var(--on-dark-muted);font-size:13px;margin-top:3rem}

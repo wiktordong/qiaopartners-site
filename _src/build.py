@@ -8,8 +8,26 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://qiaopartners.eu/"
 BASE_CSS = open(os.path.join(ROOT, "_src", "base.css"), encoding="utf-8").read()
 e = html.escape
+MENU = {"en": "Menu", "pl": "Menu", "zh": "菜单", "ru": "Меню"}
 
 EXTRA_CSS = r"""
+
+/* Mobile menu (shown when the top links are hidden) */
+.mnav{display:none;position:relative}
+.mnav summary{list-style:none;cursor:pointer;width:42px;height:42px;display:grid;place-items:center;border:1px solid rgba(243,247,252,.45);border-radius:999px;color:var(--on-dark)}
+.mnav summary::-webkit-details-marker{display:none}
+.mnav summary i,.mnav summary i::before,.mnav summary i::after{display:block;width:16px;height:1.5px;background:currentColor;transition:transform .25s,opacity .2s}
+.mnav summary i{position:relative}
+.mnav summary i::before,.mnav summary i::after{content:"";position:absolute;left:0}
+.mnav summary i::before{top:-5px}.mnav summary i::after{top:5px}
+.mnav[open] summary i{background:transparent}
+.mnav[open] summary i::before{transform:translateY(5px) rotate(45deg)}
+.mnav[open] summary i::after{transform:translateY(-5px) rotate(-45deg)}
+.mnav .mpanel{position:absolute;right:0;top:calc(100% + 12px);min-width:230px;background:var(--navy);border:1px solid rgba(243,247,252,.14);border-radius:16px;padding:10px 0;z-index:60;box-shadow:0 18px 40px rgba(0,0,0,.28)}
+.mnav .mpanel a{display:block;padding:12px 22px;color:var(--on-dark);text-decoration:none;font-size:16px;opacity:.85}
+.mnav .mpanel a:hover,.mnav .mpanel a[aria-current]{opacity:1;color:var(--baby)}
+.mnav .mpanel a.mcta{margin:8px 16px 4px;padding:11px 18px;border:1px solid rgba(243,247,252,.55);border-radius:999px;text-align:center;font-size:15px}
+@media (max-width:860px){.mnav{display:block}}
 
 /* Language drop-down */
 .langdd{position:relative}
@@ -282,6 +300,8 @@ def page(key):
     items = [(f"#{i}", t) for i, t in zip(ids, c["nav"])]
     items.insert(3, ("insights/", c["nav_insights"]))
     nav = "".join(f'<li><a href="{h}">{e(t)}</a></li>' for h, t in items)
+    mlinks = "".join(f'<a href="{h}">{e(t)}</a>' for h, t in items) + f'<a class="mcta" href="#book">{e(c["cta"])}</a>'
+    mnav = f'<details class="mnav"><summary aria-label="{e(MENU[key])}"><i aria-hidden="true"></i></summary><div class="mpanel">{mlinks}</div></details>'
     strip_imgs = [("wind-aerial.jpg", "Wind turbine among green fields, seen from above", "60% 50%"),
                   ("terminal.jpg", "Gas terminal and jetty by the sea, seen from above", "55% 50%"),
                   ("sprayer.jpg", "Tractor working a maize field at sunset", "50% 50%"),
@@ -372,6 +392,7 @@ def page(key):
     <div class="nav-right">
       <nav class="lang" aria-label="Language">{lang_links}</nav>
       <a class="btn small" href="#book">{e(c["cta"])}</a>
+      {mnav}
     </div>
   </div>
   <div class="progress" aria-hidden="true"></div>
@@ -506,12 +527,8 @@ def page(key):
 (function(){{
   var faqs=document.querySelectorAll('.faq details');
   faqs.forEach(function(d){{d.addEventListener('toggle',function(){{if(d.open){{faqs.forEach(function(o){{if(o!==d)o.open=false}})}}}})}});
-  var dd=document.querySelector('.langdd');
-  if(dd){{
-    document.addEventListener('click',function(ev){{if(dd.open&&!dd.contains(ev.target))dd.open=false}});
-    document.addEventListener('keydown',function(ev){{if(ev.key==='Escape'&&dd.open){{dd.open=false;dd.querySelector('summary').focus()}}}});
-  }}
 }})();
+(function(){{var m=document.querySelectorAll('details.mnav, details.langdd, details.q-lang');m.forEach(function(d){{document.addEventListener('click',function(e){{if(d.open&&!d.contains(e.target))d.open=false}});d.querySelectorAll('.mpanel a').forEach(function(a){{a.addEventListener('click',function(){{d.open=false}})}})}});document.addEventListener('keydown',function(e){{if(e.key==='Escape')m.forEach(function(d){{d.open=false}})}})}})();
 </script>
 </body>
 </html>
