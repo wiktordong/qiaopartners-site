@@ -10,8 +10,13 @@ def _svg(h, label, body):
             f'class="ex-svg" font-family="var(--f-data)" font-size="12">{body}</svg>')
 
 
+# Number style for chart labels; Polish and Russian builds switch this to ("\u00a0", ",") while drawing.
+NUM = {"group": ",", "dec": "."}
+
+
 def fmt(v, dec=0):
-    return f"{v:,.{dec}f}"
+    s = f"{v:,.{dec}f}"
+    return s.replace(",", "\x00").replace(".", NUM["dec"]).replace("\x00", NUM["group"])
 
 
 def bars(rows, label, unit="", highlight=None, dec=0, h=300):

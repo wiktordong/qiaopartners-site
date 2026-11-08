@@ -12,24 +12,27 @@ HERE = Path(__file__).parent
 sys.path.insert(0, str(HERE))
 from articles import ARTICLES, SERIES  # noqa: E402
 from articles_zh import ZH, ALT_ZH, SERIES_ZH  # noqa: E402
+from articles_pl import PL, ALT_PL, TOPIC as TOPIC_PL  # noqa: E402
+from articles_ru import RU, ALT_RU, TOPIC as TOPIC_RU  # noqa: E402
 
-# Full article translations per language; languages without one link to the English article.
-TR = {"zh": ZH}
-ALT_TR = {"zh": ALT_ZH}
-ONPAGE = {"en": "On this page", "zh": "本页内容"}
+# Full article translations per language; every article must exist in every language.
+TR = {"zh": ZH, "pl": PL, "ru": RU}
+ALT_TR = {"zh": ALT_ZH, "pl": ALT_PL, "ru": ALT_RU}
+ONPAGE = {"en": "On this page", "zh": "本页内容", "pl": "W tym artykule", "ru": "В этой статье"}
+TOPIC = {"zh": SERIES_ZH["topic"], "pl": TOPIC_PL, "ru": TOPIC_RU}
 
 SITE = "https://qiaopartners.eu"
 AUTHOR = "Wiktor Dong"
 TODAY = datetime.now(ZoneInfo("Europe/Warsaw")).date()
 
-# One article a week from 1 November 2026. Edit dates here to change the schedule.
+# One article a week: parts 1–2 went out on Sundays 1 and 8 Nov 2026; from part 3 every Monday. Edit dates here to change the schedule.
 RELEASE = {
     "europe-energy-market-2026": date(2026, 11, 1),
     "european-biomethane-market-2026": date(2026, 11, 8),
-    "biomethane-equipment-market-europe": date(2026, 11, 15),
-    "china-europe-biomethane-investment": date(2026, 11, 22),
-    "biomethane-revenue-stack-eu-regulation": date(2026, 11, 29),
-    "poland-biomethane-market-2026": date(2026, 12, 6),
+    "biomethane-equipment-market-europe": date(2026, 11, 16),
+    "china-europe-biomethane-investment": date(2026, 11, 23),
+    "biomethane-revenue-stack-eu-regulation": date(2026, 11, 30),
+    "poland-biomethane-market-2026": date(2026, 12, 7),
 }
 
 UI = {
@@ -342,7 +345,7 @@ def part_of(n, k):
     if k == "zh":
         return f"第{n}篇，共{len(ARTICLES)}篇"
     u = UI[k]
-    return f"{u['part']} {n} {u['of']} {len(ARTICLES)}"
+    return f"{u['part']}\u00a0{n}\u00a0{u['of']}\u00a0{len(ARTICLES)}"
 
 
 def article(i, css, k="en"):
@@ -352,7 +355,7 @@ def article(i, css, k="en"):
     a = loc(src, k)
     u = UI[k]
     sname = SERIES["name"] if k == "en" else t_series(k)[0]
-    topic = SERIES["topic"] if k == "en" else (SERIES_ZH["topic"] if k == "zh" else sname)
+    topic = SERIES["topic"] if k == "en" else TOPIC[k]
     zh = k == "zh"
     kp = "".join(f"<li>{escape(x)}</li>" for x in a["keypoints"])
     rail = "".join(f'<li><a href="{art_url(b, k)}"{" aria-current=\"page\"" if b is src else ""}><span>{b["part"]:02d}</span><span>{escape(loc(b, k)["short"])}</span></a></li>' for b in pub)

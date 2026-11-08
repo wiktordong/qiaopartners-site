@@ -1,9 +1,9 @@
 name: Weekly Insights release
-# Rebuilds the site every Sunday morning (Warsaw) so the next scheduled article goes live.
+# Rebuilds the site every Monday morning (Warsaw) so the next scheduled article goes live in all four languages.
 # Release dates live in _src/insights/build_insights.py (RELEASE).
 on:
   schedule:
-    - cron: "5 5 * * 0"   # Sundays 05:05 UTC = 06:05 Warsaw in winter
+    - cron: "5 5 * * 1"   # Mondays 05:05 UTC = 06:05 Warsaw in winter (07:05 in summer)
   workflow_dispatch: {}
 permissions:
   contents: write
