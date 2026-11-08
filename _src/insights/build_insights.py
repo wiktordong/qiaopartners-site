@@ -23,7 +23,7 @@ ONPAGE = {"en": "On this page", "zh": "本页内容", "pl": "W tym artykule", "r
 TOPIC = {"zh": SERIES_ZH["topic"], "pl": TOPIC_PL, "ru": TOPIC_RU}
 
 SITE = "https://qiaopartners.eu"
-AUTHOR = "Wiktor Dong"
+AUTHOR = "Wiktor D."
 TODAY = datetime.now(ZoneInfo("Europe/Warsaw")).date()
 
 # One article a week: parts 1–2 went out on Sundays 1 and 8 Nov 2026; from part 3 every Monday. Edit dates here to change the schedule.
@@ -34,6 +34,17 @@ RELEASE = {
     "china-europe-biomethane-investment": date(2026, 11, 23),
     "biomethane-revenue-stack-eu-regulation": date(2026, 11, 30),
     "poland-biomethane-market-2026": date(2026, 12, 7),
+}
+
+# Articles listed here are kept in the source but NOT built or listed (held back pending a conflict-of-interest
+# check with Wiktor's employer). Remove a slug from this set to bring it back on its RELEASE date.
+HIDDEN = {
+    "europe-energy-market-2026",
+    "european-biomethane-market-2026",
+    "biomethane-equipment-market-europe",
+    "china-europe-biomethane-investment",
+    "biomethane-revenue-stack-eu-regulation",
+    "poland-biomethane-market-2026",
 }
 
 UI = {
@@ -213,11 +224,11 @@ FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="
 
 
 def published():
-    return [a for a in ARTICLES if RELEASE[a["slug"]] <= TODAY]
+    return [a for a in ARTICLES if a["slug"] not in HIDDEN and RELEASE[a["slug"]] <= TODAY]
 
 
 def upcoming():
-    return [a for a in ARTICLES if RELEASE[a["slug"]] > TODAY]
+    return [a for a in ARTICLES if a["slug"] not in HIDDEN and RELEASE[a["slug"]] > TODAY]
 
 
 def fdate(d, lang):
@@ -414,6 +425,11 @@ def build(root: Path):
     out = root / "insights"
     if out.exists():
         shutil.rmtree(out)
+    if not published():  # nothing public: no Insights section at all
+        for k in [k for k in UI if k != "en"]:
+            if (root / k / "insights").exists():
+                shutil.rmtree(root / k / "insights")
+        return [], []
     out.mkdir(parents=True)
     shutil.copy(HERE / "insights.css", out / "insights.css")
     (out / "index.html").write_text(hub("en", "/insights/insights.css"), encoding="utf-8")
@@ -439,3 +455,7 @@ def build(root: Path):
 
 if __name__ == "__main__":
     print(build(Path(__file__).resolve().parents[2]))
+
+
+def has_insights():
+    return bool(published())

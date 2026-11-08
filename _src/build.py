@@ -2,6 +2,12 @@
 # Run from the repository root: python3 _src/build.py
 import html, json, os, sys
 sys.path.insert(0, os.path.dirname(__file__))
+def _has_insights():
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "insights"))
+    from build_insights import has_insights
+    return has_insights()
+
+
 from content import SINOCHAM, MEMBERS, L, LINKEDIN, EMAIL, CALENDLY_URL, WHATSAPP, FORM_ENDPOINT, GOOGLE_SITE_VERIFICATION, BING_SITE_VERIFICATION
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -284,7 +290,7 @@ def page(key):
            "knowsLanguage": ["zh", "pl", "en", "ru"], "sameAs": same_as,
            "address": [{"@type": "PostalAddress", "addressLocality": "Warsaw", "addressCountry": "PL"},
                        {"@type": "PostalAddress", "addressLocality": "Beijing", "addressCountry": "CN"}],
-           "founder": {"@type": "Person", "name": "Wiktor Dong"},
+           "founder": {"@type": "Person", "name": "Wiktor D."},
            "memberOf": {"@type": "Organization", "name": SINOCHAM}}
     faq = {"@context": "https://schema.org", "@type": "FAQPage", "inLanguage": c["lang"],
            "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in c["faq"]]}
@@ -298,7 +304,8 @@ def page(key):
     lang_links = f'<details class="langdd"><summary aria-label="Language">{L[key]["label"]}<i aria-hidden="true"></i></summary><ul>{"".join(links)}</ul></details>'
     ids = ["about", "services", "sectors", "faq", "contact"]
     items = [(f"#{i}", t) for i, t in zip(ids, c["nav"])]
-    items.insert(3, ("insights/", c["nav_insights"]))
+    if _has_insights():
+        items.insert(3, ("insights/", c["nav_insights"]))
     nav = "".join(f'<li><a href="{h}">{e(t)}</a></li>' for h, t in items)
     mlinks = "".join(f'<a href="{h}">{e(t)}</a>' for h, t in items) + f'<a class="mcta" href="#book">{e(c["cta"])}</a>'
     mnav = f'<details class="mnav"><summary aria-label="{e(MENU[key])}"><i aria-hidden="true"></i></summary><div class="mpanel">{mlinks}</div></details>'
@@ -558,7 +565,7 @@ def main():
             "Qiao Partners is a commercial advisory firm based in Warsaw, Poland, with a presence in Beijing. It helps Chinese manufacturers enter the European market and European companies set up in China. It does not invest or give investment advice.", "",
             "## Services"] + [f"- {h}: {p}" for h, p in en["svc"]] + ["", "## Market trends we track (to 2035)"] + \
            [f"- {h} ({en["tags"][t]}): {p}" for h, p, t in en["sec"]] + ["", "## Pages",
-            f"- [English]({SITE})", f"- [Polski]({SITE}pl/)", f"- [中文]({SITE}zh/)", f"- [Русский]({SITE}ru/)", f"- [Insights]({SITE}insights/)", "", "## Insights articles"] + \
+            f"- [English]({SITE})", f"- [Polski]({SITE}pl/)", f"- [中文]({SITE}zh/)", f"- [Русский]({SITE}ru/)"] + ([f"- [Insights]({SITE}insights/)", "", "## Insights articles"] if ins_articles else []) + \
            [f"- [{t}]({SITE}{u.lstrip('/')}): {d}" for t, u, d in ins_articles] + ["", "## Contact",
             f"- Email: {EMAIL}", f"- LinkedIn: {LINKEDIN}", "- WeChat: QR code on the website", f"- WhatsApp: {WHATSAPP}", ""]
     open(os.path.join(ROOT, "llms.txt"), "w", encoding="utf-8").write("\n".join(llms))
