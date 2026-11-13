@@ -553,3 +553,50 @@ footer{background:var(--navy-950);color:var(--on-dark-2);font-size:14.5px}
 .fqr figcaption{font-size:12px;color:var(--on-dark-3)}
 .cred-pic img{object-fit:cover}
 .hero .eyebrow{color:var(--bronze)}
+
+/* Engagement model: stage details + indicative timeline */
+.stage dl{display:grid;gap:10px;margin-top:10px;padding-top:14px;border-top:1px solid var(--line-dark)}
+.stage dt{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--on-dark-3)}
+.stage dd{font-size:14px;color:var(--on-dark);line-height:1.45}
+.stage dl div:first-child dd{font-size:17px;color:var(--bronze-2)}
+.tl{margin-top:clamp(56px,6vw,88px);padding:clamp(22px,3vw,40px);border:1px solid var(--line-dark);background:rgba(255,255,255,.03)}
+.tl-head{display:grid;grid-template-columns:200px 1fr;gap:20px;align-items:end;margin-bottom:12px}
+.tl-head h3{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--bronze-2);font-weight:500}
+.tl-months{display:grid;grid-template-columns:repeat(12,1fr);font-size:12px;color:var(--on-dark-3);position:relative}
+.tl-months em{position:absolute;top:-20px;left:0;font-style:normal;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.tl-months span{border-left:1px solid var(--line-dark);padding-left:6px}
+.tl-row{display:grid;grid-template-columns:200px 1fr;gap:20px;align-items:center;padding:12px 0;border-top:1px solid var(--line-dark)}
+.tl-lab{display:grid;gap:2px}.tl-lab b{font-weight:500;font-size:15px;color:var(--on-dark)}.tl-lab span{font-size:13px;color:var(--on-dark-2)}
+.tl-track{position:relative;height:14px;background:repeating-linear-gradient(90deg,transparent 0 calc(100%/12 - 1px),var(--line-dark) calc(100%/12 - 1px) calc(100%/12))}
+.tl-bar{position:absolute;top:0;bottom:0;left:var(--a);width:var(--w);background:linear-gradient(90deg,var(--bronze-2),#E2CBA4);border-radius:999px;transform-origin:0 50%}
+.tl-bar.on{background:linear-gradient(90deg,var(--bronze-2) 0%,rgba(194,164,122,.15) 100%)}
+.tl-note{margin-top:20px;font-size:13px;color:var(--on-dark-3)!important}
+@media (prefers-reduced-motion:no-preference){.js .tl .tl-bar{transform:scaleX(0);transition:transform 1.3s cubic-bezier(.65,0,.35,1) var(--d)}.js .tl.in .tl-bar{transform:none}}
+@media (max-width:700px){.tl-head,.tl-row{grid-template-columns:96px 1fr;gap:10px}.tl-lab b{font-size:13px}.tl-lab span{font-size:11.5px}.tl-months span{font-size:10px;padding-left:2px}.tl-months span:nth-child(odd){color:transparent}}
+.stages{row-gap:40px}
+
+/* Bridge quote band (from the previous site, now over the bridge photo) */
+.quote{position:relative;background:var(--navy);color:var(--on-dark);overflow:hidden;isolation:isolate}
+.quote .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 55%;z-index:-2;filter:grayscale(1) contrast(1.1);opacity:.6;mix-blend-mode:luminosity}
+.quote::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(10,28,54,.94) 0%,rgba(10,28,54,.78) 45%,rgba(10,28,54,.3) 100%)}
+.quote .wrap{padding-block:clamp(110px,13vw,190px);display:grid;grid-template-columns:120px minmax(0,1fr);gap:40px}
+.quote .mark{font-size:96px;line-height:.9;color:var(--bronze-2);font-family:"Songti SC","STSong","Noto Serif SC",serif}
+.quote blockquote{margin:0;font-size:clamp(28px,3.4vw,48px);font-weight:300;line-height:1.2;letter-spacing:-.015em;max-width:24ch;text-wrap:balance}
+.quote cite{display:block;margin-top:36px;font-style:normal;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--on-dark-2)}
+@media (max-width:760px){.quote .wrap{grid-template-columns:1fr;gap:16px}.quote .mark{font-size:64px}.quote::before{background:rgba(10,28,54,.82)}}
+
+/* Social icons + WeChat dialog */
+.social{display:flex;flex-wrap:wrap;gap:10px}
+.social a,.social button{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 14px 0 11px;border:1px solid var(--line-dark);border-radius:999px;color:var(--on-dark);background:transparent;font:500 13px/1 var(--sans);text-decoration:none;cursor:pointer;transition:background-color .3s,color .3s,border-color .3s}
+.social svg{width:18px;height:18px;flex:none}
+.social a:hover,.social button:hover{background:var(--on-dark);color:var(--navy);border-color:var(--on-dark)}
+.social.ink a,.social.ink button{border-color:var(--line);color:var(--ink)}
+.social.ink a:hover,.social.ink button:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.direct .social{margin-top:22px}
+.final .side .social{margin-top:6px}
+.wx{border:0;padding:0;background:transparent}
+.wx::backdrop{background:rgba(6,14,28,.7);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.wx form{background:#fff;color:#0C1828;padding:28px;display:grid;gap:14px;justify-items:center;text-align:center;border-radius:4px}
+.wx img{width:260px;height:260px}
+.wx .btn{color:#0C1828;border-color:#0C1828}
+.social li{margin:0!important}

@@ -7,7 +7,7 @@ from datetime import date
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(HERE, "insights"))
-from chrome import L, ROOT, SITE, url, e, document, member_logo, org_ld, crumbs_ld, write_css  # noqa: E402
+from chrome import L, ROOT, SITE, url, e, document, member_logo, social, org_ld, crumbs_ld, write_css  # noqa: E402
 from settings import EMAIL, LINKEDIN, WHATSAPP, CALENDLY_URL, FORM_ENDPOINT  # noqa: E402
 import build_insights  # noqa: E402
 
@@ -53,11 +53,11 @@ def shead(eb, h, p, h_tag="h2", extra=""):
 def final(k, ctype=""):
     f = L[k]["final"]
     q = f"?type={ctype}" if ctype else ""
-    return f'''<section class="final"><img class="bg" src="/img/brand/bridge.jpg" alt="" loading="lazy" decoding="async">
+    return f'''<section class="final"><img class="bg" src="/img/brand/glass-office.jpg" alt="" loading="lazy" decoding="async">
   <div class="wrap">
     <div>{eyebrow("Qiao Partners")}<h2>{e(f["h"])}</h2><p class="lead">{e(f["p"])}</p>
       <a class="btn ivory" href="{url(k, "contact")}{q}">{e(f["cta"])} {AR}</a></div>
-    <div class="side"><div class="qrs"><figure><img src="/img/wechat-qr.jpg" alt="WeChat QR code — Qiao Partners" loading="lazy"><figcaption>WeChat</figcaption></figure><figure><a href="{WHATSAPP}" rel="noopener" target="_blank"><img src="/img/whatsapp-qr.png" alt="WhatsApp QR code — Qiao Partners" loading="lazy"></a><figcaption>WhatsApp</figcaption></figure></div><p>{e(f["side"])} <a href="mailto:{EMAIL}">{EMAIL}</a></p></div>
+    <div class="side"><div class="qrs"><figure><img src="/img/wechat-qr.jpg" alt="WeChat QR code — Qiao Partners" loading="lazy"><figcaption>WeChat</figcaption></figure><figure><a href="{WHATSAPP}" rel="noopener" target="_blank"><img src="/img/whatsapp-qr.png" alt="WhatsApp QR code — Qiao Partners" loading="lazy"></a><figcaption>WhatsApp</figcaption></figure></div><p>{e(f["side"])} <a href="mailto:{EMAIL}">{EMAIL}</a></p>{social(k, "social light")}</div>
   </div>
 </section>'''
 
@@ -67,6 +67,34 @@ def phero(k, page, eb, h1, lead, extra=""):
     crumbs = "" if page == "home" else f'<nav class="crumbs" aria-label="Breadcrumb"><a href="{url(k, "home")}">{e(c["nav"]["home"])}</a> / {e(eb)}</nav>'
     return f'''<section class="phero">
   <div class="wrap">{crumbs}{eyebrow(eb)}<h1>{e(h1)}</h1><p class="lead">{e(lead)}</p>{extra}</div>
+</section>'''
+
+
+BARS = [(0, 1.4), (1.1, 2.1), (2, 6), (2, 9), (6, 12)]
+
+
+def timeline(k):
+    h = L[k]["home"]
+    months = "".join(f"<span>{i}</span>" for i in range(1, 13))
+    rows = ""
+    for i, ((name, title, desc, dur, fmt, out), (a, z)) in enumerate(zip(h["stages"], BARS)):
+        ongoing = " on" if i == 4 else ""
+        rows += (f'<div class="tl-row"><div class="tl-lab"><b>{e(name)}</b><span>{e(dur)}</span></div>'
+                 f'<div class="tl-track"><i class="tl-bar{ongoing}" style="--a:{a / 12 * 100:.2f}%;--w:{(z - a) / 12 * 100:.2f}%;--d:{0.25 + i * 0.18:.2f}s"></i></div></div>')
+    return f'''<div class="tl" data-r=""><div class="tl-head"><h3>{e(h["tl_h"])}</h3><div class="tl-months"><em>{e(h["tl_unit"])}</em>{months}</div></div>{rows}
+      <p class="tl-note">{e(h["tl_note"])}</p></div>'''
+
+
+def stages_html(k):
+    h = L[k]["home"]
+    return "".join(f'''<li class="stage"><span class="n">0{n + 1}</span><h3>{e(a.upper() if k != "zh" else a)}</h3><p class="t">{e(t)}</p><p>{e(p)}</p>
+      <dl><div><dt>{e(h["tl_dur"])}</dt><dd>{e(dur)}</dd></div><div><dt>{e(h["tl_fmt"])}</dt><dd>{e(fmt)}</dd></div><div><dt>{e(h["tl_out"])}</dt><dd>{e(out)}</dd></div></dl></li>'''
+                   for n, (a, t, p, dur, fmt, out) in enumerate(h["stages"]))
+
+
+def quote(k):
+    return f'''<section class="quote"><img class="bg" src="/img/brand/bridge.jpg" alt="" loading="lazy" decoding="async">
+  <div class="wrap"><div class="mark" lang="zh-CN">桥</div><div><blockquote>{e(L[k]["quote"])}</blockquote><cite>Qiao Partners</cite></div></div>
 </section>'''
 
 
@@ -86,8 +114,7 @@ def home(k, has_ins):
       <ul>{"".join(f"<li>{e(x)}</li>" for x in s["deliv"][:3])}</ul><a class="tlink" href="{url(k, "services", s["id"])}">{e(c["more"])} {AR}</a></article>''' for s in c["services"])
     inds = "".join(f'''<a class="ind" href="{url(k, "industries", i["id"])}">{img(i["img"], i["alt"])}<div class="in"><span class="k">{i["k"]}</span>
       <h3>{e(i["title"])}</h3><p>{e(i["short"])}</p><span class="more">{e(c["more"])} {AR}</span></div></a>''' for i in c["industries"])
-    stages = "".join(f'<li class="stage"><span class="n">0{n + 1}</span><h3>{e(a.upper() if k != "zh" else a)}</h3><p class="t">{e(t)}</p><p>{e(p)}</p></li>'
-                     for n, (a, t, p) in enumerate(h["stages"]))
+    stages = stages_html(k)
     ch = h["cmp_head"]
     rows = "".join(f'<tr><th scope="row">{e(a)}</th><td data-h="{e(ch[1])}">{e(b)}</td><td data-h="{e(ch[2])}">{e(x)}</td></tr>' for a, b, x in h["cmp"])
     diffs = "".join(f'<li class="diff"><span class="n">0{n + 1}</span><h3>{e(t)}</h3><p>{e(p)}</p></li>' for n, (t, p) in enumerate(h["diffs"]))
@@ -122,6 +149,8 @@ def home(k, has_ins):
   </div>
 </section>
 
+{quote(k)}
+
 <section class="sec stone" id="services">
   <div class="wrap">{shead(h["what_eyebrow"], h["what_h"], h["what_p"])}<div class="svcs">{svcs}</div></div>
 </section>
@@ -132,7 +161,7 @@ def home(k, has_ins):
 </section>
 
 <section class="sec dark">
-  <div class="wrap">{shead(h["appr_eyebrow"], h["appr_h"], h["appr_p"])}<ol class="stages">{stages}</ol></div>
+  <div class="wrap">{shead(h["appr_eyebrow"], h["appr_h"], h["appr_p"])}<ol class="stages">{stages}</ol>{timeline(k)}</div>
 </section>
 
 <section class="sec">
@@ -164,7 +193,7 @@ def about(k, has_ins):
     engage = "".join(f"<li><b>{e(t)}</b><span>{e(p)}</span></li>" for t, p in a["engage"])
     net = "".join(f"<li>{e(x)}</li>" for x in a["net"])
     body = f'''{phero(k, "about", a["eyebrow"], a["h1"], a["lead"])}
-<figure class="banner-pic blend">{img("brand/bridge.jpg", a["pic"], lazy=False, pos="50% 55%")}</figure>
+{quote(k)}
 <section class="sec"><div class="wrap">{blocks_html}</div></section>
 <section class="sec stone"><div class="wrap"><div class="split"><h2>{e(a["engage_h"])}</h2><ul class="grid-list">{engage}</ul></div></div></section>
 <section class="sec"><div class="wrap"><div class="split"><h2>{e(a["net_h"])}</h2><div class="body"><p>{e(a["net_p"])}</p><ul class="ticks">{net}</ul></div></div></div></section>
@@ -196,6 +225,7 @@ def services(k, has_ins):
       </div></article>''')
     body = f'''{phero(k, "services", s["eyebrow"], s["h1"], s["lead"])}
 <nav class="subnav" aria-label="{e(s["eyebrow"])}"><div class="wrap">{sub}</div></nav>
+<section class="sec dark"><div class="wrap">{shead(c["home"]["appr_eyebrow"], c["home"]["appr_h"], c["home"]["appr_p"])}<ol class="stages">{stages_html(k)}</ol>{timeline(k)}</div></section>
 <section class="sec"><div class="wrap">{"".join(dets)}</div></section>
 <section class="sec stone"><div class="wrap">
   <div class="split"><h2>{e(s["spec_h"])}</h2><div class="body"><p>{e(s["spec_p"])}</p></div></div>
@@ -266,7 +296,7 @@ def contact(k, has_ins):
       <div class="direct"><h3>{e(f["direct_h"])}</h3><dl>
         <div><dt>{e(f["c_email"])}</dt><dd><a href="mailto:{EMAIL}">{EMAIL}</a></dd></div>
         <div><dt>{e(f["c_li"])}</dt><dd><a href="{LINKEDIN}" rel="noopener" target="_blank">{e(f["c_li_txt"])}</a></dd></div>
-        <div><dt>{e(f["c_base"])}</dt><dd>{e(c["f_base"])}</dd></div></dl></div>
+        <div><dt>{e(f["c_base"])}</dt><dd>{e(c["f_base"])}</dd></div></dl>{social(k, "social ink")}</div>
       <div class="qrs"><figure><img src="/img/wechat-qr.jpg" alt="WeChat QR code — Qiao Partners" loading="lazy"><figcaption>{e(f["scan_wechat"])}</figcaption></figure>{wa}</div>
     </aside>'''
     cal = ""

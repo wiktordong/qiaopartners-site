@@ -67,6 +67,29 @@ def network(seed=7, w=1600, h=1000, cls="net", pylon=(1260, 250), deck=((760, 84
     return "".join(out)
 
 
+ICON = {
+    "linkedin": '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.15c0-1.23-.02-2.81-1.71-2.81-1.72 0-1.98 1.34-1.98 2.72V21h-4z"/></svg>',
+    "whatsapp": '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.56.12-.16.25-.64.8-.78.97-.14.16-.29.18-.54.06a6.7 6.7 0 0 1-3.32-2.9c-.25-.43.25-.4.71-1.33.08-.16.04-.3-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.42h-.48a.92.92 0 0 0-.67.31 2.8 2.8 0 0 0-.87 2.08 4.9 4.9 0 0 0 1.02 2.58 11.2 11.2 0 0 0 4.29 3.79c1.6.69 2.22.75 3.02.63.49-.07 1.46-.6 1.67-1.18.2-.58.2-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/></svg>',
+    "wechat": '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9.2 3C4.9 3 1.5 5.9 1.5 9.4c0 2 1.1 3.8 2.9 5l-.7 2.2 2.6-1.4c.9.3 1.9.5 2.9.5h.6a5.8 5.8 0 0 1-.2-1.6c0-3.3 3.2-6 7.1-6h.6C16.6 5.2 13.2 3 9.2 3zM6.6 6.6a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm5.2 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2zM16.7 9.4c-3.4 0-6.1 2.3-6.1 5.1s2.7 5.1 6.1 5.1c.7 0 1.4-.1 2.1-.3l2.1 1.1-.6-1.8c1.5-1 2.5-2.5 2.5-4.1 0-2.8-2.7-5.1-6.1-5.1zm-2 2.6a.85.85 0 1 1 0 1.7.85.85 0 0 1 0-1.7zm4 0a.85.85 0 1 1 0 1.7.85.85 0 0 1 0-1.7z"/></svg>',
+    "mail": '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.6" d="M3 5.5h18v13H3zM3.5 6l8.5 7 8.5-7"/></svg>',
+}
+
+
+def social(k, cls="social"):
+    c = L[k]
+    return (f'<ul class="{cls}" aria-label="{e(c["f_social"])}">'
+            f'<li><a href="{LINKEDIN}" rel="noopener" target="_blank" aria-label="LinkedIn">{ICON["linkedin"]}<span>LinkedIn</span></a></li>'
+            f'<li><a href="{WHATSAPP}" rel="noopener" target="_blank" aria-label="WhatsApp">{ICON["whatsapp"]}<span>WhatsApp</span></a></li>'
+            f'<li><button type="button" class="wx-open" aria-haspopup="dialog" aria-label="WeChat">{ICON["wechat"]}<span>WeChat</span></button></li>'
+            f'<li><a href="mailto:{EMAIL}" aria-label="Email">{ICON["mail"]}<span>Email</span></a></li></ul>')
+
+
+def wechat_dialog(k):
+    c = L[k]
+    return (f'<dialog class="wx" id="wx"><form method="dialog"><img src="/img/wechat-qr.jpg" alt="WeChat QR code — Qiao Partners" width="260" height="260">'
+            f'<p>{e(c["f_scan"])}</p><button class="btn small" value="close">{e(c["f_close"])}</button></form></dialog>')
+
+
 def lang_switch(k, paths):
     items = "".join(f'<li><a href="{paths[x]}" hreflang="{L[x]["lang"]}" lang="{L[x]["lang"]}"{" aria-current=\"true\"" if x == k else ""}>{L[x]["name"]}</a></li>' for x in L)
     return f'<details class="dd"><summary aria-label="{e(L[k]["lang_label"])}">{L[k]["label"]}<i aria-hidden="true"></i></summary><ul>{items}</ul></details>'
@@ -112,7 +135,7 @@ def footer(k, has_ins):
     return f'''<footer>
   <div class="wrap">
     <div class="fgrid">
-      <div class="brand">{logo(k)}<p>{e(c["f_tag"])}</p><div class="member">{member_logo(k, True)}</div><p class="muted" style="color:var(--on-dark-3);font-size:13px">{e(c["f_member"])}</p></div>
+      <div class="brand">{logo(k)}<p>{e(c["f_tag"])}</p>{social(k)}<div class="member">{member_logo(k, True)}</div><p class="muted" style="color:var(--on-dark-3);font-size:13px">{e(c["f_member"])}</p></div>
       <div><h4>{e(c["f_services"])}</h4><ul>{svc}</ul></div>
       <div><h4>{e(c["f_company"])}</h4><ul>{comp}</ul></div>
       <div><h4>{e(c["f_contact"])}</h4><ul><li><a href="mailto:{EMAIL}">{EMAIL}</a></li><li><a href="{LINKEDIN}" rel="noopener" target="_blank">LinkedIn</a></li><li><a href="{WHATSAPP}" rel="noopener" target="_blank">{e(c["f_whatsapp"])}</a></li><li>{e(c["f_base"])}</li></ul>
@@ -130,13 +153,13 @@ SCRIPT = r"""<script>
   var $=function(s,c){return Array.prototype.slice.call((c||d).querySelectorAll(s))};
   if(!still){var n=0;$('.hero h1 > span, .phero h1').forEach(function(el){
     var t=el.textContent.trim();el.setAttribute('aria-label',t);
-    var parts=(root.lang.indexOf('zh')===0)?t.split(/(?<=[，。、])/):t.split(/\s+/);
+    var zh=root.lang.indexOf('zh')===0,parts=zh?t.replace(/([，。、])/g,'$1\u0001').split('\u0001').filter(Boolean):t.split(/\s+/);
     el.innerHTML=parts.map(function(w){return '<span class="w" aria-hidden="true"><span style="--i:'+(n++)+'">'+w+'</span></span>'}).join(root.lang.indexOf('zh')===0?'':' ');
   });}
   function tag(sel,kind,step,base){$(sel).forEach(function(el,i){el.setAttribute('data-r',kind||'');el.style.setProperty('--d',((base||0)+Math.min(i,6)*(step||0)).toFixed(2)+'s')})}
   tag('.strip a','mask',0.12,0.5);tag('.cred-pic, .banner-pic, .idet .pic','mask',0);tag('.ind','mask',0.1);tag('.art .pic','mask',0.1);
   tag('.shead > div > *, .shead > div > p',0,0.08);tag('.fact','',0.08);tag('.svc','',0.08);tag('.stage','',0.1);tag('.diff','',0.06);tag('.cmp','',0);
-  tag('.sig','',0.06);tag('.sdet','',0);tag('.idet .txt','',0);tag('.split','',0);tag('.grid-list li','',0.05);tag('.next li','',0.08);tag('.faq details','',0.04);tag('.final .wrap > *','',0.12);
+  tag('.sig','',0.06);tag('.quote blockquote, .quote cite, .quote .mark','',0.18);tag('.tl-row','',0.08);tag('.sdet','',0);tag('.idet .txt','',0);tag('.split','',0);tag('.grid-list li','',0.05);tag('.next li','',0.08);tag('.faq details','',0.04);tag('.final .wrap > *','',0.12);
   function countUp(b){var t=b.firstChild;if(!t||t.nodeType!==3)return;var m=t.nodeValue.match(/^(\D*)(\d+)(.*)$/);if(!m)return;
     var end=+m[2],start=null,dur=1800;function step(now){if(start===null)start=now;var k=Math.min(1,(now-start)/dur),ez=1-Math.pow(1-k,4);t.nodeValue=m[1]+Math.round(end*ez)+m[3];if(k<1)requestAnimationFrame(step)}
     t.nodeValue=m[1]+'0'+m[3];requestAnimationFrame(step)}
@@ -151,6 +174,8 @@ SCRIPT = r"""<script>
   var dd=$('details.dd, details.mnav');
   d.addEventListener('click',function(ev){dd.forEach(function(x){if(x.open&&!x.contains(ev.target))x.open=false})});
   d.addEventListener('keydown',function(ev){if(ev.key==='Escape')dd.forEach(function(x){x.open=false})});
+  var wx=d.getElementById('wx');$('.wx-open').forEach(function(b){b.addEventListener('click',function(){if(wx&&wx.showModal)wx.showModal();else location.href='/img/wechat-qr.jpg'})});
+  if(wx)wx.addEventListener('click',function(ev){if(ev.target===wx)wx.close()});
   var fq=$('.faq details');fq.forEach(function(x){x.addEventListener('toggle',function(){if(x.open)fq.forEach(function(o){if(o!==x)o.open=false})})});
   requestAnimationFrame(function(){requestAnimationFrame(function(){root.classList.add('loaded')})});
 })();
@@ -221,7 +246,7 @@ def document(k, page, title, desc, paths, body, ld, has_ins, body_cls="", og_img
 {body}
 </main>
 {footer(k, has_ins)}
-{SCRIPT}{extra}
+{wechat_dialog(k)}{SCRIPT}{extra}
 </body>
 </html>
 '''
