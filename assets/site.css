@@ -600,3 +600,32 @@ footer{background:var(--navy-950);color:var(--on-dark-2);font-size:14.5px}
 .wx img{width:260px;height:260px}
 .wx .btn{color:#0C1828;border-color:#0C1828}
 .social li{margin:0!important}
+
+/* Bridge photos sit on the right half and fade into the navy */
+.quote .bg,.final .bg{left:auto;right:0;width:50%;filter:none;opacity:1;mix-blend-mode:normal}
+.quote::before{background:linear-gradient(90deg,var(--navy) 0%,var(--navy) 50%,rgba(10,28,54,.55) 62%,rgba(10,28,54,0) 82%)}
+.final::before{background:linear-gradient(90deg,var(--navy) 0%,var(--navy) 50%,rgba(10,28,54,.6) 62%,rgba(10,28,54,.1) 85%)}
+@media (prefers-color-scheme:dark){.final::before{background:linear-gradient(90deg,var(--navy-950) 0%,var(--navy-950) 50%,rgba(7,20,39,.6) 62%,rgba(7,20,39,.1) 85%)}}
+.quote .wrap > div:last-child{max-width:620px}
+.final .wrap{grid-template-columns:minmax(0,1fr);max-width:var(--max)}
+.final .wrap > div:first-child,.final .side{max-width:560px}
+.final .side{border-left:0;padding-left:0;border-top:1px solid rgba(243,247,252,.2);padding-top:28px}
+@media (max-width:900px){.quote .bg,.final .bg{width:100%}.quote::before,.final::before{background:rgba(10,28,54,.84)!important}}
+
+/* Hero = the bridge section: navy, bridge photo on the right fading into the navy */
+.hero.bridge{position:relative;background:var(--navy);color:var(--on-dark);overflow:hidden;isolation:isolate}
+@media (prefers-color-scheme:dark){.hero.bridge{background:var(--navy-950)}}
+.hero.bridge .bg{position:absolute;top:0;right:0;width:52%;height:100%;object-fit:cover;z-index:-2}
+.hero.bridge::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,var(--navy) 0%,var(--navy) 48%,rgba(10,28,54,.55) 60%,rgba(10,28,54,0) 80%)}
+@media (prefers-color-scheme:dark){.hero.bridge::before{background:linear-gradient(90deg,var(--navy-950) 0%,var(--navy-950) 48%,rgba(7,20,39,.55) 60%,rgba(7,20,39,0) 80%)}}
+.hero.bridge .wrap{min-height:min(88svh,820px);display:grid;align-content:center;gap:30px;padding-block:clamp(56px,7vw,104px)}
+.hero.bridge .wrap > *{max-width:640px}
+.hero.bridge .def{color:var(--on-dark-2);margin:0}
+.hero.bridge .def b{color:var(--bronze-2)}
+.hero.bridge .eyebrow{color:var(--bronze-2)}
+.hero.bridge h1 .b{color:var(--on-dark-2)}
+.hero.bridge .lead{color:var(--on-dark-2)}
+.hero.bridge .hero-side{padding:0}
+.hero.bridge .tlink{color:var(--on-dark)}
+.hero.bridge .tlink:hover{color:var(--bronze-2)}
+@media (max-width:900px){.hero.bridge .bg{width:100%}.hero.bridge::before{background:linear-gradient(180deg,rgba(10,28,54,.72),rgba(10,28,54,.9))!important}.hero.bridge .wrap{min-height:0}}

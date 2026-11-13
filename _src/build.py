@@ -53,7 +53,7 @@ def shead(eb, h, p, h_tag="h2", extra=""):
 def final(k, ctype=""):
     f = L[k]["final"]
     q = f"?type={ctype}" if ctype else ""
-    return f'''<section class="final"><img class="bg" src="/img/brand/glass-office.jpg" alt="" loading="lazy" decoding="async">
+    return f'''<section class="final"><img class="bg" src="/img/brand/bridge-night.jpg" style="object-position:60% 40%" alt="" loading="lazy" decoding="async">
   <div class="wrap">
     <div>{eyebrow("Qiao Partners")}<h2>{e(f["h"])}</h2><p class="lead">{e(f["p"])}</p>
       <a class="btn ivory" href="{url(k, "contact")}{q}">{e(f["cta"])} {AR}</a></div>
@@ -92,8 +92,8 @@ def stages_html(k):
                    for n, (a, t, p, dur, fmt, out) in enumerate(h["stages"]))
 
 
-def quote(k):
-    return f'''<section class="quote"><img class="bg" src="/img/brand/bridge.jpg" alt="" loading="lazy" decoding="async">
+def quote(k, pic="brand/bridge-bay.jpg", pos="55% 45%"):
+    return f'''<section class="quote"><img class="bg" src="/img/{pic}" style="object-position:{pos}" alt="" loading="lazy" decoding="async">
   <div class="wrap"><div class="mark" lang="zh-CN">桥</div><div><blockquote>{e(L[k]["quote"])}</blockquote><cite>Qiao Partners</cite></div></div>
 </section>'''
 
@@ -125,19 +125,16 @@ def home(k, has_ins):
         cards = "".join(f'<a class="art" href="{u}"><div class="pic">{img(im, al)}</div><span>{e(dt)}</span><h3>{e(t)}</h3></a>'
                         for t, u, im, al, dt in build_insights.latest(k, 3))
         arts = f'<div class="arts">{cards}</div><p style="margin-top:36px"><a class="tlink" href="{url(k, "insights")}">{e(h["ins_more"])} {AR}</a></p>'
-    shots = [("wind-aerial.jpg", "energy-infrastructure", "50% 50%"), ("terminal.jpg", "energy-infrastructure", "55% 50%"),
-             ("insights/charging-mountain.jpg", "mobility-automotive", "50% 70%"), ("insights/biomethane-plant-trucks.jpg", "energy-infrastructure", "50% 55%")]
-    strip = "".join(f'<a href="{url(k, "industries", sec)}">{img(f, cap, pos=pos)}<span>{e(cap)}</span></a>' for (f, sec, pos), cap in zip(shots, c["strip"]))
-    body = f'''<section class="hero">
+    _shots = [("brand/wind-sunset.jpg", "energy-infrastructure", "60% 55%"), ("brand/robot-welding.jpg", "industrial-technology", "50% 45%"),
+             ("brand/auto-assembly.jpg", "mobility-automotive", "50% 55%"), ("brand/factory-hall.jpg", "industrial-technology", "50% 40%")]
+    _strip = "".join(f'<a href="{url(k, "industries", sec)}">{img(f, cap, pos=pos)}<span>{e(cap)}</span></a>' for (f, sec, pos), cap in zip(_shots, c["strip"]))
+    body = f'''<section class="hero bridge"><img class="bg" src="/img/brand/bridge-bay.jpg" alt="" style="object-position:55% 40%" decoding="async" fetchpriority="high">
   <div class="wrap">
     <p class="def"><b lang="zh-CN">{d[0]}</b>{e(d[1])} <i>{e(d[2])}</i> — {e(d[3])}</p>
-    <div class="hero-grid">
-      <div class="hero-main">{eyebrow(h["eyebrow"])}<h1><span class="a">{e(h["h1a"])}</span> <span class="b">{e(h["h1b"])}</span></h1></div>
-      <div class="hero-side"><p class="lead">{e(h["lead"])}</p>
-        <div class="ctas"><a class="btn solid" href="{url(k, "contact")}?type=expansion">{e(h["cta1"])} {AR}</a><a class="tlink" href="{url(k, "services")}">{e(h["cta2"])} {AR}</a></div></div>
-    </div>
+    <div class="hero-main">{eyebrow(h["eyebrow"])}<h1><span class="a">{e(h["h1a"])}</span> <span class="b">{e(h["h1b"])}</span></h1></div>
+    <div class="hero-side"><p class="lead">{e(h["lead"])}</p>
+      <div class="ctas"><a class="btn ivory" href="{url(k, "contact")}?type=expansion">{e(h["cta1"])} {AR}</a><a class="tlink" href="{url(k, "services")}">{e(h["cta2"])} {AR}</a></div></div>
   </div>
-  <div class="strip">{strip}</div>
 </section>
 
 <section class="sec">
@@ -149,7 +146,7 @@ def home(k, has_ins):
   </div>
 </section>
 
-{quote(k)}
+{quote(k, "brand/bridge.jpg", "60% 50%")}
 
 <section class="sec stone" id="services">
   <div class="wrap">{shead(h["what_eyebrow"], h["what_h"], h["what_p"])}<div class="svcs">{svcs}</div></div>
@@ -193,7 +190,7 @@ def about(k, has_ins):
     engage = "".join(f"<li><b>{e(t)}</b><span>{e(p)}</span></li>" for t, p in a["engage"])
     net = "".join(f"<li>{e(x)}</li>" for x in a["net"])
     body = f'''{phero(k, "about", a["eyebrow"], a["h1"], a["lead"])}
-{quote(k)}
+{quote(k, "brand/bridge.jpg", "60% 50%")}
 <section class="sec"><div class="wrap">{blocks_html}</div></section>
 <section class="sec stone"><div class="wrap"><div class="split"><h2>{e(a["engage_h"])}</h2><ul class="grid-list">{engage}</ul></div></div></section>
 <section class="sec"><div class="wrap"><div class="split"><h2>{e(a["net_h"])}</h2><div class="body"><p>{e(a["net_p"])}</p><ul class="ticks">{net}</ul></div></div></div></section>
