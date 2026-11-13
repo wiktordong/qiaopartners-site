@@ -111,7 +111,7 @@ def home(k, has_ins):
             v = f'<dd class="{"big" if len(val) < 9 else ""}">{e(val)}</dd>'
         facts.append(f'<div class="fact"><dt>{e(label)}</dt>{v}<small>{e(note)}</small></div>')
     svcs = "".join(f'''<article class="svc"><span class="n">{s["n"]}</span><h3>{e(s["title"])}</h3><p>{e(s["short"])}</p>
-      <ul>{"".join(f"<li>{e(x)}</li>" for x in s["deliv"][:3])}</ul><a class="tlink" href="{url(k, "services", s["id"])}">{e(c["more"])} {AR}</a></article>''' for s in c["services"])
+      <a class="tlink" href="{url(k, "services", s["id"])}">{e(c["more"])} {AR}</a></article>''' for s in c["services"])
     inds = "".join(f'''<a class="ind" href="{url(k, "industries", i["id"])}">{img(i["img"], i["alt"])}<div class="in"><span class="k">{i["k"]}</span>
       <h3>{e(i["title"])}</h3><p>{e(i["short"])}</p><span class="more">{e(c["more"])} {AR}</span></div></a>''' for i in c["industries"])
     stages = stages_html(k)
@@ -119,7 +119,7 @@ def home(k, has_ins):
     rows = "".join(f'<tr><th scope="row">{e(a)}</th><td data-h="{e(ch[1])}">{e(b)}</td><td data-h="{e(ch[2])}">{e(x)}</td></tr>' for a, b, x in h["cmp"])
     diffs = "".join(f'<li class="diff"><span class="n">0{n + 1}</span><h3>{e(t)}</h3><p>{e(p)}</p></li>' for n, (t, p) in enumerate(h["diffs"]))
     sigs = "".join(f'''<article class="sig"><div class="top"><span>{e(t)}</span><b>{e(dt)}</b></div><h3>{e(hh)}</h3><p>{e(p)}</p>
-      <p class="src"><a href="{e(u)}" rel="noopener" target="_blank">{e(s)}</a></p></article>''' for t, dt, hh, p, s, u in h["signals"])
+      <p class="src"><a href="{e(u)}" rel="noopener" target="_blank">{e(s)}</a></p></article>''' for t, dt, hh, p, s, u in h["signals"][:3])
     arts = ""
     if has_ins:
         cards = "".join(f'<a class="art" href="{u}"><div class="pic">{img(im, al)}</div><span>{e(dt)}</span><h3>{e(t)}</h3></a>'
@@ -156,15 +156,14 @@ def home(k, has_ins):
 </section>
 
 <section class="sec dark">
-  <div class="wrap">{shead(h["appr_eyebrow"], h["appr_h"], h["appr_p"])}<ol class="stages">{stages}</ol>{timeline(k)}</div>
+  <div class="wrap">{shead(h["appr_eyebrow"], h["appr_h"], h["appr_p"])}{timeline(k)}<p style="margin-top:32px"><a class="tlink" href="{url(k, "services")}">{e(c["all_services"])} {AR}</a></p></div>
 </section>
 
 <section class="sec">
   <div class="wrap why">
     <div class="why-copy">{eyebrow(h["why_eyebrow"])}<h2 class="h2">{e(h["why_h"])}</h2><p class="lead">{e(h["why_p"])}</p>
       <a class="btn solid" href="{url(k, "contact")}?type=expansion">{e(c["nav_cta"])} {AR}</a></div>
-    <div><table class="cmp"><thead><tr><th scope="col">{e(ch[0])}</th><th scope="col">{e(ch[1])}</th><th scope="col">{e(ch[2])}</th></tr></thead><tbody>{rows}</tbody></table>
-      <ol class="diffs">{diffs}</ol></div>
+    <div><ol class="diffs" style="margin-top:0">{diffs}</ol></div>
   </div>
 </section>
 
