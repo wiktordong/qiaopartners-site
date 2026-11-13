@@ -53,7 +53,7 @@ def shead(eb, h, p, h_tag="h2", extra=""):
 def final(k, ctype=""):
     f = L[k]["final"]
     q = f"?type={ctype}" if ctype else ""
-    return f'''<section class="final"><img class="bg" src="/img/brand/bridge-night.jpg" style="object-position:60% 40%" alt="" loading="lazy" decoding="async">
+    return f'''<section class="final"><img class="bg" src="/img/brand/glass-office.jpg" style="object-position:70% 50%" alt="" loading="lazy" decoding="async">
   <div class="wrap">
     <div>{eyebrow("Qiao Partners")}<h2>{e(f["h"])}</h2><p class="lead">{e(f["p"])}</p>
       <a class="btn ivory" href="{url(k, "contact")}{q}">{e(f["cta"])} {AR}</a></div>
@@ -128,7 +128,7 @@ def home(k, has_ins):
     _shots = [("brand/wind-sunset.jpg", "energy-infrastructure", "60% 55%"), ("brand/robot-welding.jpg", "industrial-technology", "50% 45%"),
              ("brand/auto-assembly.jpg", "mobility-automotive", "50% 55%"), ("brand/factory-hall.jpg", "industrial-technology", "50% 40%")]
     _strip = "".join(f'<a href="{url(k, "industries", sec)}">{img(f, cap, pos=pos)}<span>{e(cap)}</span></a>' for (f, sec, pos), cap in zip(_shots, c["strip"]))
-    body = f'''<section class="hero bridge"><img class="bg" src="/img/brand/bridge-bay.jpg" alt="" style="object-position:55% 40%" decoding="async" fetchpriority="high">
+    body = f'''<section class="hero bridge"><img class="bg" src="/img/brand/bridge-night.jpg" alt="" style="object-position:55% 35%" decoding="async" fetchpriority="high">
   <div class="wrap">
     <p class="def"><b lang="zh-CN">{d[0]}</b>{e(d[1])} <i>{e(d[2])}</i> — {e(d[3])}</p>
     <div class="hero-main">{eyebrow(h["eyebrow"])}<h1><span class="a">{e(h["h1a"])}</span> <span class="b">{e(h["h1b"])}</span></h1></div>
