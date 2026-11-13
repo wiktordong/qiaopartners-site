@@ -640,3 +640,4 @@ footer{background:var(--navy-950);color:var(--on-dark-2);font-size:14.5px}
 .hero.bridge .lead{font-size:clamp(16px,1.3vw,18px);max-width:52ch}
 .hero.bridge .hero-side{gap:22px}
 @media (max-width:900px){.hero.bridge .bg{width:100%;object-position:70% 50%!important}}
+.cred-copy .tlink,.shead .tlink{justify-self:start}

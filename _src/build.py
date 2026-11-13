@@ -109,7 +109,7 @@ def home(k, has_ins):
             v = f'<dd>{member_logo(k, False)}</dd>'
         else:
             v = f'<dd class="{"big" if len(val) < 9 else ""}">{e(val)}</dd>'
-        facts.append(f'<div class="fact"><dt>{e(label)}</dt>{v}<small>{e(note)}</small></div>')
+        facts.append(f'<div class="fact"><dt>{e(label)}</dt>{v}</div>')
     svcs = "".join(f'''<article class="svc"><span class="n">{s["n"]}</span><h3>{e(s["title"])}</h3><p>{e(s["short"])}</p>
       <a class="tlink" href="{url(k, "services", s["id"])}">{e(c["more"])} {AR}</a></article>''' for s in c["services"])
     inds = "".join(f'''<a class="ind" href="{url(k, "industries", i["id"])}">{img(i["img"], i["alt"])}<div class="in"><span class="k">{i["k"]}</span>
@@ -159,16 +159,8 @@ def home(k, has_ins):
   <div class="wrap">{shead(h["appr_eyebrow"], h["appr_h"], h["appr_p"])}{timeline(k)}<p style="margin-top:32px"><a class="tlink" href="{url(k, "services")}">{e(c["all_services"])} {AR}</a></p></div>
 </section>
 
-<section class="sec">
-  <div class="wrap why">
-    <div class="why-copy">{eyebrow(h["why_eyebrow"])}<h2 class="h2">{e(h["why_h"])}</h2><p class="lead">{e(h["why_p"])}</p>
-      <a class="btn solid" href="{url(k, "contact")}?type=expansion">{e(c["nav_cta"])} {AR}</a></div>
-    <div><ol class="diffs" style="margin-top:0">{diffs}</ol></div>
-  </div>
-</section>
-
 <section class="sec stone" id="insights">
-  <div class="wrap">{shead(h["ins_eyebrow"], h["ins_h"], h["ins_p"])}<div class="signals">{sigs}</div><p class="checked">{e(h["ins_checked"])}</p>{arts}</div>
+  <div class="wrap">{shead(h["ins_eyebrow"], h["ins_h"], h["ins_p"])}<div class="signals">{sigs}</div>{arts}</div>
 </section>
 {final(k)}
 <script>(function(){{var m={{"#book":"contact","#contact":"contact","#faq":"contact","#about":"about","#sectors":"industries","#team":"about"}};var t=m[location.hash];if(t)location.replace("{url(k, "home")}"+t+"/");}})();</script>'''
