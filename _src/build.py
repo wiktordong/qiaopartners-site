@@ -7,7 +7,7 @@ from datetime import date
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(HERE, "insights"))
-from chrome import L, ROOT, SITE, url, e, document, network, member_logo, org_ld, crumbs_ld, write_css  # noqa: E402
+from chrome import L, ROOT, SITE, url, e, document, member_logo, org_ld, crumbs_ld, write_css  # noqa: E402
 from settings import EMAIL, LINKEDIN, WHATSAPP, CALENDLY_URL, FORM_ENDPOINT  # noqa: E402
 import build_insights  # noqa: E402
 
@@ -53,11 +53,11 @@ def shead(eb, h, p, h_tag="h2", extra=""):
 def final(k, ctype=""):
     f = L[k]["final"]
     q = f"?type={ctype}" if ctype else ""
-    return f'''<section class="final">{network(seed=11, cls="net", pylon=(1220, 300), deck=((560, 860), (1640, 760)), n=40)}
+    return f'''<section class="final"><img class="bg" src="/img/brand/bridge.jpg" alt="" loading="lazy" decoding="async">
   <div class="wrap">
     <div>{eyebrow("Qiao Partners")}<h2>{e(f["h"])}</h2><p class="lead">{e(f["p"])}</p>
       <a class="btn ivory" href="{url(k, "contact")}{q}">{e(f["cta"])} {AR}</a></div>
-    <div class="side"><img src="/img/wechat-qr.jpg" alt="WeChat QR code — Qiao Partners" loading="lazy"><p>{e(f["side"])} <a href="mailto:{EMAIL}">{EMAIL}</a></p></div>
+    <div class="side"><div class="qrs"><figure><img src="/img/wechat-qr.jpg" alt="WeChat QR code — Qiao Partners" loading="lazy"><figcaption>WeChat</figcaption></figure><figure><a href="{WHATSAPP}" rel="noopener" target="_blank"><img src="/img/whatsapp-qr.png" alt="WhatsApp QR code — Qiao Partners" loading="lazy"></a><figcaption>WhatsApp</figcaption></figure></div><p>{e(f["side"])} <a href="mailto:{EMAIL}">{EMAIL}</a></p></div>
   </div>
 </section>'''
 
@@ -65,7 +65,7 @@ def final(k, ctype=""):
 def phero(k, page, eb, h1, lead, extra=""):
     c = L[k]
     crumbs = "" if page == "home" else f'<nav class="crumbs" aria-label="Breadcrumb"><a href="{url(k, "home")}">{e(c["nav"]["home"])}</a> / {e(eb)}</nav>'
-    return f'''<section class="phero">{network(seed=3, cls="net", pylon=(1100, 200), deck=((420, 900), (1640, 760)), n=34, area=(300, 20, 1600, 980))}
+    return f'''<section class="phero">
   <div class="wrap">{crumbs}{eyebrow(eb)}<h1>{e(h1)}</h1><p class="lead">{e(lead)}</p>{extra}</div>
 </section>'''
 
@@ -98,22 +98,24 @@ def home(k, has_ins):
         cards = "".join(f'<a class="art" href="{u}"><div class="pic">{img(im, al)}</div><span>{e(dt)}</span><h3>{e(t)}</h3></a>'
                         for t, u, im, al, dt in build_insights.latest(k, 3))
         arts = f'<div class="arts">{cards}</div><p style="margin-top:36px"><a class="tlink" href="{url(k, "insights")}">{e(h["ins_more"])} {AR}</a></p>'
-    body = f'''<section class="hero">{network()}
+    shots = [("wind-aerial.jpg", "energy-infrastructure", "50% 50%"), ("terminal.jpg", "energy-infrastructure", "55% 50%"),
+             ("insights/charging-mountain.jpg", "mobility-automotive", "50% 70%"), ("insights/biomethane-plant-trucks.jpg", "energy-infrastructure", "50% 55%")]
+    strip = "".join(f'<a href="{url(k, "industries", sec)}">{img(f, cap, pos=pos)}<span>{e(cap)}</span></a>' for (f, sec, pos), cap in zip(shots, c["strip"]))
+    body = f'''<section class="hero">
   <div class="wrap">
     <p class="def"><b lang="zh-CN">{d[0]}</b>{e(d[1])} <i>{e(d[2])}</i> — {e(d[3])}</p>
-    <div class="hero-main">
-      {eyebrow(h["eyebrow"])}
-      <h1><span class="a">{e(h["h1a"])}</span><span class="b">{e(h["h1b"])}</span></h1>
-      <p class="lead">{e(h["lead"])}</p>
-      <div class="ctas"><a class="btn ivory" href="{url(k, "contact")}?type=expansion">{e(h["cta1"])} {AR}</a><a class="tlink" href="{url(k, "services")}">{e(h["cta2"])} {AR}</a></div>
+    <div class="hero-grid">
+      <div class="hero-main">{eyebrow(h["eyebrow"])}<h1><span class="a">{e(h["h1a"])}</span> <span class="b">{e(h["h1b"])}</span></h1></div>
+      <div class="hero-side"><p class="lead">{e(h["lead"])}</p>
+        <div class="ctas"><a class="btn solid" href="{url(k, "contact")}?type=expansion">{e(h["cta1"])} {AR}</a><a class="tlink" href="{url(k, "services")}">{e(h["cta2"])} {AR}</a></div></div>
     </div>
-    <nav class="hero-bar" aria-label="{e(c["nav"]["services"])}">{bar}</nav>
   </div>
+  <div class="strip">{strip}</div>
 </section>
 
 <section class="sec">
   <div class="wrap cred">
-    <figure class="cred-pic">{img("brand/bridge.jpg", h["cred_pic"], pos="60% 50%")}</figure>
+    <figure class="cred-pic">{img("meeting.jpg", h["cred_pic"], pos="50% 40%")}</figure>
     <div class="cred-copy">{eyebrow(h["cred_eyebrow"])}<h2 class="h2">{e(h["cred_h"])}</h2><p class="lead">{e(h["cred_p"])}</p>
       <dl class="facts">{"".join(facts)}</dl>
       <a class="tlink" href="{url(k, "about")}">{e(c["nav"]["about"])} {AR}</a></div>
@@ -162,7 +164,7 @@ def about(k, has_ins):
     engage = "".join(f"<li><b>{e(t)}</b><span>{e(p)}</span></li>" for t, p in a["engage"])
     net = "".join(f"<li>{e(x)}</li>" for x in a["net"])
     body = f'''{phero(k, "about", a["eyebrow"], a["h1"], a["lead"])}
-<figure class="banner-pic">{img("brand/bridge.jpg", a["pic"], lazy=False, pos="50% 55%")}</figure>
+<figure class="banner-pic blend">{img("brand/bridge.jpg", a["pic"], lazy=False, pos="50% 55%")}</figure>
 <section class="sec"><div class="wrap">{blocks_html}</div></section>
 <section class="sec stone"><div class="wrap"><div class="split"><h2>{e(a["engage_h"])}</h2><ul class="grid-list">{engage}</ul></div></div></section>
 <section class="sec"><div class="wrap"><div class="split"><h2>{e(a["net_h"])}</h2><div class="body"><p>{e(a["net_p"])}</p><ul class="ticks">{net}</ul></div></div></div></section>

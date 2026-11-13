@@ -16,6 +16,8 @@ C = dict(
   f_copy="© 2026 Qiao Partners. Wszelkie prawa zastrzeżone.",
   f_base="Warszawa, Polska",
 
+  strip=['OZE i magazyny energii', 'Infrastruktura energetyczna', 'Elektromobilność i ładowanie', 'Technologie biometanowe'],
+  f_whatsapp='Napisz do nas na WhatsApp',
   services=[
     dict(id="strategic-advisory", n="01", title="Doradztwo strategiczne i analiza rynku",
          short="Wiedza, gdzie konkurować, z kim i po jakiej cenie – zanim zapadnie decyzja o budżecie.",

@@ -16,6 +16,8 @@ C = dict(
   f_copy="© 2026 Qiao Partners. All rights reserved.",
   f_base="Warsaw, Poland",
 
+  strip=['Renewables & storage', 'Energy infrastructure', 'EV & charging', 'Biomethane technologies'],
+  f_whatsapp='Message us on WhatsApp',
   services=[
     dict(id="strategic-advisory", n="01", title="Strategic Advisory & Market Intelligence",
          short="Know where to compete, against whom and at what price before committing budget.",

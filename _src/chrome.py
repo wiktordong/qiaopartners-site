@@ -86,6 +86,7 @@ def header(k, page, paths, has_ins):
     <nav class="menu" aria-label="Main">{links}</nav>
     <div class="nav-r">{lang_switch(k, paths)}{cta}{mnav}</div>
   </div>
+  <div class="progress" aria-hidden="true"></div>
 </header>'''
 
 
@@ -114,8 +115,8 @@ def footer(k, has_ins):
       <div class="brand">{logo(k)}<p>{e(c["f_tag"])}</p><div class="member">{member_logo(k, True)}</div><p class="muted" style="color:var(--on-dark-3);font-size:13px">{e(c["f_member"])}</p></div>
       <div><h4>{e(c["f_services"])}</h4><ul>{svc}</ul></div>
       <div><h4>{e(c["f_company"])}</h4><ul>{comp}</ul></div>
-      <div><h4>{e(c["f_contact"])}</h4><ul><li><a href="mailto:{EMAIL}">{EMAIL}</a></li><li><a href="{LINKEDIN}" rel="noopener" target="_blank">LinkedIn</a></li><li>{e(c["f_base"])}</li></ul>
-        <figure class="qr"><img src="/img/wechat-qr.jpg" alt="WeChat QR code — Qiao Partners" loading="lazy"><figcaption style="font-size:12.5px;margin-top:8px">{e(c["f_wechat"])}</figcaption></figure></div>
+      <div><h4>{e(c["f_contact"])}</h4><ul><li><a href="mailto:{EMAIL}">{EMAIL}</a></li><li><a href="{LINKEDIN}" rel="noopener" target="_blank">LinkedIn</a></li><li><a href="{WHATSAPP}" rel="noopener" target="_blank">{e(c["f_whatsapp"])}</a></li><li>{e(c["f_base"])}</li></ul>
+        <div class="fqr"><figure class="qr"><img src="/img/wechat-qr.jpg" alt="WeChat QR code — Qiao Partners" loading="lazy"><figcaption>WeChat</figcaption></figure><figure class="qr"><a href="{WHATSAPP}" rel="noopener" target="_blank"><img src="/img/whatsapp-qr.png" alt="WhatsApp QR code — Qiao Partners" loading="lazy"></a><figcaption>WhatsApp</figcaption></figure></div></div>
     </div>
     <div class="flegal"><p>{e(c["f_legal"])}</p><p>{e(c["f_copy"])}</p></div>
   </div>
@@ -127,14 +128,26 @@ SCRIPT = r"""<script>
   var d=document,root=d.documentElement;
   var still=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var $=function(s,c){return Array.prototype.slice.call((c||d).querySelectorAll(s))};
-  var hdr=d.querySelector('.site'),home=d.body.classList.contains('home'),tick=false;
-  function frame(){tick=false;var y=window.scrollY||window.pageYOffset;if(hdr)hdr.classList.toggle('fixed',y>(home?60:10))}
-  window.addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(frame)}},{passive:true});frame();
-  var groups=[['.shead > div > *, .shead > p',0.08],['.fact',0.08],['.svc',0.08],['.ind',0.08],['.stage',0.1],['.diff',0.06],['.cmp',0],['.sig',0.06],['.art',0.08],['.sdet',0],['.idet',0],['.split',0],['.grid-list li',0.05],['.next li',0.08],['.faq details',0.04],['.final .wrap > *',0.12],['.cred-pic, .banner-pic',0]];
-  groups.forEach(function(g){$(g[0]).forEach(function(el,i){el.setAttribute('data-r','');el.style.setProperty('--d',(Math.min(i,6)*g[1]).toFixed(2)+'s')})});
+  if(!still){var n=0;$('.hero h1 > span, .phero h1').forEach(function(el){
+    var t=el.textContent.trim();el.setAttribute('aria-label',t);
+    var parts=(root.lang.indexOf('zh')===0)?t.split(/(?<=[，。、])/):t.split(/\s+/);
+    el.innerHTML=parts.map(function(w){return '<span class="w" aria-hidden="true"><span style="--i:'+(n++)+'">'+w+'</span></span>'}).join(root.lang.indexOf('zh')===0?'':' ');
+  });}
+  function tag(sel,kind,step,base){$(sel).forEach(function(el,i){el.setAttribute('data-r',kind||'');el.style.setProperty('--d',((base||0)+Math.min(i,6)*(step||0)).toFixed(2)+'s')})}
+  tag('.strip a','mask',0.12,0.5);tag('.cred-pic, .banner-pic, .idet .pic','mask',0);tag('.ind','mask',0.1);tag('.art .pic','mask',0.1);
+  tag('.shead > div > *, .shead > div > p',0,0.08);tag('.fact','',0.08);tag('.svc','',0.08);tag('.stage','',0.1);tag('.diff','',0.06);tag('.cmp','',0);
+  tag('.sig','',0.06);tag('.sdet','',0);tag('.idet .txt','',0);tag('.split','',0);tag('.grid-list li','',0.05);tag('.next li','',0.08);tag('.faq details','',0.04);tag('.final .wrap > *','',0.12);
+  function countUp(b){var t=b.firstChild;if(!t||t.nodeType!==3)return;var m=t.nodeValue.match(/^(\D*)(\d+)(.*)$/);if(!m)return;
+    var end=+m[2],start=null,dur=1800;function step(now){if(start===null)start=now;var k=Math.min(1,(now-start)/dur),ez=1-Math.pow(1-k,4);t.nodeValue=m[1]+Math.round(end*ez)+m[3];if(k<1)requestAnimationFrame(step)}
+    t.nodeValue=m[1]+'0'+m[3];requestAnimationFrame(step)}
+  function show(el){el.classList.add('in');if(el.classList.contains('fact')&&!still){var b=el.querySelector('dd.big');if(b)countUp(b)}}
   var t=$('[data-r]');
   if(still||!('IntersectionObserver' in window)){t.forEach(function(el){el.classList.add('in')})}
-  else{var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.1,rootMargin:'0px 0px -5% 0px'});t.forEach(function(el){io.observe(el)})}
+  else{var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){show(x.target);io.unobserve(x.target)}})},{threshold:.12,rootMargin:'0px 0px -6% 0px'});t.forEach(function(el){io.observe(el)})}
+  var hdr=d.querySelector('.site'),bar=d.querySelector('.progress'),tick=false;
+  function frame(){tick=false;var y=window.scrollY||window.pageYOffset,max=root.scrollHeight-window.innerHeight;
+    if(hdr)hdr.classList.toggle('scrolled',y>40);if(bar)bar.style.transform='scaleX('+(max>0?Math.min(1,y/max):0)+')'}
+  window.addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(frame)}},{passive:true});window.addEventListener('resize',frame);frame();
   var dd=$('details.dd, details.mnav');
   d.addEventListener('click',function(ev){dd.forEach(function(x){if(x.open&&!x.contains(ev.target))x.open=false})});
   d.addEventListener('keydown',function(ev){if(ev.key==='Escape')dd.forEach(function(x){x.open=false})});
@@ -150,8 +163,8 @@ def head(k, title, desc, path, paths, ld, og_img="/img/brand/bridge.jpg", og_typ
     alts += f'\n<link rel="alternate" hreflang="x-default" href="{SITE}{paths["en"]}">'
     verify = (f'\n<meta name="google-site-verification" content="{GOOGLE_SITE_VERIFICATION}">' if GOOGLE_SITE_VERIFICATION else "") + \
              (f'\n<meta name="msvalidate.01" content="{BING_SITE_VERIFICATION}">' if BING_SITE_VERIFICATION else "")
-    pre = "" if k == "zh" else ('<link rel="preload" href="/assets/fonts/cormorant-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>\n'
-                                '<link rel="preload" href="/assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>')
+    pre = "" if k == "zh" else ('<link rel="preload" href="/assets/fonts/hanken-grotesk-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin>\n'
+                                '<link rel="preload" href="/assets/fonts/hanken-grotesk-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>')
     lds = "".join(f'\n<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in ld)
     return f'''<!doctype html>
 <html lang="{c["lang"]}">

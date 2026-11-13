@@ -15,6 +15,8 @@ C = dict(
   f_copy="© 2026 Qiao Partners。保留所有权利。",
   f_base="波兰华沙",
 
+  strip=['可再生能源与储能', '能源基础设施', '电动汽车与充电', '生物甲烷技术'],
+  f_whatsapp='通过WhatsApp联系我们',
   services=[
     dict(id="strategic-advisory", n="01", title="战略咨询与市场情报",
          short="在投入预算之前，明确在哪里竞争、与谁竞争、以什么价格竞争。",
