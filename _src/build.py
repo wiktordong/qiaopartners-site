@@ -128,7 +128,7 @@ def home(k, has_ins):
     _shots = [("brand/wind-sunset.jpg", "energy-infrastructure", "60% 55%"), ("brand/robot-welding.jpg", "industrial-technology", "50% 45%"),
              ("brand/auto-assembly.jpg", "mobility-automotive", "50% 55%"), ("brand/factory-hall.jpg", "industrial-technology", "50% 40%")]
     _strip = "".join(f'<a href="{url(k, "industries", sec)}">{img(f, cap, pos=pos)}<span>{e(cap)}</span></a>' for (f, sec, pos), cap in zip(_shots, c["strip"]))
-    body = f'''<section class="hero bridge"><img class="bg" src="/img/brand/bridge-night.jpg" alt="" style="object-position:55% 35%" decoding="async" fetchpriority="high">
+    body = f'''<section class="hero bridge"><img class="bg" src="/img/brand/bridge.jpg" alt="" style="object-position:60% 50%" decoding="async" fetchpriority="high">
   <div class="wrap">
     <p class="def"><b lang="zh-CN">{d[0]}</b>{e(d[1])} <i>{e(d[2])}</i> — {e(d[3])}</p>
     <div class="hero-main">{eyebrow(h["eyebrow"])}<h1><span class="a">{e(h["h1a"])}</span> <span class="b">{e(h["h1b"])}</span></h1></div>
@@ -145,8 +145,6 @@ def home(k, has_ins):
       <a class="tlink" href="{url(k, "about")}">{e(c["nav"]["about"])} {AR}</a></div>
   </div>
 </section>
-
-{quote(k, "brand/bridge.jpg", "60% 50%")}
 
 <section class="sec stone" id="services">
   <div class="wrap">{shead(h["what_eyebrow"], h["what_h"], h["what_p"])}<div class="svcs">{svcs}</div></div>
