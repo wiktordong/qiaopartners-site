@@ -121,7 +121,7 @@ C = dict(
     cred_p='Qiao Partners was founded by people who grew up at the intersection of Europe and China. Early in our careers we worked for Chinese companies entering the European market and for European companies working with China, learning first-hand how regulation, buyers and business culture differ on each side. Every mandate is led at senior level, with qualified specialists brought in where the work requires them.',
     cred_pic="Cable-stayed bridge",
     facts=[("Professional background", "Goldman Sachs · J.P. Morgan · Tencent · Accenture", "Where members of our team built their professional experience."),
-           ("China–Europe experience", "6 years", "Our founder's experience working between Chinese and European business."),
+           ("China–Europe experience", "7 years", "Our founder's experience working between Chinese and European business."),
            ("Membership", "@sinocham", "SinoCham, the Polish-Chinese General Chamber of Commerce."),
            ("Base", "Warsaw, Poland", "Working with clients and partners across the EU and China.")],
     what_eyebrow="What we do",

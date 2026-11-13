@@ -4,7 +4,7 @@ Done: new positioning and visual identity, multi-page site (home, about, service
 
 ## Claims Wiktor must confirm before going live
 1. Accenture listed among team members' previous employers (founder: GS, JPM, Tencent).
-2. "6 years" China–Europe experience attributed to the founder.
+2. "7 years" China–Europe experience attributed to the founder (confirmed by Wiktor 13 Nov).
 3. Founder "studied economics and finance in Beijing" (About → Leadership).
 4. Location: site now says only "Warsaw, Poland". Beijing was removed from structured data; the old site claimed Warsaw and Beijing and "3 countries". Re-add only if there is a real presence.
 5. Independence statement: not affiliated with any distributor, manufacturer, investor or government body.

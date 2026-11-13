@@ -121,7 +121,7 @@ C = dict(
     cred_p='Qiao Partners założyli ludzie, którzy dorastali na styku Europy i Chin. Na początku kariery pracowaliśmy dla chińskich firm wchodzących na rynek europejski i dla europejskich firm współpracujących z Chinami – i z pierwszej ręki poznaliśmy, czym po obu stronach różnią się regulacje, odbiorcy i kultura biznesowa. Każdy projekt prowadzą doświadczone osoby, a specjalistów angażujemy tam, gdzie wymaga tego zakres prac.',
     cred_pic="Most wantowy",
     facts=[("Doświadczenie zawodowe", "Goldman Sachs · J.P. Morgan · Tencent · Accenture", "Firmy, w których członkowie naszego zespołu zdobywali doświadczenie zawodowe."),
-           ("Doświadczenie Chiny–Europa", "6 lat", "Doświadczenie naszego założyciela w biznesie między Chinami a Europą."),
+           ("Doświadczenie Chiny–Europa", "7 lat", "Doświadczenie naszego założyciela w biznesie między Chinami a Europą."),
            ("Członkostwo", "@sinocham", "SinoCham – Polsko-Chińska Główna Izba Gospodarcza."),
            ("Siedziba", "Warszawa, Polska", "Współpracujemy z klientami i partnerami w całej UE i w Chinach.")],
     what_eyebrow="Co robimy",
