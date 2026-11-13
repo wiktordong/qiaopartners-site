@@ -2,23 +2,24 @@
 
 Static site for qiaopartners.eu, hosted on GitHub Pages (repo `wiktordong/qiaopartners-site`, CNAME `qiaopartners.eu`). The owner, Wiktor Dong, is not a developer: do the technical work for him and explain results in plain words.
 
-## How the site is built
-- Never hand-edit the generated `index.html`, `pl/index.html`, `zh/index.html` or `ru/index.html`. Edit the sources and rebuild:
-  - `_src/content.py`: all copy, per language (`L["en"]`, `L["pl"]`, `L["zh"]`, `L["ru"]`), plus settings `LINKEDIN`, `EMAIL`, `CALENDLY_URL`, `WHATSAPP`, `FORM_ENDPOINT`, `GOOGLE_SITE_VERIFICATION`, `BING_SITE_VERIFICATION` (paste the codes from Search Console / Bing Webmaster Tools, rebuild, push). Later `L[...].update(...)` blocks at the end of the file override earlier keys.
-  - `MEMBERS` in `_src/content.py` lists confirmed chamber memberships, shown as logos under "Our team's experience includes" in the team section; logo at `img/members/<slug>.png` (plus optional `<slug>-dark.png` for dark mode), text fallback if missing.
-  - `_src/build.py`: page template, CSS and JS. Also writes `robots.txt`, `sitemap.xml`, `llms.txt`.
-  - `_src/base.css`: original visual design (navy `#0A1C36`, baby blue `#8EC5F0`, Hanken Grotesk, light/dark themes). Hanken has no Cyrillic, so Russian letters fall back to Golos Text; Chinese to Noto Sans SC. Keep this look.
-  - `_src/insights/`: the Insights section. `articles.py` holds the articles (HTML bodies, exhibits via `charts.py`), `build_insights.py` renders `/insights/` plus `/pl/insights/`, `/zh/insights/` and `/ru/insights/` indexes (every article is fully translated: `articles_zh.py`, `articles_pl.py`, `articles_ru.py`, built at `/<lang>/insights/biomethane/<slug>/`). A new article needs all three translations before its release date, `insights.css` styles them. `RELEASE` in `build_insights.py` sets one release date per article (parts 1–2 on Sundays 1 and 8 Nov 2026, then every Monday); only articles dated today or earlier are built.
-  - `.github/workflows/weekly-insights.yml` rebuilds every Monday 06:05 Warsaw and pushes, so the next article goes live on its date.
-  - `_src/articles/<lang>/<slug>.md`: older drafted articles, not yet published.
-- Rebuild: `python3 _src/build.py` from the repo root.
+## How the site is built (rebuilt 13 Nov 2026, repositioning)
+- Never hand-edit generated HTML (`index.html`, `about/`, `services/`, `industries/`, `contact/`, `china-entry/`, and the same under `pl/`, `zh/`, `ru/`). Edit sources and rebuild: `python3 _src/build.py`.
+  - `_src/lang/en.py`, `pl.py`, `zh.py`, `ru.py`: ALL copy, one file per language, identical structure (the build stops if keys or list lengths differ).
+  - `_src/settings.py`: `EMAIL`, `LINKEDIN`, `CALENDLY_URL`, `WHATSAPP`, `FORM_ENDPOINT` (FormSubmit), search-console codes, `MEMBERS` (confirmed chamber memberships only; logos in `img/members/`).
+  - `_src/site.css`: design system (navy / warm white / stone / bronze; Cormorant Garamond headlines, Inter text, IBM Plex Mono labels). Fonts are self-hosted in `assets/fonts/` (`_src/fonts.css`) because Google Fonts is blocked in mainland China; Chinese uses system fonts. Built to `assets/site.css`.
+  - `_src/chrome.py`: shared head (SEO, hreflang, JSON-LD), header, footer, network art and script, used by every page including Insights.
+  - `_src/build.py`: page templates (home, about, services, industries, contact with FAQ + qualified enquiry form, china-entry), sitemap, robots, llms.txt.
+  - `_src/insights/`: Insights (articles, translations, `RELEASE` dates, `HIDDEN` set). Uses the shared chrome; `insights.css` is scoped under `.ins`.
+  - `.github/workflows/weekly-insights.yml` rebuilds every Monday.
+  - Photos in `img/brand/` (bridge, glass office) were supplied by Wiktor in chat; licence to be confirmed.
 
 ## Business rules for copy
-- Qiao Partners is a commercial advisory firm: market entry, market diagnosis, go-to-market strategy, EU business development and lead generation, entity/certification/tax setup with partner firms, regulation (incl. CBAM, EU ETS) and government relations, and China entry for European companies.
+- Positioning: independent China–Europe market entry & strategic business development firm. Primary direction China → Europe; European companies entering China is a secondary page (`/china-entry/`). Four service lines: Strategic Advisory & Market Intelligence; Market Entry & Establishment; Commercial Development & Partnerships; European Representation & Expansion.
+- Never fabricate clients, testimonials, partnerships, team size, offices or track record. Team employers (Goldman Sachs, J.P. Morgan, Tencent, Accenture) are prior employers only. No government-relations claims, no guaranteed outcomes, no public prices. Legal/tax/certification work is 'coordinated with qualified specialists'.
 - It does not invest, manage funds or give investment advice. Never add investor-introduction or capital-raising wording (Wiktor wants to stay clear of MiFID).
-- Four languages always: English, Polish, Simplified Chinese, Russian (added Nov 2026). Every new page exists in all four.
+- Four languages always: English, Polish, Simplified Chinese, Russian. Every page exists in all four.
 - Facts in articles carry a date and a linked source.
 
 ## Git and publishing
-- Work on a branch (currently `redesign-2026-11`). Pushing to `main` puts the site live: only do it when Wiktor explicitly says so.
-- See `IMPLEMENTATION_BRIEF.md` for the current task.
+- Work on a branch (currently `repositioning-2026-11`). Pushing to `main` puts the site live: only do it when Wiktor explicitly says so.
+- See `IMPLEMENTATION_BRIEF.md` for open items needing Wiktor's verification.

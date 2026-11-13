@@ -23,7 +23,8 @@ ONPAGE = {"en": "On this page", "zh": "本页内容", "pl": "W tym artykule", "r
 TOPIC = {"zh": SERIES_ZH["topic"], "pl": TOPIC_PL, "ru": TOPIC_RU}
 
 SITE = "https://qiaopartners.eu"
-AUTHOR = "Wiktor D."
+AUTHOR = "Qiao Partners"   # byline shows the role, not a personal name (Nov 2026)
+AUTHOR_T = {"en": "CEO", "pl": "CEO", "zh": "首席执行官", "ru": "Генеральный директор"}
 TODAY = datetime.now(ZoneInfo("Europe/Warsaw")).date()
 
 # One article a week: parts 1–2 went out on Sundays 1 and 8 Nov 2026; from part 3 every Monday. Edit dates here to change the schedule.
@@ -36,10 +37,10 @@ RELEASE = {
     "poland-biomethane-market-2026": date(2026, 12, 7),
 }
 
+# 13 Nov 2026: Wiktor decided to publish part 1 only; no further biomethane articles.
 # Articles listed here are kept in the source but NOT built or listed (held back pending a conflict-of-interest
 # check with Wiktor's employer). Remove a slug from this set to bring it back on its RELEASE date.
 HIDDEN = {
-    "europe-energy-market-2026",
     "european-biomethane-market-2026",
     "biomethane-equipment-market-europe",
     "china-europe-biomethane-investment",
@@ -247,51 +248,36 @@ def read_min(a):
     return max(3, round((len(re.sub(r"<[^>]+>", " ", a["body"]).split()) + 60 * len(a["keypoints"])) / 220))
 
 
-def chrome(k, current_ins, lang_paths):
-    u = UI[k]
-    nav = "".join(f'<a href="{h}"{" aria-current=\"page\"" if h == u["ins"] else ""}>{escape(t)}</a>' for t, h in u["nav"])
-    mlinks = "".join(f'<a href="{h}"{" aria-current=\"page\"" if h == u["ins"] else ""}>{escape(t)}</a>' for t, h in u["nav"])
-    mlinks += f'<a class="mcta" href="{u["base"]}#book">{escape(u["cta_b"])}</a>'
-    mnav = f'<details class="mnav"><summary aria-label="{MENU[k]}"><i aria-hidden="true"></i></summary><div class="mpanel">{mlinks}</div></details>'
-    langs = "".join(f'<li><a href="{lang_paths[x]}"{" aria-current=\"page\"" if x == k else ""} lang="{UI[x]["lang"]}">{UI[x]["label"]}</a></li>' for x in UI)
-    head = f'''<div class="q-banner"><div class="wrap"><a href="{u["base"]}#book"><i aria-hidden="true"></i>{escape(u["banner"])} <span aria-hidden="true">→</span></a></div></div>
-<header class="q-head"><div class="wrap">{LOGO.format(home=u["base"])}<nav class="q-nav" aria-label="Main">{nav}</nav>
-<div class="q-right"><details class="q-lang"><summary aria-label="Language">{u["label"]}<i aria-hidden="true"></i></summary><ul>{langs}</ul></details>
-<a class="btn" href="{u["base"]}#book">{escape(u["cta_b"])}</a>{mnav}</div></div></header>'''
-    foot = f'''<section class="cta"><div class="wrap"><p>{escape(u["cta_p"])}</p><a class="btn" href="{u["base"]}#book">{escape(u["cta_b"])} <span aria-hidden="true">→</span></a></div></section>
-<footer class="q-foot"><div class="wrap"><p>{escape(MEMBER[k])}</p><p>{escape(u["foot"])}</p>
-<p>© 2026 Qiao Partners · <a href="mailto:contact@qiaopartners.eu">contact@qiaopartners.eu</a> · Warsaw · Beijing</p></div></footer>
-<script>(function(){{var m=document.querySelectorAll('details.mnav, details.langdd, details.q-lang');m.forEach(function(d){{document.addEventListener('click',function(e){{if(d.open&&!d.contains(e.target))d.open=false}});d.querySelectorAll('.mpanel a').forEach(function(a){{a.addEventListener('click',function(){{d.open=false}})}})}});document.addEventListener('keydown',function(e){{if(e.key==='Escape')m.forEach(function(d){{d.open=false}})}})}})();</script>'''
-    return head, foot
+def visible():
+    return [a for a in ARTICLES if a["slug"] not in HIDDEN]
 
 
 def page(k, title, desc, url, css, body, ld, lang_paths, og="website"):
-    head, foot = chrome(k, True, lang_paths)
-    alts = "".join(f'<link rel="alternate" hreflang="{UI[x]["lang"]}" href="{SITE}{lang_paths[x]}">' for x in UI)
-    return f'''<!doctype html>
-<html lang="{UI[k]["lang"]}">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>{escape(title)}</title>
-<meta name="description" content="{escape(desc)}">
-<link rel="canonical" href="{SITE}{url}">{alts}
-<meta property="og:type" content="{og}"><meta property="og:title" content="{escape(title)}"><meta property="og:description" content="{escape(desc)}">
-<meta property="og:url" content="{SITE}{url}"><meta property="og:site_name" content="Qiao Partners">
-<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-{FONTS}
-<link rel="stylesheet" href="{css}">
-<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
-</head>
-<body>
-{head}
-<main>
-{body}
-</main>
-{foot}
-</body>
-</html>
-'''
+    """Wrap an Insights body in the shared site chrome (same header, footer and styles as the rest of the site)."""
+    sys.path.insert(0, str(HERE.parent))
+    import chrome
+    u = UI[k]
+    paths = dict(lang_paths)
+    cta = f'''<section class="ins-cta"><div class="wrap"><p>{escape(u["cta_p"])}</p><a class="btn solid" href="{chrome.url(k, "contact")}">{escape(u["cta_b"])} <span class="ar" aria-hidden="true">→</span></a></div></section>
+<div class="wrap"><p class="ins-note">{escape(u["foot"])}</p></div>'''
+    full = f'<div class="ins">{body}</div>{cta}'
+    ld_list = [ld, chrome.org_ld(k)]
+    extra = f'<link rel="stylesheet" href="/insights/insights.css?v={_css_v()}">'
+    doc = chrome.document(k, "insights", title, desc, paths, full, ld_list, True, og_type=og)
+    return doc.replace("</head>", extra + "\n</head>", 1)
+
+
+def _css_v():
+    import hashlib
+    return hashlib.md5((HERE / "insights.css").read_bytes()).hexdigest()[:8]
+
+
+def latest(k, n=3):
+    """Newest published articles for the home page: (title, url, image, alt, date)."""
+    out = []
+    for a in list(reversed(published()))[:n]:
+        out.append((t_art(a, k)[0], art_url(a, k), IMG[a["slug"]][0], alt(IMG[a["slug"]][0], k), fdate(RELEASE[a["slug"]], k)))
+    return out
 
 
 def has_tr(a, k):
@@ -323,7 +309,7 @@ def t_series(k):
 def hub(k, css):
     u, pub, up = UI[k], published(), upcoming()
     name, dek = t_series(k)
-    total = len(ARTICLES)
+    total = len(visible())
     toc = "".join(f'<li><a href="{art_url(a, k)}"><span class="toc-n">{a["part"]:02d}</span><span class="toc-t">{escape(t_art(a, k)[0])}</span></a></li>' for a in pub)
     nxt = ""
     if up:
@@ -337,16 +323,17 @@ def hub(k, css):
 <div class="meta">{fdate(RELEASE[a["slug"]], k)} · {read_min(a)} {escape(u["read"])}</div></article>''' for a in reversed(pub))
     show_note = u["note"] and any(not has_tr(a, k) for a in pub)
     note = f'<p class="lang-note">{escape(u["note"])}</p>' if show_note else ""
-    body = f'''<div class="wrap">
-<section class="hub-hero"><div><div class="eyebrow">Qiao Partners</div><h1>{escape(u["h1"])}</h1><p>{escape(u["dek"])}</p>{note}</div>
-<figure class="hub-pic">{img(HUB_IMG, "", lazy=False)}</figure></section>
-<div class="section-h"><h2>{escape(u["series"])}</h2></div>
+    series_html = (f'''<div class="section-h"><h2>{escape(u["series"])}</h2></div>
 <section class="series-feature"><div>
 <figure class="series-pic">{img(SERIES_IMG, "")}</figure>
 <div class="eyebrow">{total}-{escape(u["parts"])}</div>
 <h3>{escape(name)}</h3><p>{escape(dek)}</p>{nxt}</div>
 <ol class="toc">{toc}</ol></section>
-<div class="section-h"><h2>{escape(u["latest"])}</h2></div>
+''') if total > 1 else ""
+    body = f'''<div class="wrap">
+<section class="hub-hero"><div><div class="eyebrow">Qiao Partners</div><h1>{escape(u["h1"])}</h1><p>{escape(u["dek"])}</p>{note}</div>
+<figure class="hub-pic">{img(HUB_IMG, "", lazy=False)}</figure></section>
+{series_html}<div class="section-h"><h2>{escape(u["latest"])}</h2></div>
 <div class="cards">{cards}{soon}</div>
 </div>'''
     ld = {"@context": "https://schema.org", "@type": "CollectionPage", "name": f"{u['h1']} | Qiao Partners", "url": f"{SITE}{u['ins']}",
@@ -357,10 +344,12 @@ def hub(k, css):
 
 
 def part_of(n, k):
+    if len(visible()) < 2:
+        return ""
     if k == "zh":
-        return f"第{n}篇，共{len(ARTICLES)}篇"
+        return f"第{n}篇，共{len(visible())}篇"
     u = UI[k]
-    return f"{u['part']}\u00a0{n}\u00a0{u['of']}\u00a0{len(ARTICLES)}"
+    return f"{u['part']}\u00a0{n}\u00a0{u['of']}\u00a0{len(visible())}"
 
 
 def article(i, css, k="en"):
@@ -390,11 +379,11 @@ def article(i, css, k="en"):
     art_body, heads = enrich(a["body"], mid, k)
     contents = "".join(f'<li><a href="#{h}">{escape(t)}</a></li>' for h, t in heads)
     read = f"{read_min(src)} {u['read']}" if not zh else f"{read_min(src)}{u['read']}"
-    author = f"<b>{AUTHOR}</b>，Qiao Partners" if zh else f"<b>{AUTHOR}</b>, Qiao Partners"
+    author = f"Qiao Partners {AUTHOR_T[k]}" if zh else f"<b>{AUTHOR_T[k]}</b> – Qiao Partners"
     body = f'''<div class="wrap">
 <nav class="crumbs" aria-label="Breadcrumb"><a href="{u["ins"]}">{escape(u["crumbs"])}</a> / {escape(topic)}</nav>
 <header class="art-head"><div class="inner">
- <div class="eyebrow">{escape(sname)} · {part_of(a["part"], k)}</div>
+ <div class="eyebrow">{escape(sname)}{" · " + part_of(a["part"], k) if part_of(a["part"], k) else ""}</div>
  <h1>{escape(a["title"])}</h1>
  <p class="standfirst">{escape(a["standfirst"])}</p>
  <div class="byline"><span>{author}</span><span>{fdate(d, k)}</span><span>{escape(read)}</span></div>
@@ -415,7 +404,7 @@ def article(i, css, k="en"):
 </div>'''
     ld = {"@context": "https://schema.org", "@type": "Article", "headline": a["title"], "description": a["seo"],
           "datePublished": d.isoformat(), "dateModified": d.isoformat(), "inLanguage": u["lang"],
-          "author": {"@type": "Person", "name": AUTHOR}, "publisher": {"@type": "Organization", "name": "Qiao Partners", "url": SITE},
+          "author": {"@type": "Organization", "name": AUTHOR, "url": SITE}, "publisher": {"@type": "Organization", "name": "Qiao Partners", "url": SITE},
           "isPartOf": {"@type": "CreativeWorkSeries", "name": sname}, "image": f"{SITE}/img/{cover}", "keywords": a["keywords"], "mainEntityOfPage": f"{SITE}{art_url(src, k)}"}
     paths = {x: (art_url(src, x) if x == "en" or has_tr(src, x) else UI[x]["ins"]) for x in UI}
     return page(k, f"{a['title']} | Qiao Partners", a["seo"], art_url(src, k), "/insights/insights.css", body, ld, paths, og="article")

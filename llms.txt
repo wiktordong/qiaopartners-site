@@ -1,36 +1,37 @@
 # Qiao Partners
 
-> Qiao Partners helps Chinese manufacturers enter the European market: market diagnosis, go-to-market strategy, EU business development, entity, certification and tax setup. Warsaw and Beijing.
+> Independent China–Europe advisory firm helping Chinese companies enter, establish and grow across European markets through strategic advisory, market intelligence, commercial partnerships and European representation.
 
-Qiao Partners is a commercial advisory firm based in Warsaw, Poland, with a presence in Beijing. It helps Chinese manufacturers enter the European market and European companies set up in China. It does not invest or give investment advice.
+Qiao Partners is an independent China–Europe market entry and strategic business development firm based in Warsaw, Poland. It helps Chinese companies enter, establish and grow across European markets, and supports selected European companies entering China. It is not a law firm, tax adviser, certification body or investment adviser, and it does not invest or give investment advice.
 
 ## Services
-- Market diagnosis: Regulation, demand, competitors and pricing in your segment, with a recommended entry model. Usually 4–6 weeks.
-- Market entry and go-to-market strategy: Channels, partners, pricing and a plan for your first 12 months of sales in the EU.
-- EU business development and lead generation: We act as your European sales team: qualified buyers, distributors and EPC contractors, and meetings booked.
-- Entity, certification and tax setup: With partner law and tax firms: company formation, CE marking and battery passport, VAT, and Polish Investment Zone incentives.
-- Regulation and government relations: CBAM, the EU ETS, the Batteries Regulation and sector rules; engagement with ministries, agencies and regulators.
-- China entry for European companies: Entity setup, production moves, cost estimates and market strategy in China.
+- [Strategic Advisory & Market Intelligence](https://qiaopartners.eu/services/#strategic-advisory): We assess the European opportunity for your products: demand, competition, pricing, regulation and market access, country by country. The result is a clear recommendation on whether, where and how to enter.
+- [Market Entry & Establishment](https://qiaopartners.eu/services/#market-entry): We design the entry model, whether distributor, partner, direct sales or your own entity, and coordinate the practical steps to operate in Europe with qualified legal, tax and certification specialists.
+- [Commercial Development & Partnerships](https://qiaopartners.eu/services/#commercial-development): We identify and approach European buyers, distributors and commercial partners, arrange qualified meetings and support you through negotiation towards commercial agreements.
+- [European Representation & Expansion](https://qiaopartners.eu/services/#european-representation): We act as your external European business development and strategic coordination partner: representing your company locally, managing partner relationships, coordinating stakeholders and keeping headquarters informed as you expand across countries.
 
-## Market trends we track (to 2035)
-- Battery storage (BESS) and components (Now): Poland's grid-storage build-out, and the EU battery passport from February 2027.
-- Heavy-duty zero-emission vehicles (Now): Battery-electric and hydrogen trucks, buses, chargers and drivetrain parts, as EU CO₂ standards require new truck emissions to fall 45% by 2030 and 90% by 2040.
-- Biomethane equipment and membranes (Now): Upgrading membranes, compressors and digesters toward the EU goal of 35 bcm of biomethane a year by 2030.
-- AI data-centre components (Now): Liquid cooling, power distribution and backup power for new European capacity.
-- Solar, grid and transformers (Now): Inverters, transformers and switchgear for grid expansion, under the Net-Zero Industry Act's resilience rules.
-- Battery recycling equipment (2027–2030): Processing lines ahead of the EU's minimum recycled-content rules for batteries from 2031.
-- Heat pumps and industrial heat (2027–2030): Electrified heat as carbon pricing reaches buildings and transport fuels through ETS2, planned from 2028.
-- Hydrogen and electrolysers (2030–2035): RED III requires 42% renewable hydrogen in industry by 2030 and 60% by 2035.
-- Sodium-ion and long-duration storage (2030–2035): Next-generation storage chemistries as grids need many hours of flexibility.
+## Industries
+- Industrial Technology & Advanced Manufacturing: Industrial automation, Robotics, Machinery, Industrial components, Advanced materials, Manufacturing technologies
+- Energy & Infrastructure: Battery energy storage systems, Battery technologies, Solar, Power electronics, Transformers and grid infrastructure, Renewable energy equipment, Biomethane technologies, Industrial energy systems
+- Mobility & Automotive: Automotive components, EV supply chains, Commercial vehicles, Charging infrastructure, Battery components, Mobility technologies
+- Digital & Critical Infrastructure: AI data-centre infrastructure, Data-centre cooling, Power distribution, Industrial digitalisation, Selected technology infrastructure
 
 ## Pages
-- [English](https://qiaopartners.eu/)
+- [Home](https://qiaopartners.eu/)
+- [About Us](https://qiaopartners.eu/about/)
+- [Services](https://qiaopartners.eu/services/)
+- [Industries](https://qiaopartners.eu/industries/)
+- [Contact](https://qiaopartners.eu/contact/)
+- [European companies entering China](https://qiaopartners.eu/china-entry/)
 - [Polski](https://qiaopartners.eu/pl/)
 - [中文](https://qiaopartners.eu/zh/)
 - [Русский](https://qiaopartners.eu/ru/)
 
+## Insights
+- [Europe's 2026 gas shock and the case for domestic molecules](https://qiaopartners.eu/insights/biomethane/europe-energy-market-2026/): TTF gas rose 177% in 2026. How the price shock, CBAM and ETS2 change the value of domestic renewable gas in Europe.
+
 ## Contact
 - Email: contact@qiaopartners.eu
 - LinkedIn: https://www.linkedin.com/company/qiaopartners/
-- WeChat: QR code on the website
-- WhatsApp: https://wa.me/qr/V5JZQYHRWE3IJ1
+- WeChat: QR code on every page
+- Enquiry form: https://qiaopartners.eu/contact/
