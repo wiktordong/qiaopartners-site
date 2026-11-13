@@ -562,17 +562,17 @@ footer{background:var(--navy-950);color:var(--on-dark-2);font-size:14.5px}
 .tl{margin-top:clamp(56px,6vw,88px);padding:clamp(22px,3vw,40px);border:1px solid var(--line-dark);background:rgba(255,255,255,.03)}
 .tl-head{display:grid;grid-template-columns:200px 1fr;gap:20px;align-items:end;margin-bottom:12px}
 .tl-head h3{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--bronze-2);font-weight:500}
-.tl-months{display:grid;grid-template-columns:repeat(12,1fr);font-size:12px;color:var(--on-dark-3);position:relative}
+.tl-months{display:grid;grid-template-columns:repeat(18,1fr);font-size:12px;color:var(--on-dark-3);position:relative}
 .tl-months em{position:absolute;top:-20px;left:0;font-style:normal;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
 .tl-months span{border-left:1px solid var(--line-dark);padding-left:6px}
 .tl-row{display:grid;grid-template-columns:200px 1fr;gap:20px;align-items:center;padding:12px 0;border-top:1px solid var(--line-dark)}
 .tl-lab{display:grid;gap:2px}.tl-lab b{font-weight:500;font-size:15px;color:var(--on-dark)}.tl-lab span{font-size:13px;color:var(--on-dark-2)}
-.tl-track{position:relative;height:14px;background:repeating-linear-gradient(90deg,transparent 0 calc(100%/12 - 1px),var(--line-dark) calc(100%/12 - 1px) calc(100%/12))}
+.tl-track{position:relative;height:14px;background:repeating-linear-gradient(90deg,transparent 0 calc(100%/18 - 1px),var(--line-dark) calc(100%/18 - 1px) calc(100%/18))}
 .tl-bar{position:absolute;top:0;bottom:0;left:var(--a);width:var(--w);background:linear-gradient(90deg,var(--bronze-2),#E2CBA4);border-radius:999px;transform-origin:0 50%}
 .tl-bar.on{background:linear-gradient(90deg,var(--bronze-2) 0%,rgba(194,164,122,.15) 100%)}
 .tl-note{margin-top:20px;font-size:13px;color:var(--on-dark-3)!important}
 @media (prefers-reduced-motion:no-preference){.js .tl .tl-bar{transform:scaleX(0);transition:transform 1.3s cubic-bezier(.65,0,.35,1) var(--d)}.js .tl.in .tl-bar{transform:none}}
-@media (max-width:700px){.tl-head,.tl-row{grid-template-columns:96px 1fr;gap:10px}.tl-lab b{font-size:13px}.tl-lab span{font-size:11.5px}.tl-months span{font-size:10px;padding-left:2px}.tl-months span:nth-child(odd){color:transparent}}
+@media (max-width:700px){.tl-head,.tl-row{grid-template-columns:96px 1fr;gap:10px}.tl-lab b{font-size:13px}.tl-lab span{font-size:11.5px}.tl-months span{font-size:10px;padding-left:2px}.tl-months span{color:transparent}.tl-months span:nth-child(3n+1){color:var(--on-dark-3)}}
 .stages{row-gap:40px}
 
 /* Bridge quote band (from the previous site, now over the bridge photo) */

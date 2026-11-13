@@ -70,17 +70,18 @@ def phero(k, page, eb, h1, lead, extra=""):
 </section>'''
 
 
-BARS = [(0, 1.4), (1.1, 2.1), (2, 6), (2, 9), (6, 12)]
+BARS = [(0, 1.4), (1.1, 2.1), (2, 6), (6, 14), (12, 18)]
+MONTHS = 18
 
 
 def timeline(k):
     h = L[k]["home"]
-    months = "".join(f"<span>{i}</span>" for i in range(1, 13))
+    months = "".join(f"<span>{i}</span>" for i in range(1, MONTHS + 1))
     rows = ""
     for i, ((name, title, desc, dur, fmt, out), (a, z)) in enumerate(zip(h["stages"], BARS)):
         ongoing = " on" if i == 4 else ""
         rows += (f'<div class="tl-row"><div class="tl-lab"><b>{e(name)}</b><span>{e(dur)}</span></div>'
-                 f'<div class="tl-track"><i class="tl-bar{ongoing}" style="--a:{a / 12 * 100:.2f}%;--w:{(z - a) / 12 * 100:.2f}%;--d:{0.25 + i * 0.18:.2f}s"></i></div></div>')
+                 f'<div class="tl-track"><i class="tl-bar{ongoing}" style="--a:{a / MONTHS * 100:.2f}%;--w:{(z - a) / MONTHS * 100:.2f}%;--d:{0.25 + i * 0.18:.2f}s"></i></div></div>')
     return f'''<div class="tl" data-r=""><div class="tl-head"><h3>{e(h["tl_h"])}</h3><div class="tl-months"><em>{e(h["tl_unit"])}</em>{months}</div></div>{rows}
       <p class="tl-note">{e(h["tl_note"])}</p></div>'''
 
@@ -90,6 +91,12 @@ def stages_html(k):
     return "".join(f'''<li class="stage"><span class="n">0{n + 1}</span><h3>{e(a.upper() if k != "zh" else a)}</h3><p class="t">{e(t)}</p><p>{e(p)}</p>
       <dl><div><dt>{e(h["tl_dur"])}</dt><dd>{e(dur)}</dd></div><div><dt>{e(h["tl_fmt"])}</dt><dd>{e(fmt)}</dd></div><div><dt>{e(h["tl_out"])}</dt><dd>{e(out)}</dd></div></dl></li>'''
                    for n, (a, t, p, dur, fmt, out) in enumerate(h["stages"]))
+
+
+def stages_simple(k):
+    h = L[k]["home"]
+    return "".join(f'<li class="stage"><span class="n">0{n + 1}</span><h3>{e(a.upper() if k != "zh" else a)}</h3><p class="t">{e(t)}</p></li>'
+                   for n, (a, t, *_rest) in enumerate(h["stages"]))
 
 
 def quote(k, pic="brand/bridge-bay.jpg", pos="55% 45%"):
@@ -156,7 +163,7 @@ def home(k, has_ins):
 </section>
 
 <section class="sec dark">
-  <div class="wrap">{shead(h["appr_eyebrow"], h["appr_h"], h["appr_p"])}{timeline(k)}<p style="margin-top:32px"><a class="tlink" href="{url(k, "services")}">{e(c["all_services"])} {AR}</a></p></div>
+  <div class="wrap">{shead(h["appr_eyebrow"], h["appr_h_home"], h["appr_p_home"])}<ol class="stages simple">{stages_simple(k)}</ol><p style="margin-top:48px"><a class="tlink" href="{url(k, "services")}">{e(c["all_services"])} {AR}</a></p></div>
 </section>
 
 <section class="sec stone" id="insights">
