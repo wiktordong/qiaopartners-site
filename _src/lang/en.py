@@ -12,7 +12,7 @@ C = dict(
   f_member="Member of SinoCham, the Polish-Chinese General Chamber of Commerce.",
   f_legal=("Qiao Partners provides commercial and strategic advisory services. We are not a law firm, tax adviser, certification body or investment adviser: "
            "legal, tax, regulatory and certification work is carried out by appropriately qualified specialists. We do not provide investment advice, "
-           "arrange investments or hold client funds. Commercial outcomes depend on many factors and are not guaranteed."),
+           "arrange investments or hold client funds."),
   f_copy="© 2026 Qiao Partners. All rights reserved.",
   f_base="Warsaw, Poland",
 
@@ -137,7 +137,7 @@ C = dict(
     stages=[('Assess', 'Market research & assessment', 'Demand, competitors, prices and regulation in your target countries.', '3–6 weeks', 'Fixed-fee project', 'Market assessment report and go / no-go recommendation'), ('Strategise', 'Entry strategy & model', 'Countries, channels, partners, budget and a 12-month plan.', '2–4 weeks', 'Fixed-fee project (often combined with Assess)', 'Go-to-market strategy and entry model'), ('Establish', 'Market-entry foundations', 'Entity, certification, tax and logistics, coordinated with qualified specialists.', '2–6 months', 'Market-entry mandate', 'Operating set-up in Europe'), ('Commercialise', 'Buyers, distributors & partners', 'Qualified introductions, meetings and negotiation.', 'From month 6, minimum 6 months', 'Monthly mandate, success fee where agreed in writing', 'Qualified pipeline and commercial agreements'), ('Scale', 'European representation', 'Local representation, partner management and expansion to more countries.', 'Ongoing, typically 12-month agreements', 'Monthly retainer', 'A senior European presence for your business')],
     tl_h='Indicative timeline',
     tl_unit='Month',
-    tl_note='Durations are indicative and depend on the product, the number of countries and certification requirements. Commercial results are not guaranteed.',
+    tl_note='Durations are indicative and depend on the product, the number of countries and certification requirements.',
     tl_fmt='Engagement',
     tl_dur='Duration',
     tl_out='You receive',
@@ -285,8 +285,6 @@ C = dict(
           "Poland is a large and fast-growing market with central logistics for Central and Eastern Europe, lower operating costs than Western Europe, and corporate income tax relief for new investment under the Polish Investment Zone. We are based in Warsaw and work across Europe."),
          ("What is the EU battery passport and when does it apply?",
           "From 18 February 2027, industrial batteries above 2 kWh, electric-vehicle batteries and light-means-of-transport batteries placed on the EU market need a digital battery passport, accessible by QR code (EU Batteries Regulation, Article 77)."),
-         ("Can you guarantee sales or partners?",
-          "No. No adviser can honestly guarantee commercial results. We commit to a clear scope, qualified introductions and consistent execution, and we report candidly on progress."),
          ("Do you provide legal, tax or investment advice?",
           "No. Legal, tax, regulatory and certification work is carried out by qualified specialists, whom we coordinate. We do not invest, manage funds or provide investment advice."),
          ("How are your fees structured?",

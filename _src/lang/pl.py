@@ -12,7 +12,7 @@ C = dict(
   f_member="Członek SinoCham – Polsko-Chińskiej Głównej Izby Gospodarczej.",
   f_legal=("Qiao Partners świadczy usługi doradztwa biznesowego i strategicznego. Nie jesteśmy kancelarią prawną, doradcą podatkowym, jednostką certyfikującą ani doradcą inwestycyjnym: "
            "prace prawne, podatkowe, regulacyjne i certyfikacyjne wykonują odpowiednio uprawnieni specjaliści. Nie świadczymy doradztwa inwestycyjnego, nie organizujemy inwestycji "
-           "i nie przechowujemy środków klientów. Wyniki handlowe zależą od wielu czynników i nie są gwarantowane."),
+           "i nie przechowujemy środków klientów."),
   f_copy="© 2026 Qiao Partners. Wszelkie prawa zastrzeżone.",
   f_base="Warszawa, Polska",
 
@@ -137,7 +137,7 @@ C = dict(
     stages=[('Ocena', 'Badanie i ocena rynku', 'Popyt, konkurencja, ceny i regulacje w krajach docelowych.', '3–6 tygodni', 'Projekt za stałą opłatą', 'Raport z oceny rynku i rekomendacja: wchodzić czy nie'), ('Strategia', 'Strategia i model wejścia', 'Kraje, kanały, partnerzy, budżet i plan na 12 miesięcy.', '2–4 tygodnie', 'Projekt za stałą opłatą (często łączony z oceną)', 'Strategia go-to-market i model wejścia'), ('Ustanowienie', 'Podstawy wejścia na rynek', 'Spółka, certyfikacja, podatki i logistyka – koordynowane z uprawnionymi specjalistami.', '2–6 miesięcy', 'Mandat wejścia na rynek', 'Gotowa struktura działalności w Europie'), ('Komercjalizacja', 'Odbiorcy, dystrybutorzy i partnerzy', 'Rekomendacje, spotkania i negocjacje.', 'Od 6. miesiąca, minimum 6 miesięcy', 'Mandat miesięczny, premia za sukces, jeśli uzgodniono na piśmie', 'Zweryfikowany lejek sprzedaży i umowy handlowe'), ('Skalowanie', 'Reprezentacja w Europie', 'Lokalna reprezentacja, zarządzanie partnerami i ekspansja na kolejne kraje.', 'Stale, zwykle umowy 12-miesięczne', 'Miesięczna stała obsługa', 'Doświadczona obecność Państwa firmy w Europie')],
     tl_h='Orientacyjny harmonogram',
     tl_unit='Miesiąc',
-    tl_note='Czas trwania jest orientacyjny i zależy od produktu, liczby krajów i wymogów certyfikacyjnych. Wyniki handlowe nie są gwarantowane.',
+    tl_note='Czas trwania jest orientacyjny i zależy od produktu, liczby krajów i wymogów certyfikacyjnych.',
     tl_fmt='Forma współpracy',
     tl_dur='Czas trwania',
     tl_out='Rezultat',
@@ -285,8 +285,6 @@ C = dict(
           "Polska to duży i szybko rosnący rynek z centralną logistyką dla Europy Środkowo-Wschodniej, niższymi kosztami działalności niż w Europie Zachodniej i ulgą w podatku CIT dla nowych inwestycji w ramach Polskiej Strefy Inwestycji. Nasza siedziba jest w Warszawie, a pracujemy w całej Europie."),
          ("Czym jest paszport baterii UE i od kiedy obowiązuje?",
           "Od 18 lutego 2027 r. baterie przemysłowe powyżej 2 kWh, baterie do pojazdów elektrycznych i lekkich środków transportu wprowadzane na rynek UE muszą mieć cyfrowy paszport baterii dostępny przez kod QR (rozporządzenie bateryjne UE, art. 77)."),
-         ("Czy gwarantujecie sprzedaż lub partnerów?",
-          "Nie. Żaden doradca nie może uczciwie zagwarantować wyników handlowych. Zobowiązujemy się do jasnego zakresu, wartościowych rekomendacji i konsekwentnej realizacji oraz rzetelnie raportujemy postępy."),
          ("Czy świadczycie doradztwo prawne, podatkowe lub inwestycyjne?",
           "Nie. Prace prawne, podatkowe, regulacyjne i certyfikacyjne wykonują uprawnieni specjaliści, których pracę koordynujemy. Nie inwestujemy, nie zarządzamy środkami i nie świadczymy doradztwa inwestycyjnego."),
          ("Jak wygląda wynagrodzenie?",
