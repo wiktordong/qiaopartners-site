@@ -2,7 +2,7 @@
 C = dict(
   lang="en", path="", label="EN", name="English",
   nav=dict(home="Home", about="About Us", services="Services", industries="Industries", insights="Insights", contact="Contact"),
-  nav_cta="Discuss Your Expansion", menu="Menu", skip="Skip to content", lang_label="Language",
+  nav_cta="Discuss your expansion", menu="Menu", skip="Skip to content", lang_label="Language",
   qiao_def=("桥", "qiáo", "noun", "a bridge."),
   more="Learn more", all_services="Explore all services", all_industries="Explore all industries",
   f_tag="Independent China–Europe market entry and strategic business development.",
@@ -33,7 +33,7 @@ C = dict(
                 "Country prioritisation and market-entry feasibility",
                 "Go-to-market strategy"],
          fmt='Fixed-fee project, typically three to six weeks.',
-         cta="Request a Market Assessment", cta_type="assessment"),
+         cta="Request a market assessment", cta_type="assessment"),
     dict(id="market-entry", n="02", title="Market Entry & Establishment",
          short="Choose the right entry model and put the foundations in place.",
          desc="We design the entry model, whether distributor, partner, direct sales or your own entity, and coordinate the practical steps to operate in Europe with qualified legal, tax and certification specialists.",
@@ -46,7 +46,7 @@ C = dict(
                 "Coordination of certification and compliance with accredited bodies",
                 "Local operational set-up support"],
          fmt='Market-entry mandate, typically two to six months depending on certification and entity requirements.',
-         cta="Discuss Your Market Entry", cta_type="expansion"),
+         cta="Discuss your market entry", cta_type="expansion"),
     dict(id="commercial-development", n="03", title="Commercial Development & Partnerships",
          short="Build a qualified European pipeline of buyers, distributors and partners.",
          desc="We identify and approach European buyers, distributors and commercial partners, arrange qualified meetings and support you through negotiation towards commercial agreements.",
@@ -59,7 +59,7 @@ C = dict(
                 "Sales pipeline development and reporting",
                 "Negotiation support"],
          fmt='Monthly business development mandate, usually from month six, minimum six months. A success-based component may be agreed in writing.',
-         cta="Explore a Strategic Partnership", cta_type="partnership"),
+         cta="Explore a strategic partnership", cta_type="partnership"),
     dict(id="european-representation", n="04", title="European Representation & Expansion",
          short="A senior European presence for your business, before you build a full local team.",
          desc="We act as your external European business development and strategic coordination partner: representing your company locally, managing partner relationships, coordinating stakeholders and keeping headquarters informed as you expand across countries.",
@@ -73,7 +73,7 @@ C = dict(
                 "Strategic advisory retainer"],
          fmt='Monthly representation agreement or strategic retainer, typically twelve months.',
          note="Representation covers the scope set out in the engagement letter. It does not replace a fully staffed European sales organisation unless the engagement is designed for that.",
-         cta="Discuss European Representation", cta_type="expansion"),
+         cta="Discuss European representation", cta_type="expansion"),
   ],
 
   industries=[
@@ -113,9 +113,9 @@ C = dict(
     title="Qiao Partners | China–Europe Market Entry & Business Development",
     desc="Independent China–Europe advisory firm helping Chinese companies enter, establish and grow across European markets through strategic advisory, market intelligence, commercial partnerships and European representation.",
     eyebrow="Qiao Partners | China–Europe Advisory",
-    h1a="Your European Ambitions.", h1b="Our Local Execution.",
+    h1a="Your European ambitions.", h1b="Our local execution.",
     lead="We help ambitious Chinese companies enter, establish and grow across European markets through strategic advisory, market intelligence, commercial partnerships and local representation.",
-    cta1="Discuss Your European Expansion", cta2="Explore Our Services",
+    cta1="Discuss your European expansion", cta2="Our services",
     cred_eyebrow="Credibility",
     cred_h='Rooted in both markets.',
     cred_p='Qiao Partners was founded by people who grew up at the intersection of Europe and China. Early in our careers we worked for Chinese companies entering the European market and for European companies working with China, learning first-hand how regulation, buyers and business culture differ on each side.',
@@ -158,7 +158,7 @@ C = dict(
     ins_h="Understanding the Forces Shaping European Markets.",
     ins_p="Regulation, investment and industrial policy are reshaping what Europe buys and from whom. These are developments we follow closely. Each is dated and linked to its source.",
     ins_checked="Facts checked on 13 November 2026.",
-    ins_more="Read our Insights",
+    ins_more="All insights",
     signals=[("Trade & investment", "May 2026", "Chinese investment in Europe at a seven-year high",
               "Chinese FDI in the EU and UK reached €16.8 billion in 2025, up 67% on 2024 and the highest level since 2018. Greenfield investment rose to a record €8.9 billion.",
               "Rhodium Group & MERICS, May 2026", "https://rhg.com/research/chinese-investment-in-europe-rises-to-seven-year-high-chinese-fdi-in-europe-2025-update/"),
@@ -179,9 +179,9 @@ C = dict(
               "REPowerEU Plan, COM(2022) 230", "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=COM:2022:230:FIN")],
   ),
 
-  final=dict(h="Let's Discuss Your European Expansion.",
+  final=dict(h="Let's discuss your European expansion.",
              p="Whether you are assessing the European market, identifying commercial partners or preparing to establish a local presence, Qiao Partners can help you define the next steps.",
-             cta="Arrange an Introductory Conversation",
+             cta="Arrange an introductory conversation",
              side="Prefer WeChat? Scan the code, or write to us at"),
 
   about=dict(
@@ -241,7 +241,7 @@ C = dict(
   ),
 
   contact=dict(
-    title="Contact | Discuss Your European Expansion | Qiao Partners",
+    title="Contact | Discuss your European expansion | Qiao Partners",
     desc="Arrange an introductory conversation with Qiao Partners about entering, establishing or growing your business in Europe. Email, WeChat or the enquiry form.",
     eyebrow="Contact",
     h1="Let's discuss your European expansion.",
@@ -302,6 +302,6 @@ C = dict(
            ("Partner and supplier identification", "Identification and screening of distributors, manufacturing partners and suppliers."),
            ("Production and sourcing cost estimates", "Indicative cost comparisons for manufacturing or sourcing in China."),
            ("Local coordination", "Meetings, site visits and follow-up with counterparts in China.")],
-    cta="Discuss Your China Plans",
+    cta="Discuss your China plans",
   ),
 )

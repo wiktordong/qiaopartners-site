@@ -55,9 +55,8 @@ def final(k, ctype=""):
     q = f"?type={ctype}" if ctype else ""
     return f'''<section class="final"><img class="bg" src="/img/brand/glass-office.jpg" style="object-position:70% 50%" alt="" loading="lazy" decoding="async">
   <div class="wrap">
-    <div>{eyebrow("Qiao Partners")}<h2>{e(f["h"])}</h2><p class="lead">{e(f["p"])}</p>
+    <div><h2>{e(f["h"])}</h2><p class="lead">{e(f["p"])}</p>
       <a class="btn ivory" href="{url(k, "contact")}{q}">{e(f["cta"])} {AR}</a></div>
-    <div class="side"><div class="qrs"><figure><img src="/img/wechat-qr.jpg" alt="WeChat QR code — Qiao Partners" loading="lazy"><figcaption>WeChat</figcaption></figure><figure><a href="{WHATSAPP}" rel="noopener" target="_blank"><img src="/img/whatsapp-qr.png" alt="WhatsApp QR code — Qiao Partners" loading="lazy"></a><figcaption>WhatsApp</figcaption></figure></div><p>{e(f["side"])} <a href="mailto:{EMAIL}">{EMAIL}</a></p>{social(k, "social light")}</div>
   </div>
 </section>'''
 
@@ -66,7 +65,7 @@ def phero(k, page, eb, h1, lead, extra=""):
     c = L[k]
     crumbs = "" if page == "home" else f'<nav class="crumbs" aria-label="Breadcrumb"><a href="{url(k, "home")}">{e(c["nav"]["home"])}</a> / {e(eb)}</nav>'
     return f'''<section class="phero">
-  <div class="wrap">{crumbs}{eyebrow(eb)}<h1>{e(h1)}</h1><p class="lead">{e(lead)}</p>{extra}</div>
+  <div class="wrap">{crumbs}<h1>{e(h1)}</h1><p class="lead">{e(lead)}</p>{extra}</div>
 </section>'''
 
 
@@ -117,28 +116,28 @@ def home(k, has_ins):
         else:
             v = f'<dd class="{"big" if len(val) < 9 else ""}">{e(val)}</dd>'
         facts.append(f'<div class="fact"><dt>{e(label)}</dt>{v}</div>')
-    svcs = "".join(f'''<article class="svc"><span class="n">{s["n"]}</span><h3>{e(s["title"])}</h3><p>{e(s["short"])}</p>
-      <a class="tlink" href="{url(k, "services", s["id"])}">{e(c["more"])} {AR}</a></article>''' for s in c["services"])
-    inds = "".join(f'''<a class="ind" href="{url(k, "industries", i["id"])}">{img(i["img"], i["alt"])}<div class="in"><span class="k">{i["k"]}</span>
-      <h3>{e(i["title"])}</h3><p>{e(i["short"])}</p><span class="more">{e(c["more"])} {AR}</span></div></a>''' for i in c["industries"])
+    svcs = "".join(f'''<a class="row" href="{url(k, "services", s["id"])}"><span class="n">{s["n"]}</span><h3>{e(s["title"])}</h3><p>{e(s["short"])}</p>{AR}</a>''' for s in c["services"])
+    inds = "".join(f'''<a class="ind" href="{url(k, "industries", i["id"])}">{img(i["img"], i["alt"])}<div class="in"><h3>{e(i["title"])}</h3></div></a>''' for i in c["industries"])
     stages = stages_html(k)
     ch = h["cmp_head"]
     rows = "".join(f'<tr><th scope="row">{e(a)}</th><td data-h="{e(ch[1])}">{e(b)}</td><td data-h="{e(ch[2])}">{e(x)}</td></tr>' for a, b, x in h["cmp"])
     diffs = "".join(f'<li class="diff"><span class="n">0{n + 1}</span><h3>{e(t)}</h3><p>{e(p)}</p></li>' for n, (t, p) in enumerate(h["diffs"]))
-    sigs = "".join(f'''<article class="sig"><div class="top"><span>{e(t)}</span><b>{e(dt)}</b></div><h3>{e(hh)}</h3><p>{e(p)}</p>
-      <p class="src"><a href="{e(u)}" rel="noopener" target="_blank">{e(s)}</a></p></article>''' for t, dt, hh, p, s, u in h["signals"][:3])
+    sigs = "".join(f'''<a class="row sigrow" href="{e(u)}" rel="noopener" target="_blank"><span class="n">{e(dt)}</span><h3>{e(hh)}</h3><p>{e(s)}</p>{AR}</a>''' for t, dt, hh, p, s, u in h["signals"][:3])
     arts = ""
     if has_ins:
         cards = "".join(f'<a class="art" href="{u}"><div class="pic">{img(im, al)}</div><span>{e(dt)}</span><h3>{e(t)}</h3></a>'
                         for t, u, im, al, dt in build_insights.latest(k, 3))
-        arts = f'<div class="arts">{cards}</div><p style="margin-top:36px"><a class="tlink" href="{url(k, "insights")}">{e(h["ins_more"])} {AR}</a></p>'
+        arts = f'<div class="arts">{cards}</div>'
     _shots = [("brand/wind-sunset.jpg", "energy-infrastructure", "60% 55%"), ("brand/robot-welding.jpg", "industrial-technology", "50% 45%"),
              ("brand/auto-assembly.jpg", "mobility-automotive", "50% 55%"), ("brand/factory-hall.jpg", "industrial-technology", "50% 40%")]
     _strip = "".join(f'<a href="{url(k, "industries", sec)}">{img(f, cap, pos=pos)}<span>{e(cap)}</span></a>' for (f, sec, pos), cap in zip(_shots, c["strip"]))
+    def hh(title, link="", label=""):
+        more = f'<a class="tlink" href="{link}">{e(label)} {AR}</a>' if link else ""
+        return f'<div class="hh"><h2 class="h2">{e(title)}</h2>{more}</div>'
     body = f'''<section class="hero bridge"><img class="bg" src="/img/brand/bridge.jpg" alt="" style="object-position:60% 50%" decoding="async" fetchpriority="high">
   <div class="wrap">
     <p class="def"><b lang="zh-CN">{d[0]}</b>{e(d[1])} <i>{e(d[2])}</i> — {e(d[3])}</p>
-    <div class="hero-main">{eyebrow(h["eyebrow"])}<h1><span class="a">{e(h["h1a"])}</span> <span class="b">{e(h["h1b"])}</span></h1></div>
+    <div class="hero-main"><h1><span class="a">{e(h["h1a"])}</span> <span class="b">{e(h["h1b"])}</span></h1></div>
     <div class="hero-side"><p class="lead">{e(h["lead"])}</p>
       <div class="ctas"><a class="btn ivory" href="{url(k, "contact")}?type=expansion">{e(h["cta1"])} {AR}</a><a class="tlink" href="{url(k, "services")}">{e(h["cta2"])} {AR}</a></div></div>
   </div>
@@ -147,27 +146,26 @@ def home(k, has_ins):
 <section class="sec">
   <div class="wrap cred">
     <figure class="cred-pic">{img("meeting.jpg", h["cred_pic"], pos="50% 40%")}</figure>
-    <div class="cred-copy">{eyebrow(h["cred_eyebrow"])}<h2 class="h2">{e(h["cred_h"])}</h2><p class="lead">{e(h["cred_p"])}</p>
+    <div class="cred-copy"><h2 class="h2">{e(h["cred_h"])}</h2><p class="lead">{e(h["cred_p"])}</p>
       <dl class="facts">{"".join(facts)}</dl>
       <a class="tlink" href="{url(k, "about")}">{e(c["nav"]["about"])} {AR}</a></div>
   </div>
 </section>
 
-<section class="sec stone" id="services">
-  <div class="wrap">{shead(h["what_eyebrow"], h["what_h"], h["what_p"])}<div class="svcs">{svcs}</div></div>
+<section class="sec flush" id="services">
+  <div class="wrap">{hh(c["nav"]["services"], url(k, "services"), c["all_services"])}<div class="rows">{svcs}</div></div>
 </section>
 
-<section class="sec" id="industries">
-  <div class="wrap">{shead(h["ind_eyebrow"], h["ind_h"], h["ind_p"], extra=f'<p style="margin-top:22px"><a class="tlink" href="{url(k, "industries")}">{e(c["all_industries"])} {AR}</a></p>')}</div>
-  <div class="wrap"><div class="inds">{inds}</div></div>
+<section class="sec flush" id="industries">
+  <div class="wrap">{hh(c["nav"]["industries"], url(k, "industries"), c["all_industries"])}<div class="inds">{inds}</div></div>
 </section>
 
 <section class="sec dark">
-  <div class="wrap">{shead(h["appr_eyebrow"], h["appr_h_home"], h["appr_p_home"])}<ol class="stages simple">{stages_simple(k)}</ol><p style="margin-top:48px"><a class="tlink" href="{url(k, "services")}">{e(c["all_services"])} {AR}</a></p></div>
+  <div class="wrap">{hh(h["appr_h_home"], url(k, "services"), c["more"])}<ol class="stages simple">{stages_simple(k)}</ol></div>
 </section>
 
-<section class="sec stone" id="insights">
-  <div class="wrap">{shead(h["ins_eyebrow"], h["ins_h"], h["ins_p"])}<div class="signals">{sigs}</div>{arts}</div>
+<section class="sec" id="insights">
+  <div class="wrap">{hh(c["nav"]["insights"], url(k, "insights") if has_ins else "", h["ins_more"])}<div class="rows">{sigs}</div>{arts}</div>
 </section>
 {final(k)}
 <script>(function(){{var m={{"#book":"contact","#contact":"contact","#faq":"contact","#about":"about","#sectors":"industries","#team":"about"}};var t=m[location.hash];if(t)location.replace("{url(k, "home")}"+t+"/");}})();</script>'''
