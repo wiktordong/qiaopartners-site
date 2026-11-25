@@ -224,12 +224,12 @@ def org_ld(k):
     c = L[k]
     return {"@context": "https://schema.org", "@type": "ProfessionalService", "@id": SITE + "/#org", "name": "Qiao Partners",
             "url": SITE + "/", "logo": SITE + "/favicon-192.png", "image": SITE + "/img/brand/bridge.jpg", "email": EMAIL,
-            "description": L["en"]["home"]["desc"], "slogan": "Your European Ambitions. Our Local Execution.",
+            "description": L["en"]["home"]["desc"], "slogan": "Your European ambitions. Our local execution.",
             "areaServed": [{"@type": "Place", "name": "Europe"}, {"@type": "Country", "name": "China"}],
             "knowsLanguage": ["en", "zh", "pl", "ru"], "sameAs": [LINKEDIN],
             "address": {"@type": "PostalAddress", "addressLocality": "Warsaw", "addressCountry": "PL"},
             "memberOf": [{"@type": "Organization", "name": f'{m["name"]} — {m["full"]["en"]}'} for m in MEMBERS],
-            "knowsAbout": ["China–Europe market entry", "European market entry consulting", "European representation for Chinese companies",
+            "knowsAbout": ["European distribution for Chinese manufacturers", "China–Europe market entry", "Distributor management", "Key-account management", "Commercial negotiation", "Aluminium products", "European representation for Chinese companies",
                            "Distributor identification", "Market intelligence", "Go-to-market strategy"]}
 
 

@@ -604,3 +604,9 @@ footer{background:var(--navy-950);color:var(--on-dark-2);font-size:14.5px}
 @media (prefers-reduced-motion:no-preference) and (max-width:980px){.js .stages[data-r]::before{transform:scaleY(0)}}
 @media (prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation:none}}
 .final h2{font-size:clamp(34px,4vw,56px);margin-top:0}.final .wrap{padding-block:clamp(80px,9vw,130px)}
+
+/* Five industry tiles */
+.inds{grid-template-columns:repeat(5,minmax(0,1fr))}
+.ind{min-height:400px}
+@media (max-width:1100px){.inds{grid-template-columns:repeat(2,minmax(0,1fr))}.ind:last-child{grid-column:1/-1;min-height:320px}}
+@media (max-width:600px){.inds{grid-template-columns:1fr}.ind:last-child{grid-column:auto}}
