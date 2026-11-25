@@ -376,7 +376,7 @@ def main():
     en = L["en"]
     llms = ["# Qiao Partners", "", f"> {en['home']['desc']}", "",
             "Qiao Partners is an independent China–Europe market entry and strategic business development firm based in Warsaw, Poland. "
-            "It helps Chinese manufacturers enter Europe and builds, runs and grows their European distribution: market entry and compliance, distribution and channel management, client and account management, and negotiation of commercial agreements. It also supports selected European companies entering China. "
+            "It is a trading partner and business developer that connects European demand with Chinese supply: it opens European markets and finds local buyers for Chinese manufacturers, selects manufacturers by hand against each buyer's needs, ensures certification, product quality and capacity, and manages the trade and the account. "
             "It is not a law firm, tax adviser, certification body or investment adviser, and it does not invest or give investment advice.", "",
             "## Services"] + [f"- [{s['title']}]({SITE}{url('en', 'services', s['id'])}): {s['desc']}" for s in en["services"]] + \
            ["", "## Industries"] + [f"- {i['title']}: {', '.join(i['items'])}" for i in en["industries"]] + \

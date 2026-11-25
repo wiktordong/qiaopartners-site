@@ -5,12 +5,12 @@ C = dict(
   nav_cta="Discuss your expansion", menu="Menu", skip="Skip to content", lang_label="Language",
   qiao_def=("桥", "qiáo", "noun", "a bridge."),
   more="Learn more", all_services="Explore all services", all_industries="Explore all industries",
-  f_tag='European market entry and distribution for Chinese companies.',
+  f_tag='Trading partner and business developer connecting European buyers with Chinese manufacturers.',
   f_services="Services", f_company="Company", f_contact="Contact",
   f_eu2cn="European companies entering China",
   f_wechat="Scan to connect on WeChat",
   f_member="Member of SinoCham, the Polish-Chinese General Chamber of Commerce.",
-  f_legal=("Qiao Partners provides market entry, distribution and commercial services. We are not a law firm, tax adviser, certification body or investment adviser: "
+  f_legal=("Qiao Partners is a trading partner and business developer. We are not a law firm, tax adviser, certification body or investment adviser: "
            "legal, tax, regulatory and certification work is carried out by appropriately qualified specialists. We do not provide investment advice, "
            "arrange investments or hold client funds."),
   f_copy="© 2026 Qiao Partners. All rights reserved.",
@@ -20,7 +20,7 @@ C = dict(
   f_whatsapp='Message us on WhatsApp',
   f_social='Follow and contact us', f_scan='Scan with WeChat', f_close='Close',
   quote='A bridge is only worth building if traffic flows both ways. That is the business we are in.',
-  services=[{'id': 'market-entry', 'n': '01', 'title': 'Market Entry & Compliance', 'short': 'The right entry model, certification and import set-up before the first shipment.', 'desc': 'We assess demand, prices and competitors for your products, choose the entry and distribution model, and coordinate everything needed to sell legally in Europe: certification, importer of record, entity, customs and tax, with qualified specialists.', 'needs': ['You are deciding which European countries to enter first', 'Your products need CE marking, sector certification or CBAM reporting', 'You need an importer of record or a European entity'], 'deliv': ['Market assessment, pricing and competitor benchmark', 'Entry and distribution model by country', 'Coordination of certification and compliance with accredited bodies', 'Importer-of-record, entity, customs and tax set-up with partner firms'], 'fmt': 'Fixed-fee assessment of three to six weeks, followed by a market-entry mandate.', 'cta': 'Request a market assessment', 'cta_type': 'assessment'}, {'id': 'distribution', 'n': '02', 'title': 'Distribution & Channel Management', 'short': 'A European distribution network, built and run for your products.', 'desc': 'We select, appoint and manage distributors, dealers and system integrators across Europe, or act as your appointed distribution partner for agreed countries. We set channel structure, pricing and terms, and coordinate logistics, stock and after-sales with qualified partners.', 'needs': ['You have no distributors in Europe, or the wrong ones', 'Your channel prices and terms differ from country to country', 'You want one partner to run distribution rather than many agents'], 'deliv': ['Distributor and dealer mapping, selection and onboarding', 'Appointed distribution for agreed countries where it fits', 'Channel pricing, territories and terms', 'Logistics, warehousing and after-sales coordinated with partners', 'Channel performance reporting to headquarters'], 'fmt': 'Monthly distribution mandate or distribution agreement for defined countries.', 'cta': 'Discuss European distribution', 'cta_type': 'distribution'}, {'id': 'client-management', 'n': '03', 'title': 'Client & Account Management', 'short': 'One European counterpart for your customers, from first order to repeat business.', 'desc': 'We identify and win buyers, manage key accounts locally and in their language, follow orders, claims and service requests, and keep headquarters informed with regular pipeline and market reporting.', 'needs': ['European customers expect a local contact, not an email to China', 'Orders, complaints and service requests go unanswered across time zones', 'Headquarters lacks visibility of the European pipeline'], 'deliv': ['Buyer identification and qualified introductions', 'Key-account management and regular customer visits', 'Order, claim and after-sales follow-up', 'Pipeline, forecast and market reporting'], 'fmt': 'Monthly retainer, typically twelve months.', 'cta': 'Discuss client management', 'cta_type': 'expansion'}, {'id': 'negotiation', 'n': '04', 'title': 'Negotiation & Commercial Agreements', 'short': 'Terms that work in Europe, negotiated in person.', 'desc': 'We lead or support negotiations with distributors, buyers and tender authorities: price, exclusivity, payment terms, warranty and liability. Agreements are drafted and reviewed with qualified lawyers.', 'needs': ['A distributor or buyer wants exclusivity, long payment terms or broad warranties', 'You are preparing for a tender or framework agreement', 'Cultural and contractual expectations differ between your team and the buyer'], 'deliv': ['Negotiation strategy and preparation', 'Leading or attending negotiations in Europe', 'Distribution, supply and agency agreement terms with partner lawyers', 'Tender and framework-agreement support'], 'fmt': 'Per negotiation, or within a distribution or client-management mandate; success fee where agreed in writing.', 'cta': 'Discuss a negotiation', 'cta_type': 'partnership'}],
+  services=[{'id': 'buyer-development', 'n': '01', 'title': 'European Buyer Development', 'short': 'Opening European markets and finding the local buyers for your products.', 'desc': 'We open European markets for Chinese manufacturers: we identify the buyers, distributors and project owners who need your products, introduce you in person and develop each opportunity until it becomes an order.', 'needs': ['You have a strong product but no European customers yet', 'Trade fairs and cold outreach have not produced real buyers', 'You need someone in Europe who knows who is buying'], 'deliv': ['Market opening plan by country and segment', 'Buyer, distributor and project mapping', 'Qualified introductions and meetings in Europe', 'Opportunity follow-up through to first order'], 'fmt': 'Monthly business development mandate, usually with a success fee agreed in writing.', 'cta': 'Discuss European buyers', 'cta_type': 'expansion'}, {'id': 'supplier-selection', 'n': '02', 'title': 'Demand-Led Supplier Selection', 'short': 'We start from what the buyer needs, then select the manufacturer by hand.', 'desc': "Every match starts with demand. We take the European buyer's specification, volumes, price and delivery needs, and select manufacturers individually against them. We do not run a directory or a marketplace: each supplier we put forward has been chosen for that buyer.", 'needs': ['A European buyer needs a reliable Chinese supplier for a specific product', 'Specifications, volumes or delivery terms are demanding', 'Past suppliers did not match what was promised'], 'deliv': ['Buyer requirement brief: specification, volumes, price, timing', 'Long list and hand-selected short list of manufacturers', 'Factory and management meetings in China', 'Recommended supplier with a clear rationale'], 'fmt': 'Per sourcing assignment, or within a buyer or manufacturer mandate.', 'cta': 'Find a supplier', 'cta_type': 'buyer'}, {'id': 'quality-assurance', 'n': '03', 'title': 'Certification, Quality & Capacity', 'short': 'The product, the paperwork and the production capacity, checked before anything ships.', 'desc': "We make sure the supply fits the buyer: EU certification and compliance, quality standards, and production capacity tailored to the buyer's volumes and timelines. Audits, testing and inspections are carried out with accredited partners.", 'needs': ['The buyer requires CE marking, EU standards or documented quality', 'Volumes must be guaranteed over months or years', 'You need independent checks before shipment'], 'deliv': ['Certification and compliance coordination with accredited bodies', 'Factory audits and capacity assessment', 'Pre-shipment inspection and quality control', 'Documentation the European buyer expects'], 'fmt': 'Fixed fee per supplier or per order, or included in a trade mandate.', 'cta': 'Discuss quality and certification', 'cta_type': 'assessment'}, {'id': 'trade-management', 'n': '04', 'title': 'Trade & Account Management', 'short': 'We act as the trading partner between supplier and buyer, and keep the relationship working.', 'desc': 'Where agreed, Qiao Partners trades the goods itself, buying from the manufacturer and selling to the European buyer. Otherwise we coordinate the trade between both sides. Either way we handle negotiation, contracts, orders, logistics and after-sales, and manage the account for repeat business.', 'needs': ['The buyer prefers a European counterparty to contract with', 'Negotiation, payment terms and delivery need one party in charge', 'The relationship must continue beyond the first order'], 'deliv': ['Negotiation of price, terms and exclusivity', 'Contracts drafted with qualified lawyers', 'Order, logistics, customs and after-sales coordination', 'Key-account management and regular reporting to both sides'], 'fmt': 'Trade margin where Qiao Partners trades the goods; otherwise a monthly mandate with a success fee agreed in writing.', 'cta': 'Discuss a trading partnership', 'cta_type': 'partnership'}],
 
   industries=[
     dict(id="industrial-technology", k="A", title="Industrial Technology & Advanced Manufacturing", img="brand/robot-line.jpg",
@@ -57,11 +57,11 @@ C = dict(
   ],
 
   home=dict(
-    title='Qiao Partners | European Market Entry & Distribution for Chinese Companies',
-    desc='Qiao Partners helps Chinese manufacturers enter and sell across Europe: market entry and compliance, distribution, client management and negotiation, handled locally by one partner.',
+    title='Qiao Partners | Trading Partner & Business Developer for Chinese Manufacturers in Europe',
+    desc='Qiao Partners connects European demand with Chinese supply. We open European markets, find local buyers, select manufacturers by hand and make sure certification, quality and capacity fit each buyer.',
     eyebrow="Qiao Partners | China–Europe Advisory",
     h1a="Your European ambitions.", h1b="Our local execution.",
-    lead='We help Chinese manufacturers enter and sell across Europe: market entry, distribution, client management and negotiation, handled locally by one partner.',
+    lead='We connect European demand with Chinese supply: we find the local buyers, select the right manufacturers by hand and make sure certification, quality and capacity match what each buyer needs.',
     cta1="Discuss your European expansion", cta2="Our services",
     cred_eyebrow="Credibility",
     cred_h='Rooted in both markets.',
@@ -81,7 +81,7 @@ C = dict(
     appr_eyebrow="Our approach",
     appr_h='How an engagement works, and how long it takes.',
     appr_p='Five stages, one accountable partner. Each stage has a defined scope, a deliverable and an indicative duration. Clients can start at any stage and stop after any stage.',
-    stages=[('Assess', 'Market & entry model', 'Demand, prices, competitors, regulation and the right import and distribution model.', '3–6 weeks', 'Fixed-fee project', 'Market assessment and entry plan'), ('Establish', 'Compliance & import set-up', 'Certification, importer of record, entity, logistics and tax, coordinated with qualified specialists.', '2–6 months', 'Market-entry mandate', 'Products ready to sell in Europe'), ('Distribute', 'Distribution network', 'Selecting, appointing and onboarding distributors, dealers and integrators.', 'From month 4', 'Monthly distribution mandate', 'An active European channel'), ('Negotiate', 'Buyers & agreements', 'Qualified buyers, negotiation and signed commercial agreements.', 'From month 6', 'Monthly mandate, success fee where agreed in writing', 'Signed customers and distributors'), ('Manage', 'Clients & growth', 'Account management, orders, after-sales and expansion to more countries.', 'Ongoing, typically 12-month agreements', 'Monthly retainer', 'A managed European business')],
+    stages=[('Demand', 'Understand the buyer', 'Specification, volumes, price, timing and the standards the buyer must meet.', '1–3 weeks', 'Included in the mandate', 'A clear buyer requirement'), ('Select', 'Choose the supplier', "Manufacturers selected by hand against the buyer's needs, with meetings in China.", '3–6 weeks', 'Sourcing assignment', 'A recommended manufacturer'), ('Verify', 'Certification, quality & capacity', 'EU certification, audits, samples and capacity checks with accredited partners.', '1–4 months', 'Fixed fee or part of the trade mandate', 'A supplier ready for Europe'), ('Trade', 'Negotiate & deliver', 'Price and terms, contracts, orders, logistics and inspection before shipment.', 'From the first order', 'Trade margin or monthly mandate', 'Delivered orders'), ('Grow', 'Manage the account', 'Repeat orders, after-sales and new buyers across Europe.', 'Ongoing', 'Trade margin or monthly retainer', 'A lasting supply relationship')],
     tl_h='Indicative timeline',
     tl_unit='Month',
     tl_note='Durations are indicative and depend on the product, the number of countries and certification requirements.',
@@ -132,14 +132,14 @@ C = dict(
              side="Prefer WeChat? Scan the code, or write to us at"),
 
   about=dict(
-    title='About Qiao Partners | European Market Entry & Distribution',
-    desc='Qiao Partners is an independent firm based in Warsaw that helps Chinese manufacturers enter Europe and build, run and grow their European distribution.',
+    title='About Qiao Partners | Connecting European Demand with Chinese Supply',
+    desc='Qiao Partners is a Warsaw-based trading partner and business developer that connects European buyers with hand-selected Chinese manufacturers.',
     eyebrow="About us",
-    h1='A European base for Chinese manufacturers.',
-    lead='We take Chinese products into Europe and keep them selling: market entry, distribution, client management and negotiation, handled locally.',
+    h1='We connect European demand with Chinese supply.',
+    lead='A trading partner and business developer for Chinese manufacturers, and a reliable source for European buyers.',
     pic="Cable-stayed bridge, seen from below",
     blocks=[
-      ("Who we are", ['Qiao Partners is an independent market entry and distribution firm based in Warsaw. We work with Chinese manufacturers from the first assessment through to an established European business: compliance and import set-up, a distribution network, customer accounts and the negotiations in between.',
+      ("Who we are", ['Qiao Partners is a trading partner and business developer based in Warsaw. We open European markets for Chinese manufacturers by finding the local buyers, and we serve those buyers by selecting manufacturers individually against their demand, then making sure certification, product quality and production capacity are right before anything is delivered.',
                       "We are a boutique by design. Every client works directly with senior people, and we bring in qualified specialists only where the work calls for them."]),
       ("Why we exist", ["@Qiáo (桥) means bridge.",
                         "Many Chinese companies now make products that can compete in Europe on quality, technology and price. Fewer have the local relationships, regulatory knowledge and presence on the ground to turn that potential into contracts. European buyers, meanwhile, want reliable suppliers they understand and can hold to account.",
@@ -163,16 +163,16 @@ C = dict(
   ),
 
   svc_page=dict(
-    title='Services | Market Entry, Distribution, Client Management & Negotiation | Qiao Partners',
-    desc='Market entry and compliance, distribution and channel management, client and account management, and negotiation of commercial agreements for Chinese companies selling in Europe.',
+    title='Services | Buyer Development, Supplier Selection, Quality & Trade | Qiao Partners',
+    desc='European buyer development, demand-led supplier selection, certification, quality and capacity assurance, and trade and account management between Chinese manufacturers and European buyers.',
     eyebrow="Services",
-    h1='From market entry to a managed European business.',
-    lead='Market entry, distribution, client management and negotiation. Clients engage us for one part or for the whole.',
+    h1='From European demand to delivered supply.',
+    lead='We find the buyer, select the manufacturer, check the product and manage the trade. Clients work with us on one step or all of them.',
     needs_h="When clients come to us", deliv_h="What you receive", fmt_h="How it is structured",
     spec_h="Working with qualified specialists",
     spec_p="Qiao Partners handles market entry, distribution and commercial work. Legal, tax, regulatory and certification services are delivered by appropriately qualified firms, which we select, brief and coordinate on the client's behalf.",
     fees_h="How engagements are structured",
-    fees_p="We work on fixed-fee assessments, market-entry mandates, monthly distribution and client-management mandates, and distribution agreements for defined countries. Where appropriate, a success-based fee may be agreed in writing. Fees are proposed after an introductory conversation, once the scope is clear.",
+    fees_p='We work on business development mandates, sourcing assignments, fixed fees for certification and quality work, and a trade margin where Qiao Partners trades the goods itself. Where appropriate, a success-based fee may be agreed in writing. Terms are proposed after an introductory conversation, once the scope is clear.',
     eu2cn_h="European companies entering China",
     eu2cn_p="Our focus is Chinese companies expanding into Europe. We also support selected European companies with market assessment, partner identification and establishment in China.",
   ),
@@ -189,7 +189,7 @@ C = dict(
 
   contact=dict(
     title="Contact | Discuss your European expansion | Qiao Partners",
-    desc='Talk to Qiao Partners about entering Europe, building distribution, managing European customers or negotiating agreements. Email, WeChat, WhatsApp or the enquiry form.',
+    desc='Talk to Qiao Partners about finding European buyers, sourcing a certified Chinese supplier or setting up a trading partnership. Email, WeChat, WhatsApp or the enquiry form.',
     eyebrow="Contact",
     h1="Let's discuss your European expansion.",
     lead="Whether you are assessing the European market, identifying commercial partners or preparing to establish a local presence, we can help you define the next steps.",
@@ -204,7 +204,7 @@ C = dict(
     f_note="We use your details only to respond to your enquiry. Fields marked * are required.",
     f_ok="Thank you. We have received your enquiry and will reply within one working day.",
     f_err="Your enquiry could not be sent. Please email us at contact@qiaopartners.eu.",
-    types=[("expansion", "Discuss your European expansion"), ('distribution', 'Discuss European distribution'), ("assessment", "Request a market assessment"),
+    types=[("expansion", "Discuss your European expansion"), ('buyer', 'European buyer: find a certified supplier'), ('distribution', 'Discuss European distribution'), ("assessment", "Request a market assessment"),
            ("partnership", "Explore a strategic partnership"), ("china", "European company entering China"), ("other", "Other")],
     ind_opts=["Industrial automation and robotics", "Machinery and industrial components", "Advanced materials and manufacturing technology",
               "Battery storage and battery technology", "Solar, power electronics and grid equipment", "Biomethane and industrial energy systems",
@@ -224,7 +224,7 @@ C = dict(
     scan_wechat="WeChat", scan_wa="WhatsApp",
     cal_h="Prefer to choose a time?", cal_p="Book an introductory call directly in our calendar.", cal_loading="Loading available times…",
     faq_h="Questions clients often ask",
-    faq=[('Can Qiao Partners act as our distributor in Europe?', 'Yes, where it fits the product and market. We either build and manage a network of distributors for you, or act as your appointed distribution partner for agreed countries, with logistics, customs and after-sales coordinated with qualified partners.'),
+    faq=[('Does Qiao Partners trade the goods itself?', 'It can. Where agreed, we buy from the manufacturer and sell to the European buyer, so the buyer contracts with a European counterparty. Otherwise we act as business developer and coordinate the trade between both sides. Certification, inspection, logistics and customs are handled with qualified partners.'),
          ("How does a Chinese manufacturer usually start selling in Europe?",
           "Typically in four steps: confirm the product rules (CE marking and sector rules such as the Batteries Regulation), decide who acts as the economic operator in the EU (an importer, a distributor or your own entity), price against European competitors, and secure the first buyers. Our market assessment addresses each of these."),
          ("Do we need our own company in the EU?",

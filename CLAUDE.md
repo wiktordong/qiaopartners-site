@@ -14,7 +14,7 @@ Static site for qiaopartners.eu, hosted on GitHub Pages (repo `wiktordong/qiaopa
   - Photos in `img/brand/` (bridge, glass office) were supplied by Wiktor in chat; licence to be confirmed.
 
 ## Business rules for copy
-- Positioning (25 Nov 2026): European market entry & distribution hub for Chinese manufacturers. Four service lines: Market Entry & Compliance; Distribution & Channel Management; Client & Account Management; Negotiation & Commercial Agreements. Five sectors incl. Aluminium Products. European companies entering China is a secondary page (`/china-entry/`). Understated tone: no self-selling, no defensive disclaimers on pages.
+- Positioning (25 Nov 2026, revised): trading partner and business developer connecting European demand with Chinese supply. Finds local buyers for Chinese manufacturers; selects manufacturers by hand against each buyer's needs; ensures certification, quality and capacity; can trade the goods itself where agreed. Services: European Buyer Development; Demand-Led Supplier Selection; Certification, Quality & Capacity; Trade & Account Management. Five sectors incl. Aluminium Products. Understated tone, no defensive disclaimers on pages.
 - Never fabricate clients, testimonials, partnerships, team size, offices or track record. Team employers (Goldman Sachs, J.P. Morgan, Tencent, Accenture) are prior employers only. No government-relations claims, no guaranteed outcomes, no public prices. Legal/tax/certification work is 'coordinated with qualified specialists'.
 - It does not invest, manage funds or give investment advice. Never add investor-introduction or capital-raising wording (Wiktor wants to stay clear of MiFID).
 - Four languages always: English, Polish, Simplified Chinese, Russian. Every page exists in all four.

@@ -5,12 +5,12 @@ C = dict(
   nav_cta="Porozmawiajmy o ekspansji", menu="Menu", skip="Przejdź do treści", lang_label="Język",
   qiao_def=("桥", "qiáo", "rzecz.", "most."),
   more="Dowiedz się więcej", all_services="Wszystkie usługi", all_industries="Wszystkie branże",
-  f_tag='Wejście na rynek europejski i dystrybucja dla chińskich firm.',
+  f_tag='Partner handlowy i business developer łączący europejskich odbiorców z chińskimi producentami.',
   f_services="Usługi", f_company="Firma", f_contact="Kontakt",
   f_eu2cn="Firmy europejskie wchodzące do Chin",
   f_wechat="Zeskanuj, aby dodać nas na WeChat",
   f_member="Członek SinoCham – Polsko-Chińskiej Głównej Izby Gospodarczej.",
-  f_legal=("Qiao Partners świadczy usługi wejścia na rynek, dystrybucji i usługi handlowe. Nie jesteśmy kancelarią prawną, doradcą podatkowym, jednostką certyfikującą ani doradcą inwestycyjnym: "
+  f_legal=("Qiao Partners jest partnerem handlowym i business developerem. Nie jesteśmy kancelarią prawną, doradcą podatkowym, jednostką certyfikującą ani doradcą inwestycyjnym: "
            "prace prawne, podatkowe, regulacyjne i certyfikacyjne wykonują odpowiednio uprawnieni specjaliści. Nie świadczymy doradztwa inwestycyjnego, nie organizujemy inwestycji "
            "i nie przechowujemy środków klientów."),
   f_copy="© 2026 Qiao Partners. Wszelkie prawa zastrzeżone.",
@@ -20,7 +20,7 @@ C = dict(
   f_whatsapp='Napisz do nas na WhatsApp',
   f_social='Obserwuj i napisz do nas', f_scan='Zeskanuj w WeChat', f_close='Zamknij',
   quote='Most ma sens tylko wtedy, gdy ruch płynie w obie strony. Tym właśnie się zajmujemy.',
-  services=[{'id': 'market-entry', 'n': '01', 'title': 'Wejście na rynek i zgodność', 'short': 'Właściwy model wejścia, certyfikacja i organizacja importu przed pierwszą dostawą.', 'desc': 'Oceniamy popyt, ceny i konkurencję dla Państwa produktów, wybieramy model wejścia i dystrybucji oraz koordynujemy wszystko, co potrzebne do legalnej sprzedaży w Europie: certyfikację, importera, spółkę, cło i podatki – z uprawnionymi specjalistami.', 'needs': ['Wybierają Państwo kraje europejskie, od których warto zacząć', 'Produkty wymagają oznakowania CE, certyfikacji branżowej lub raportowania CBAM', 'Potrzebny jest importer lub spółka w Europie'], 'deliv': ['Ocena rynku, cen i konkurencji', 'Model wejścia i dystrybucji dla każdego kraju', 'Koordynacja certyfikacji i zgodności z akredytowanymi jednostkami', 'Organizacja importera, spółki, odpraw celnych i podatków z firmami partnerskimi'], 'fmt': 'Ocena za stałą opłatą (od trzech do sześciu tygodni), następnie mandat wejścia na rynek.', 'cta': 'Zamów ocenę rynku', 'cta_type': 'assessment'}, {'id': 'distribution', 'n': '02', 'title': 'Dystrybucja i zarządzanie kanałami', 'short': 'Europejska sieć dystrybucji zbudowana i prowadzona dla Państwa produktów.', 'desc': 'Wybieramy, powołujemy i prowadzimy dystrybutorów, dealerów i integratorów w całej Europie albo działamy jako Państwa wyznaczony partner dystrybucyjny w uzgodnionych krajach. Ustalamy strukturę kanałów, ceny i warunki oraz koordynujemy logistykę, magazyn i serwis z partnerami.', 'needs': ['Nie mają Państwo dystrybutorów w Europie albo nie tych, co trzeba', 'Ceny i warunki w kanałach różnią się między krajami', 'Chcą Państwo jednego partnera do prowadzenia dystrybucji zamiast wielu agentów'], 'deliv': ['Mapa, wybór i wdrożenie dystrybutorów i dealerów', 'Dystrybucja w uzgodnionych krajach, gdy to uzasadnione', 'Ceny, terytoria i warunki w kanałach', 'Logistyka, magazyn i serwis koordynowane z partnerami', 'Raporty wyników kanałów dla centrali'], 'fmt': 'Miesięczny mandat dystrybucyjny lub umowa dystrybucyjna dla określonych krajów.', 'cta': 'Porozmawiajmy o dystrybucji', 'cta_type': 'distribution'}, {'id': 'client-management', 'n': '03', 'title': 'Obsługa klientów i kont kluczowych', 'short': 'Jeden europejski kontakt dla Państwa klientów – od pierwszego zamówienia do kolejnych.', 'desc': 'Pozyskujemy odbiorców, prowadzimy kluczowych klientów lokalnie i w ich języku, pilnujemy zamówień, reklamacji i serwisu oraz regularnie raportujemy centrali stan sprzedaży i rynku.', 'needs': ['Europejscy klienci oczekują lokalnego kontaktu, a nie e-maila do Chin', 'Zamówienia, reklamacje i zgłoszenia serwisowe giną między strefami czasowymi', 'Centrala nie widzi stanu sprzedaży w Europie'], 'deliv': ['Identyfikacja odbiorców i wartościowe rekomendacje', 'Obsługa kont kluczowych i regularne wizyty u klientów', 'Pilnowanie zamówień, reklamacji i serwisu', 'Raporty lejka sprzedaży, prognoz i rynku'], 'fmt': 'Miesięczna stała obsługa, zwykle na dwanaście miesięcy.', 'cta': 'Porozmawiajmy o obsłudze klientów', 'cta_type': 'expansion'}, {'id': 'negotiation', 'n': '04', 'title': 'Negocjacje i umowy handlowe', 'short': 'Warunki, które działają w Europie, negocjowane osobiście.', 'desc': 'Prowadzimy lub wspieramy negocjacje z dystrybutorami, odbiorcami i zamawiającymi w przetargach: cena, wyłączność, terminy płatności, gwarancja i odpowiedzialność. Umowy przygotowujemy i weryfikujemy z uprawnionymi prawnikami.', 'needs': ['Dystrybutor lub odbiorca żąda wyłączności, długich terminów płatności lub szerokiej gwarancji', 'Przygotowują się Państwo do przetargu lub umowy ramowej', 'Oczekiwania kulturowe i umowne różnią się między Państwa zespołem a odbiorcą'], 'deliv': ['Strategia i przygotowanie negocjacji', 'Prowadzenie negocjacji lub udział w nich w Europie', 'Warunki umów dystrybucyjnych, dostaw i agencyjnych z prawnikami partnerskimi', 'Wsparcie przy przetargach i umowach ramowych'], 'fmt': 'Za negocjację lub w ramach mandatu dystrybucyjnego albo obsługi klientów; premia za sukces, jeśli uzgodniono na piśmie.', 'cta': 'Porozmawiajmy o negocjacjach', 'cta_type': 'partnership'}],
+  services=[{'id': 'buyer-development', 'n': '01', 'title': 'Pozyskiwanie odbiorców w Europie', 'short': 'Otwieramy rynki europejskie i znajdujemy lokalnych odbiorców dla Państwa produktów.', 'desc': 'Otwieramy rynki europejskie dla chińskich producentów: znajdujemy odbiorców, dystrybutorów i inwestorów projektów, którzy potrzebują Państwa produktów, osobiście ich przedstawiamy i prowadzimy każdą szansę aż do zamówienia.', 'needs': ['Mają Państwo dobry produkt, ale jeszcze nie mają klientów w Europie', 'Targi i zimne kontakty nie przyniosły prawdziwych odbiorców', 'Potrzebują Państwo kogoś w Europie, kto wie, kto kupuje'], 'deliv': ['Plan otwarcia rynku według krajów i segmentów', 'Mapa odbiorców, dystrybutorów i projektów', 'Wartościowe rekomendacje i spotkania w Europie', 'Prowadzenie szans aż do pierwszego zamówienia'], 'fmt': 'Miesięczny mandat rozwoju biznesu, zwykle z premią za sukces uzgodnioną na piśmie.', 'cta': 'Porozmawiajmy o odbiorcach', 'cta_type': 'expansion'}, {'id': 'supplier-selection', 'n': '02', 'title': 'Dobór dostawców według popytu', 'short': 'Zaczynamy od potrzeb odbiorcy, a producenta wybieramy ręcznie.', 'desc': 'Każde dopasowanie zaczyna się od popytu. Bierzemy specyfikację, wolumeny, cenę i terminy europejskiego odbiorcy i indywidualnie dobieramy do nich producentów. Nie prowadzimy katalogu ani platformy: każdy dostawca, którego proponujemy, został wybrany dla tego odbiorcy.', 'needs': ['Europejski odbiorca potrzebuje rzetelnego chińskiego dostawcy konkretnego produktu', 'Specyfikacja, wolumeny lub warunki dostaw są wymagające', 'Dotychczasowi dostawcy nie dotrzymali obietnic'], 'deliv': ['Opis wymagań odbiorcy: specyfikacja, wolumeny, cena, terminy', 'Długa lista i ręcznie wybrana krótka lista producentów', 'Spotkania w fabrykach i z zarządem w Chinach', 'Rekomendowany dostawca z jasnym uzasadnieniem'], 'fmt': 'Za zlecenie wyszukania dostawcy lub w ramach mandatu odbiorcy albo producenta.', 'cta': 'Znajdź dostawcę', 'cta_type': 'buyer'}, {'id': 'quality-assurance', 'n': '03', 'title': 'Certyfikacja, jakość i moce produkcyjne', 'short': 'Produkt, dokumenty i moce produkcyjne sprawdzone, zanim cokolwiek zostanie wysłane.', 'desc': 'Dbamy, by dostawy pasowały do odbiorcy: certyfikacja i zgodność z przepisami UE, standardy jakości oraz moce produkcyjne dopasowane do wolumenów i terminów odbiorcy. Audyty, badania i inspekcje wykonujemy z akredytowanymi partnerami.', 'needs': ['Odbiorca wymaga oznakowania CE, norm UE lub udokumentowanej jakości', 'Wolumeny muszą być zapewnione przez miesiące lub lata', 'Potrzebna jest niezależna kontrola przed wysyłką'], 'deliv': ['Koordynacja certyfikacji i zgodności z akredytowanymi jednostkami', 'Audyty fabryk i ocena mocy produkcyjnych', 'Inspekcja przedwysyłkowa i kontrola jakości', 'Dokumentacja, jakiej oczekuje europejski odbiorca'], 'fmt': 'Stała opłata za dostawcę lub zamówienie albo w ramach mandatu handlowego.', 'cta': 'Porozmawiajmy o jakości i certyfikacji', 'cta_type': 'assessment'}, {'id': 'trade-management', 'n': '04', 'title': 'Handel i obsługa klientów', 'short': 'Jesteśmy partnerem handlowym między dostawcą a odbiorcą i dbamy o tę relację.', 'desc': 'Jeśli tak uzgodnimy, Qiao Partners sam handluje towarem – kupuje od producenta i sprzedaje europejskiemu odbiorcy. W innym przypadku koordynujemy handel między stronami. W obu przypadkach prowadzimy negocjacje, umowy, zamówienia, logistykę i serwis oraz obsługujemy klienta przy kolejnych zamówieniach.', 'needs': ['Odbiorca woli zawrzeć umowę z europejskim kontrahentem', 'Negocjacje, warunki płatności i dostawy wymagają jednej odpowiedzialnej strony', 'Relacja ma trwać dłużej niż pierwsze zamówienie'], 'deliv': ['Negocjacje ceny, warunków i wyłączności', 'Umowy przygotowane z uprawnionymi prawnikami', 'Koordynacja zamówień, logistyki, odpraw celnych i serwisu', 'Obsługa kluczowych klientów i regularne raporty dla obu stron'], 'fmt': 'Marża handlowa, gdy Qiao Partners handluje towarem; w innym przypadku mandat miesięczny z premią za sukces uzgodnioną na piśmie.', 'cta': 'Porozmawiajmy o współpracy handlowej', 'cta_type': 'partnership'}],
 
   industries=[
     dict(id="industrial-technology", k="A", title="Technologie przemysłowe i zaawansowana produkcja", img="brand/robot-line.jpg",
@@ -57,11 +57,11 @@ C = dict(
   ],
 
   home=dict(
-    title='Qiao Partners | Wejście na rynek europejski i dystrybucja dla chińskich firm',
-    desc='Qiao Partners pomaga chińskim producentom wejść na rynek i sprzedawać w całej Europie: wejście na rynek i zgodność, dystrybucja, obsługa klientów i negocjacje – lokalnie, z jednym partnerem.',
+    title='Qiao Partners | Partner handlowy i rozwój biznesu chińskich producentów w Europie',
+    desc='Qiao Partners łączy europejski popyt z chińską podażą. Otwieramy rynki europejskie, znajdujemy lokalnych odbiorców, ręcznie dobieramy producentów i dbamy, by certyfikacja, jakość i moce produkcyjne odpowiadały każdemu odbiorcy.',
     eyebrow="Qiao Partners | Doradztwo Chiny–Europa",
     h1a="Państwa europejskie ambicje.", h1b="Nasza lokalna realizacja.",
-    lead='Pomagamy chińskim producentom wejść na rynek i sprzedawać w całej Europie: wejście na rynek, dystrybucja, obsługa klientów i negocjacje – lokalnie, z jednym partnerem.',
+    lead='Łączymy europejski popyt z chińską podażą: znajdujemy lokalnych odbiorców, ręcznie dobieramy właściwych producentów i dbamy, by certyfikacja, jakość i moce produkcyjne odpowiadały potrzebom każdego odbiorcy.',
     cta1="Porozmawiajmy o ekspansji w Europie", cta2="Poznaj nasze usługi",
     cred_eyebrow="Wiarygodność",
     cred_h='Zakorzenieni na obu rynkach.',
@@ -81,7 +81,7 @@ C = dict(
     appr_eyebrow="Nasze podejście",
     appr_h='Jak przebiega współpraca i ile trwa.',
     appr_p='Pięć etapów, jeden odpowiedzialny partner. Każdy etap ma określony zakres, rezultat i orientacyjny czas trwania. Można zacząć od dowolnego etapu i zakończyć po każdym z nich.',
-    stages=[('Ocena', 'Rynek i model wejścia', 'Popyt, ceny, konkurencja, regulacje oraz właściwy model importu i dystrybucji.', '3–6 tygodni', 'Projekt za stałą opłatą', 'Ocena rynku i plan wejścia'), ('Ustanowienie', 'Zgodność i organizacja importu', 'Certyfikacja, importer, spółka, logistyka i podatki – z uprawnionymi specjalistami.', '2–6 miesięcy', 'Mandat wejścia na rynek', 'Produkty gotowe do sprzedaży w Europie'), ('Dystrybucja', 'Sieć dystrybucji', 'Wybór, powołanie i wdrożenie dystrybutorów, dealerów i integratorów.', 'Od 4. miesiąca', 'Miesięczny mandat dystrybucyjny', 'Działający kanał w Europie'), ('Negocjacje', 'Odbiorcy i umowy', 'Zweryfikowani odbiorcy, negocjacje i podpisane umowy handlowe.', 'Od 6. miesiąca', 'Mandat miesięczny, premia za sukces, jeśli uzgodniono na piśmie', 'Podpisani klienci i dystrybutorzy'), ('Prowadzenie', 'Klienci i wzrost', 'Obsługa kont, zamówienia, serwis i ekspansja na kolejne kraje.', 'Stale, zwykle umowy 12-miesięczne', 'Miesięczna stała obsługa', 'Prowadzony biznes w Europie')],
+    stages=[('Popyt', 'Zrozumienie odbiorcy', 'Specyfikacja, wolumeny, cena, terminy i normy, które odbiorca musi spełnić.', '1–3 tygodnie', 'W ramach mandatu', 'Jasne wymagania odbiorcy'), ('Dobór', 'Wybór dostawcy', 'Producenci wybrani ręcznie pod potrzeby odbiorcy, ze spotkaniami w Chinach.', '3–6 tygodni', 'Zlecenie wyszukania dostawcy', 'Rekomendowany producent'), ('Weryfikacja', 'Certyfikacja, jakość i moce', 'Certyfikacja UE, audyty, próbki i ocena mocy z akredytowanymi partnerami.', '1–4 miesiące', 'Stała opłata lub w ramach mandatu handlowego', 'Dostawca gotowy na Europę'), ('Handel', 'Negocjacje i dostawa', 'Cena i warunki, umowy, zamówienia, logistyka i inspekcja przed wysyłką.', 'Od pierwszego zamówienia', 'Marża handlowa lub mandat miesięczny', 'Zrealizowane zamówienia'), ('Rozwój', 'Obsługa klienta', 'Kolejne zamówienia, serwis i nowi odbiorcy w całej Europie.', 'Stale', 'Marża handlowa lub miesięczna stała obsługa', 'Trwała relacja dostawcza')],
     tl_h='Orientacyjny harmonogram',
     tl_unit='Miesiąc',
     tl_note='Czas trwania jest orientacyjny i zależy od produktu, liczby krajów i wymogów certyfikacyjnych.',
@@ -132,14 +132,14 @@ C = dict(
              side="Wolą Państwo WeChat? Prosimy zeskanować kod lub napisać na adres"),
 
   about=dict(
-    title='O Qiao Partners | Wejście na rynek europejski i dystrybucja',
-    desc='Qiao Partners to niezależna firma z Warszawy, która pomaga chińskim producentom wejść do Europy oraz zbudować, prowadzić i rozwijać europejską dystrybucję.',
+    title='O Qiao Partners | Łączymy europejski popyt z chińską podażą',
+    desc='Qiao Partners to partner handlowy i business developer z Warszawy, który łączy europejskich odbiorców z ręcznie wybranymi chińskimi producentami.',
     eyebrow="O nas",
-    h1='Europejska baza dla chińskich producentów.',
-    lead='Wprowadzamy chińskie produkty do Europy i dbamy, by się sprzedawały: wejście na rynek, dystrybucja, obsługa klientów i negocjacje – lokalnie.',
+    h1='Łączymy europejski popyt z chińską podażą.',
+    lead='Partner handlowy i business developer dla chińskich producentów oraz rzetelne źródło dostaw dla europejskich odbiorców.',
     pic="Most wantowy widziany od dołu",
     blocks=[
-      ("Kim jesteśmy", ['Qiao Partners to niezależna firma z Warszawy zajmująca się wejściem na rynek i dystrybucją. Pracujemy z chińskimi producentami od pierwszej oceny rynku po działający biznes w Europie: zgodność i organizację importu, sieć dystrybucji, obsługę klientów i negocjacje po drodze.',
+      ("Kim jesteśmy", ['Qiao Partners to partner handlowy i business developer z Warszawy. Otwieramy rynki europejskie dla chińskich producentów, znajdując lokalnych odbiorców, a tym odbiorcom służymy, indywidualnie dobierając producentów do ich popytu i sprawdzając certyfikację, jakość produktu i moce produkcyjne, zanim cokolwiek zostanie dostarczone.',
                         "Celowo jesteśmy butikiem. Każdy klient pracuje bezpośrednio z doświadczonymi osobami, a specjalistów angażujemy tylko tam, gdzie wymaga tego zakres prac."]),
       ("Dlaczego istniejemy", ["@Qiáo (桥) znaczy most.",
                                "Wiele chińskich firm wytwarza dziś produkty, które mogą konkurować w Europie jakością, technologią i ceną. Mniej z nich ma lokalne relacje, wiedzę regulacyjną i obecność na miejscu, by przekuć ten potencjał w kontrakty. Europejscy odbiorcy z kolei szukają rzetelnych dostawców, których rozumieją i od których mogą wymagać.",
@@ -163,16 +163,16 @@ C = dict(
   ),
 
   svc_page=dict(
-    title='Usługi | Wejście na rynek, dystrybucja, obsługa klientów i negocjacje | Qiao Partners',
-    desc='Wejście na rynek i zgodność, dystrybucja i zarządzanie kanałami, obsługa klientów i kont kluczowych oraz negocjacje umów handlowych dla chińskich firm sprzedających w Europie.',
+    title='Usługi | Pozyskiwanie odbiorców, dobór dostawców, jakość i handel | Qiao Partners',
+    desc='Pozyskiwanie odbiorców w Europie, dobór dostawców według popytu, certyfikacja, jakość i moce produkcyjne oraz handel i obsługa klientów między chińskimi producentami a europejskimi odbiorcami.',
     eyebrow="Usługi",
-    h1='Od wejścia na rynek do prowadzonego biznesu w Europie.',
-    lead='Wejście na rynek, dystrybucja, obsługa klientów i negocjacje. Klienci powierzają nam jedną część albo całość.',
+    h1='Od europejskiego popytu do zrealizowanej dostawy.',
+    lead='Znajdujemy odbiorcę, wybieramy producenta, sprawdzamy produkt i prowadzimy handel. Klienci współpracują z nami przy jednym etapie albo przy wszystkich.',
     needs_h="Kiedy klienci się do nas zwracają", deliv_h="Co Państwo otrzymują", fmt_h="Forma współpracy",
     spec_h="Współpraca z uprawnionymi specjalistami",
     spec_p="Qiao Partners zajmuje się wejściem na rynek, dystrybucją i pracą handlową. Usługi prawne, podatkowe, regulacyjne i certyfikacyjne świadczą odpowiednio uprawnione firmy, które w imieniu klienta wybieramy, wprowadzamy w temat i koordynujemy.",
     fees_h="Jak zorganizowana jest współpraca",
-    fees_p="Pracujemy w formie ocen rynku za stałą opłatą, mandatów wejścia na rynek, miesięcznych mandatów dystrybucji i obsługi klientów oraz umów dystrybucyjnych dla określonych krajów. W uzasadnionych przypadkach można na piśmie uzgodnić wynagrodzenie zależne od sukcesu. Wynagrodzenie proponujemy po rozmowie wprowadzającej, gdy zakres jest jasny.",
+    fees_p='Pracujemy w formie mandatów rozwoju biznesu, zleceń wyszukania dostawców, stałych opłat za certyfikację i kontrolę jakości oraz marży handlowej, gdy Qiao Partners sam handluje towarem. W uzasadnionych przypadkach można na piśmie uzgodnić wynagrodzenie zależne od sukcesu. Warunki proponujemy po rozmowie wprowadzającej, gdy zakres jest jasny.',
     eu2cn_h="Firmy europejskie wchodzące do Chin",
     eu2cn_p="Naszą specjalnością są chińskie firmy rozwijające się w Europie. Wybrane firmy europejskie wspieramy także w ocenie rynku, wyszukiwaniu partnerów i ustanowieniu obecności w Chinach.",
   ),
@@ -189,7 +189,7 @@ C = dict(
 
   contact=dict(
     title="Kontakt | Porozmawiajmy o ekspansji w Europie | Qiao Partners",
-    desc='Porozmawiaj z Qiao Partners o wejściu do Europy, budowie dystrybucji, obsłudze europejskich klientów lub negocjacjach. E-mail, WeChat, WhatsApp lub formularz.',
+    desc='Porozmawiaj z Qiao Partners o pozyskaniu europejskich odbiorców, znalezieniu certyfikowanego chińskiego dostawcy lub współpracy handlowej. E-mail, WeChat, WhatsApp lub formularz.',
     eyebrow="Kontakt",
     h1="Porozmawiajmy o Państwa ekspansji w Europie.",
     lead="Niezależnie od tego, czy oceniają Państwo rynek europejski, szukają partnerów handlowych, czy przygotowują lokalną obecność – pomożemy określić kolejne kroki.",
@@ -204,7 +204,7 @@ C = dict(
     f_note="Dane wykorzystujemy wyłącznie do odpowiedzi na zapytanie. Pola oznaczone * są wymagane.",
     f_ok="Dziękujemy. Otrzymaliśmy zapytanie i odpowiemy w ciągu jednego dnia roboczego.",
     f_err="Nie udało się wysłać zapytania. Prosimy napisać na adres contact@qiaopartners.eu.",
-    types=[("expansion", "Rozmowa o ekspansji w Europie"), ('distribution', 'Rozmowa o dystrybucji w Europie'), ("assessment", "Zamówienie oceny rynku"),
+    types=[("expansion", "Rozmowa o ekspansji w Europie"), ('buyer', 'Odbiorca z Europy: znalezienie certyfikowanego dostawcy'), ('distribution', 'Rozmowa o dystrybucji w Europie'), ("assessment", "Zamówienie oceny rynku"),
            ("partnership", "Partnerstwo strategiczne"), ("china", "Firma europejska wchodząca do Chin"), ("other", "Inne")],
     ind_opts=["Automatyka przemysłowa i robotyka", "Maszyny i komponenty przemysłowe", "Zaawansowane materiały i technologie produkcyjne",
               "Magazyny energii i technologie bateryjne", "Fotowoltaika, energoelektronika i urządzenia sieciowe", "Biometan i przemysłowe systemy energetyczne",
@@ -224,7 +224,7 @@ C = dict(
     scan_wechat="WeChat", scan_wa="WhatsApp",
     cal_h="Wolą Państwo wybrać termin?", cal_p="Prosimy zarezerwować rozmowę wprowadzającą bezpośrednio w kalendarzu.", cal_loading="Ładowanie dostępnych terminów…",
     faq_h="Najczęstsze pytania klientów",
-    faq=[('Czy Qiao Partners może być naszym dystrybutorem w Europie?', 'Tak, jeśli pasuje to do produktu i rynku. Budujemy i prowadzimy dla Państwa sieć dystrybutorów albo działamy jako wyznaczony partner dystrybucyjny w uzgodnionych krajach, a logistykę, cło i serwis koordynujemy z uprawnionymi partnerami.'),
+    faq=[('Czy Qiao Partners sam handluje towarem?', 'Może. Jeśli tak uzgodnimy, kupujemy od producenta i sprzedajemy europejskiemu odbiorcy, dzięki czemu odbiorca zawiera umowę z europejskim kontrahentem. W innym przypadku działamy jako business developer i koordynujemy handel między stronami. Certyfikację, inspekcje, logistykę i odprawy celne realizujemy z uprawnionymi partnerami.'),
          ("Jak chiński producent zwykle zaczyna sprzedaż w Europie?",
           "Zazwyczaj w czterech krokach: potwierdzenie wymagań dla produktu (oznakowanie CE i przepisy sektorowe, np. rozporządzenie bateryjne), ustalenie, kto będzie podmiotem gospodarczym w UE (importer, dystrybutor lub własna spółka), wycena względem europejskiej konkurencji i pozyskanie pierwszych odbiorców. Nasza ocena rynku odpowiada na każde z tych pytań."),
          ("Czy potrzebujemy własnej spółki w UE?",

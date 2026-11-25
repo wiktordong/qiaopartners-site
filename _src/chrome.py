@@ -229,7 +229,7 @@ def org_ld(k):
             "knowsLanguage": ["en", "zh", "pl", "ru"], "sameAs": [LINKEDIN],
             "address": {"@type": "PostalAddress", "addressLocality": "Warsaw", "addressCountry": "PL"},
             "memberOf": [{"@type": "Organization", "name": f'{m["name"]} — {m["full"]["en"]}'} for m in MEMBERS],
-            "knowsAbout": ["European distribution for Chinese manufacturers", "China–Europe market entry", "Distributor management", "Key-account management", "Commercial negotiation", "Aluminium products", "European representation for Chinese companies",
+            "knowsAbout": ["Trading partner for Chinese manufacturers in Europe", "Finding European buyers", "Supplier selection in China", "Quality and certification assurance", "European distribution for Chinese manufacturers", "China–Europe market entry", "Distributor management", "Key-account management", "Commercial negotiation", "Aluminium products", "European representation for Chinese companies",
                            "Distributor identification", "Market intelligence", "Go-to-market strategy"]}
 
 
