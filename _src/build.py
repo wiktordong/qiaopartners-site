@@ -69,8 +69,8 @@ def phero(k, page, eb, h1, lead, extra=""):
 </section>'''
 
 
-BARS = [(0, 1.4), (1.2, 6), (3, 10), (5, 14), (10, 18)]
-MONTHS = 18
+BARS = [(0, 0.5), (0.4, 1.6), (1, 3), (2.5, 6), (3, 6)]
+MONTHS = 6
 
 
 def timeline(k):
@@ -139,7 +139,7 @@ def home(k, has_ins):
     <p class="def"><b lang="zh-CN">{d[0]}</b>{e(d[1])} <i>{e(d[2])}</i> — {e(d[3])}</p>
     <div class="hero-main"><h1><span class="a">{e(h["h1a"])}</span> <span class="b">{e(h["h1b"])}</span></h1></div>
     <div class="hero-side"><p class="lead">{e(h["lead"])}</p>
-      <div class="ctas"><a class="btn ivory" href="{url(k, "contact")}?type=expansion">{e(h["cta1"])} {AR}</a><a class="tlink" href="{url(k, "services")}">{e(h["cta2"])} {AR}</a></div></div>
+      <div class="ctas"><a class="btn ivory" href="{url(k, "contact")}?type=quote">{e(h["cta1"])} {AR}</a><a class="tlink" href="{url(k, "services")}">{e(h["cta2"])} {AR}</a></div></div>
   </div>
 </section>
 

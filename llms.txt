@@ -1,27 +1,30 @@
 # Qiao Partners
 
-> Qiao Partners connects European demand with Chinese supply. We open European markets, find local buyers, select manufacturers by hand and make sure certification, quality and capacity fit each buyer.
+> Qiao Partners connects European companies and distributors directly with leading Chinese factories. Competitive prices, one EU counterparty, quality checked before delivery. Headquartered in Warsaw.
 
 Qiao Partners is an independent China–Europe market entry and strategic business development firm based in Warsaw, Poland. It is a trading partner and business developer that connects European demand with Chinese supply: it opens European markets and finds local buyers for Chinese manufacturers, selects manufacturers by hand against each buyer's needs, ensures certification, product quality and capacity, and manages the trade and the account. It is not a law firm, tax adviser, certification body or investment adviser, and it does not invest or give investment advice.
 
 ## Services
-- [European Buyer Development](https://qiaopartners.eu/services/#buyer-development): We open European markets for Chinese manufacturers: we identify the buyers, distributors and project owners who need your products, introduce you in person and develop each opportunity until it becomes an order.
-- [Demand-Led Supplier Selection](https://qiaopartners.eu/services/#supplier-selection): Every match starts with demand. We take the European buyer's specification, volumes, price and delivery needs, and select manufacturers individually against them. We do not run a directory or a marketplace: each supplier we put forward has been chosen for that buyer.
-- [Certification, Quality & Capacity](https://qiaopartners.eu/services/#quality-assurance): We make sure the supply fits the buyer: EU certification and compliance, quality standards, and production capacity tailored to the buyer's volumes and timelines. Audits, testing and inspections are carried out with accredited partners.
-- [Trade & Account Management](https://qiaopartners.eu/services/#trade-management): Where agreed, Qiao Partners trades the goods itself, buying from the manufacturer and selling to the European buyer. Otherwise we coordinate the trade between both sides. Either way we handle negotiation, contracts, orders, logistics and after-sales, and manage the account for repeat business.
+- [Direct Sourcing](https://qiaopartners.eu/services/#direct-sourcing): We source directly from the producer, with no layers of agents in between. Factories are selected by hand for each request, from manufacturers we know and have worked with, so you get competitive prices and a supplier that fits your specification, volumes and timing.
+- [Trade & Counterparty Risk](https://qiaopartners.eu/services/#trade-risk): Qiao Partners buys from the producer and sells to you. Your contract, invoice and warranty are with an EU company headquartered in Warsaw, and we carry the counterparty risk towards the factory: payment terms, deposits, delivery and performance. Risk management is our background.
+- [Quality, Certification & Delivery](https://qiaopartners.eu/services/#quality-delivery): Before goods leave the factory we make sure they meet EU requirements and your specification: certification, factory audits and pre-shipment inspection with accredited partners. We then handle shipping, customs and delivery to your site, and coordinate after-sales with the producer.
+- [Distributors & Manufacturers](https://qiaopartners.eu/services/#partnerships): For European distributors we set up regular supply programmes with stable pricing and stock planning. For Chinese manufacturers we find European companies and distributors that need their products, and manage the relationship on the ground.
 
 ## Industries
-- Industrial Technology & Advanced Manufacturing: Industrial automation, Robotics, Machinery, Industrial components, Advanced materials, Manufacturing technologies
-- Energy & Infrastructure: Battery energy storage systems, Battery technologies, Solar, Power electronics, Transformers and grid infrastructure, Renewable energy equipment, Biomethane technologies, Industrial energy systems
-- Mobility & Automotive: Automotive components, EV supply chains, Commercial vehicles, Charging infrastructure, Battery components, Mobility technologies
-- Digital & Critical Infrastructure: AI data-centre infrastructure, Data-centre cooling, Power distribution, Industrial digitalisation, Selected technology infrastructure
-- Aluminium Products: Aluminium extrusions and profiles, Sheet, coil and foil, Windows, doors and façade systems, Automotive and battery-enclosure components, Heat sinks and electronics housings, Aluminium household and consumer goods
+- Battery Energy Storage: Utility-scale BESS, C&I battery cabinets, Cells and modules, Power conversion systems, Energy management systems
+- Electric Trucks & Buses: Electric trucks, Electric buses, Light commercial vehicles, Charging infrastructure, Spare parts
+- Engines & Power Generation: Diesel and gas engines, Generator sets, CHP units, Marine and industrial engines, Spare parts
+- Mining & Construction Machinery: Excavators and loaders, Crushers and screens, Drilling rigs, Conveyors, Underground mining equipment
+- Data Centre Equipment: Fibre-optic cables and connectivity, Power cables, Racks and enclosures, Cooling systems, UPS and switchgear
+- Biomethane & Biogas Equipment: Membrane upgrading units, Digesters and tanks, Compressors, Gas treatment, CHP units
+- Solar & Grid Equipment: Solar modules, Inverters, Transformers, Switchgear, Cables and mounting systems
+- Aluminium Products: Extrusions and profiles, Sheet, coil and foil, Windows, doors and façades, Automotive and battery-enclosure parts, Heat sinks and housings
 
 ## Pages
 - [Home](https://qiaopartners.eu/)
 - [About Us](https://qiaopartners.eu/about/)
 - [Services](https://qiaopartners.eu/services/)
-- [Industries](https://qiaopartners.eu/industries/)
+- [Products](https://qiaopartners.eu/industries/)
 - [Contact](https://qiaopartners.eu/contact/)
 - [European companies entering China](https://qiaopartners.eu/china-entry/)
 - [Polski](https://qiaopartners.eu/pl/)
