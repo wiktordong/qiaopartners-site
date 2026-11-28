@@ -708,3 +708,8 @@ footer{background:var(--navy-950);color:var(--on-dark-2);font-size:14.5px}
 .tl-months{grid-template-columns:repeat(6,1fr)}
 .tl-track{background:repeating-linear-gradient(90deg,transparent 0 calc(100%/6 - 1px),var(--line-dark) calc(100%/6 - 1px) calc(100%/6))}
 @media (max-width:700px){.tl-months span,.tl-months span:nth-child(3n+1){color:var(--on-dark-3)}}
+
+/* 28 Nov (later): back to an 18-month timeline */
+.tl-months{grid-template-columns:repeat(18,1fr)}
+.tl-track{background:repeating-linear-gradient(90deg,transparent 0 calc(100%/18 - 1px),var(--line-dark) calc(100%/18 - 1px) calc(100%/18))}
+@media (max-width:700px){.tl-months span{color:transparent}.tl-months span:nth-child(3n+1){color:var(--on-dark-3)}}
